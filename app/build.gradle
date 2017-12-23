@@ -7,7 +7,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -30,6 +30,7 @@ dependencies {
     compile 'com.intuit.ssp:ssp-android:1.0.4'
     compile 'com.jakewharton:butterknife:8.5.1'  //  for id picking...
     compile 'com.android.support:multidex:1.0.1' // for multiple devices.....
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
