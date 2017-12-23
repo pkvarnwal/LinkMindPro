@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="colorPrimary">#0064a8</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#0064a8</color>
+    <color name="white">#ffffff</color>
+    <color name="eqdepot_blue">#0064a8</color>
+    <color name="eqdepot_font_gray">#7f8083</color>
+    <color name="black">#000000</color>
+    <color name="eqdepot_gray">#3D3D3F</color>
+    <color name="divider_gray">#BBBEC0</color>
+    <color name="eqdepot_light_black">#EFEFEF</color>
+    <color name="eqdepot_background_color">#EBEBEB</color>
+    <color name="eqdepot_font_gray_hint">#8b8b8e</color>
+    <color name="gray_header">#EEEBEB</color>
+    <color name="status_bar_color">#1d1a1b </color>
+    <color name="green">#32CD32</color>
+    <color name="red">#FF4500</color>
+    <color name="red_dark">#DC143C</color>
+
+</resources>

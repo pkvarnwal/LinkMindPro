@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LinkMindPro</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="login">Log in</string>
+    <string name="already_a_customer">Already a Customer? </string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register_with_us"><u>Register</u></string>
+    <string name="catalog">Catalog</string>
+    <string name="setting">Setting</string>
+    <string name="device_not_authenticated">You device is not authenticated</string>
+    <string name="invalid_email">Please enter valid email Id</string>
+    <string name="enter_emailId">Please enter email Id</string>
+    <string name="please_enter">Please enter </string>
+    <string name="no_internet_message">Not connected to internet. Please check your network settings.</string>
+    <string name="login_successfully">Login successfully</string>
+</resources>
