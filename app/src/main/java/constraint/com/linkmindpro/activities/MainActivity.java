@@ -1,11 +1,8 @@
 package constraint.com.linkmindpro.activities;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -28,9 +25,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.button_login)
     Button buttonLogin;
     @BindView(R.id.relative_layout_root)
-    @BindString(R.string.device_not_authenticated)
-    String stringDeviceNotAuthenticated;
     RelativeLayout relativeLayoutRoot;
+
     @BindString(R.string.please_enter)
     String stringPleaseEnter;
     @BindString(R.string.enter_emailId)
