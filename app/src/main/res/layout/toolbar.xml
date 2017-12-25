@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:elevation="5dp"
-    android:layout_marginTop="@dimen/_30sdp"
     android:minHeight="?attr/actionBarSize"
     android:orientation="vertical">
 
@@ -18,7 +17,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:gravity="center"
-            android:text="Sign up"
             android:textSize="@dimen/_11sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
