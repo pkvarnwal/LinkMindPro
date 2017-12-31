@@ -1,8 +1,17 @@
 package constraint.com.linkmindpro.activities;
 
-/**
- * Created by crownstack on 12/25/17.
- */
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
-class PatientListActivity {
+import constraint.com.linkmindpro.R;
+
+class PatientListActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_patient_list);
+
+    }
 }
