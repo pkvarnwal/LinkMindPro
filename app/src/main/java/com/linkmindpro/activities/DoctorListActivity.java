@@ -1,5 +1,6 @@
 package com.linkmindpro.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.linkmindpro.adapters.DoctorListAdapter;
@@ -17,12 +19,14 @@ import java.util.ArrayList;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
 
 public class DoctorListActivity extends AppCompatActivity {
 
     @BindView(R.id.title) TextView textViewTitle;
     @BindView(R.id.text_view_notification) TextView textViewNotification;
+    @BindView(R.id.image_view_setting) ImageView imageViewSetting;
     @BindView(R.id.edit_text_search) EditText editTextSearch;
     @BindView(R.id.recycler_view_doctor) RecyclerView recyclerViewDoctor;
     @BindString(R.string.new_message) String stringNewMessage;
@@ -36,9 +40,14 @@ public class DoctorListActivity extends AppCompatActivity {
         initView();
     }
 
+    @OnClick(R.id.image_view_setting) void settingTapped() {
+        startActivity(new Intent(this, EditProfileActivity.class));
+    }
+
     private void updateUi() {
         textViewTitle.setText(stringNewMessage);
         textViewNotification.setVisibility(View.VISIBLE);
+        imageViewSetting.setVisibility(View.VISIBLE);
     }
 
     private void initView() {
