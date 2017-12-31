@@ -8,4 +8,46 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linear_layout_chat" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_text_chat"
+            style="@style/textSize_smaller"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_weight=".8"
+            android:background="@color/white"
+            android:hint="Type to compose"
+            android:imeOptions="actionNext"
+            android:paddingLeft="@dimen/_20sdp"
+            android:textColor="@color/eqdepot_font_gray"
+            android:textColorHint="@color/eqdepot_font_gray_hint" />
+
+        <ImageView
+            android:id="@+id/image_view_send"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center"
+            android:layout_weight="0.2"
+            android:contentDescription="@null"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_send" />
+    </LinearLayout>
+
 </RelativeLayout>
