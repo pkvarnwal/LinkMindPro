@@ -1,4 +1,4 @@
-package constraint.com.linkmindpro.utils;
+package com.linkmindpro.utils;
 
 public class StringUtils {
 

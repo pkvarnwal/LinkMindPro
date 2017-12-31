@@ -1,4 +1,4 @@
-package constraint.com.linkmindpro.utils;
+package com.linkmindpro.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

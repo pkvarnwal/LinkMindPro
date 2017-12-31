@@ -1,4 +1,4 @@
-package constraint.com.linkmindpro.activities;
+package com.linkmindpro.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import constraint.com.linkmindpro.R;
 
-import static constraint.com.linkmindpro.utils.AppConstant.SPLASH_TIME;
+import static com.linkmindpro.utils.AppConstant.SPLASH_TIME;
 
 public class SplashActivity extends AppCompatActivity {
 

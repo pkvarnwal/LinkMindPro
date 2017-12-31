@@ -1,4 +1,4 @@
-package constraint.com.linkmindpro.activities;
+package com.linkmindpro.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
-import constraint.com.linkmindpro.utils.ConnectionDetector;
-import constraint.com.linkmindpro.utils.StringUtils;
-import constraint.com.linkmindpro.view.SnackBarFactory;
+import com.linkmindpro.utils.ConnectionDetector;
+import com.linkmindpro.utils.StringUtils;
+import com.linkmindpro.view.SnackBarFactory;
 
 public class LoginActivity extends AppCompatActivity {
 

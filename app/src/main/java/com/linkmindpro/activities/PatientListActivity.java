@@ -1,4 +1,4 @@
-package constraint.com.linkmindpro.activities;
+package com.linkmindpro.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
