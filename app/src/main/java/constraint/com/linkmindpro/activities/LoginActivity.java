@@ -1,6 +1,5 @@
 package constraint.com.linkmindpro.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -17,7 +16,7 @@ import constraint.com.linkmindpro.utils.ConnectionDetector;
 import constraint.com.linkmindpro.utils.StringUtils;
 import constraint.com.linkmindpro.view.SnackBarFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.edit_text_email)
     EditText editTextEmail;
@@ -42,21 +41,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
     }
 
     @OnClick(R.id.button_login)
     void loginTapped() {
         if (!ConnectionDetector.isNetworkAvailable(this)) {
-            SnackBarFactory.showNoInternetSnackBar(MainActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
+            SnackBarFactory.showNoInternetSnackBar(LoginActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
             return;
         }
 
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
         if (validate(email, password))
-            SnackBarFactory.showNoInternetSnackBar(MainActivity.this, relativeLayoutRoot, stringLoginSuccessfully);
+            SnackBarFactory.showNoInternetSnackBar(LoginActivity.this, relativeLayoutRoot, stringLoginSuccessfully);
     }
 
     private boolean validate(String email, String password) {
