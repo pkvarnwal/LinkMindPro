@@ -16,4 +16,7 @@
     <string name="please_enter">Please enter </string>
     <string name="no_internet_message">Not connected to internet. Please check your network settings.</string>
     <string name="login_successfully">Login successfully</string>
+    <string name="new_message">New Message</string>
+    <string name="cancel">Cancel</string>
+    <string name="change_image">Change Image</string>
 </resources>

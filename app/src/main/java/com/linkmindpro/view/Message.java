@@ -1,4 +1,4 @@
-package constraint.com.linkmindpro.view;
+package com.linkmindpro.view;
 
 import android.content.Context;
 import android.widget.Toast;

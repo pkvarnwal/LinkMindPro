@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="com.linkmindpro.activities.SplashActivity"
             android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,22 @@
         </activity>
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.linkmindpro.activities.LoginActivity"
             android:theme="@style/showNotificationBar"
             android:windowSoftInputMode="stateHidden"/>
+
+        <activity
+            android:name="com.linkmindpro.activities.DoctorListActivity"
+            android:theme="@style/showNotificationBar"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <activity
+            android:name="com.linkmindpro.activities.ChatActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.EditProfileActivity"
+            android:theme="@style/showNotificationBar" />
 
     </application>
 </manifest>

@@ -41,10 +41,10 @@
                 <ImageView
                     android:layout_width="@dimen/_44sdp"
                     android:layout_height="@dimen/_44sdp"
-                    android:layout_marginStart="@dimen/_55ssp"
                     android:layout_marginLeft="@dimen/_55ssp"
-                    android:scaleType="centerInside"
+                    android:layout_marginStart="@dimen/_55ssp"
                     android:contentDescription="@null"
+                    android:scaleType="centerInside"
                     android:src="@mipmap/ic_launcher" />
 
                 <TextView

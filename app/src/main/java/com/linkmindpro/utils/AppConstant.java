@@ -1,4 +1,4 @@
-package constraint.com.linkmindpro.utils;
+package com.linkmindpro.utils;
 
 public interface AppConstant {
 
@@ -9,4 +9,5 @@ public interface AppConstant {
     int KEYBOARD_SHOW_TIME = 200;
 
     String ACCESS_TOKEN = "access_token";
+    String TITLE = "title";
 }

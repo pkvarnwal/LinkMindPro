@@ -1,4 +1,4 @@
-package constraint.com.linkmindpro.activities;
+package com.linkmindpro.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
-import constraint.com.linkmindpro.utils.ConnectionDetector;
-import constraint.com.linkmindpro.utils.StringUtils;
-import constraint.com.linkmindpro.view.SnackBarFactory;
+import com.linkmindpro.utils.ConnectionDetector;
+import com.linkmindpro.utils.StringUtils;
+import com.linkmindpro.view.SnackBarFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.edit_text_email)
     EditText editTextEmail;
@@ -42,21 +42,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
     }
 
     @OnClick(R.id.button_login)
     void loginTapped() {
         if (!ConnectionDetector.isNetworkAvailable(this)) {
-            SnackBarFactory.showNoInternetSnackBar(MainActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
+            SnackBarFactory.showNoInternetSnackBar(LoginActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
             return;
         }
 
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
-        if (validate(email, password))
-            SnackBarFactory.showNoInternetSnackBar(MainActivity.this, relativeLayoutRoot, stringLoginSuccessfully);
+        if (validate(email, password)) startActivity(new Intent(this, DoctorListActivity.class));
     }
 
     private boolean validate(String email, String password) {
