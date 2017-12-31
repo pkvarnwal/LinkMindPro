@@ -9,4 +9,5 @@ public interface AppConstant {
     int KEYBOARD_SHOW_TIME = 200;
 
     String ACCESS_TOKEN = "access_token";
+    String TITLE = "title";
 }

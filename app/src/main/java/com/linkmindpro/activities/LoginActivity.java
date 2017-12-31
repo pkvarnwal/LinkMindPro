@@ -1,5 +1,6 @@
 package com.linkmindpro.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -54,8 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
-        if (validate(email, password))
-            SnackBarFactory.showNoInternetSnackBar(LoginActivity.this, relativeLayoutRoot, stringLoginSuccessfully);
+        if (validate(email, password)) startActivity(new Intent(this, DoctorListActivity.class));
     }
 
     private boolean validate(String email, String password) {

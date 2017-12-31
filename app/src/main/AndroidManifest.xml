@@ -27,5 +27,15 @@
             android:theme="@style/showNotificationBar"
             android:windowSoftInputMode="stateHidden"/>
 
+        <activity
+            android:name="com.linkmindpro.activities.DoctorListActivity"
+            android:theme="@style/showNotificationBar"
+            android:windowSoftInputMode="stateHidden"/>
+
+
+        <activity
+            android:name="com.linkmindpro.activities.ChatActivity"
+            android:theme="@style/showNotificationBar" />
+
     </application>
 </manifest>
