@@ -3,6 +3,7 @@ package com.linkmindpro.activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,12 +39,15 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     }
 
     private void updateUi(String title) {
+        ArrayList<String> arrayList = new ArrayList<>();
         textViewTitle.setText(title);
+        setRecycleAdapter(arrayList);
     }
 
 
     private void setRecycleAdapter(ArrayList<String> arrayList) {
-        recyclerViewChat.addItemDecoration(new SimpleDividerItemDecoration(this));
         ChatAdapter chatAdapter = new ChatAdapter(this, arrayList);
+        recyclerViewChat.setAdapter(chatAdapter);
+        recyclerViewChat.setLayoutManager(new LinearLayoutManager(this));
     }
 }
