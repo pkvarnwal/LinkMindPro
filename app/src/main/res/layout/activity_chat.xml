@@ -53,5 +53,4 @@
             android:contentDescription="@null"
             android:src="@drawable/ic_send" />
     </LinearLayout>
-
 </RelativeLayout>
