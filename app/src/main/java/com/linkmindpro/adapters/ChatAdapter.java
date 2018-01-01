@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
 import constraint.com.linkmindpro.R;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
@@ -30,19 +31,22 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     @Override
     public void onBindViewHolder(ChatViewHolder holder, int position) {
-
+        holder.bindData();
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 20;
     }
 
+    class ChatViewHolder extends RecyclerView.ViewHolder {
 
-    public class ChatViewHolder extends RecyclerView.ViewHolder {
-
-        public ChatViewHolder(View itemView) {
+        ChatViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        public void bindData() {
         }
     }
 }
