@@ -2,25 +2,54 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relative_layout_root"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <include
-        android:id="@+id/toolbar_header"
-        layout="@layout/toolbar" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/background_color">
+
+        <TextView
+            android:id="@+id/text_view_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@drawable/bg_circle_red"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/ToolbarTitleAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp" />
+
+    </android.support.v7.widget.Toolbar>
 
     <EditText
         android:id="@+id/edit_text_search"
         style="@style/textSize_smaller"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
+        android:layout_below="@+id/toolbar"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/white"
         android:drawablePadding="@dimen/_10sdp"
         android:hint="Search"
-        android:background="@color/white"
-        android:layout_below="@+id/toolbar_header"
         android:imeOptions="actionNext"
         android:paddingLeft="@dimen/_20sdp"
         android:singleLine="true"
@@ -32,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/edit_text_search"
-        android:background="@color/divider_gray"/>
+        android:background="@color/divider_gray" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_doctor"
@@ -43,8 +72,8 @@
     <include
         android:id="@+id/footer"
         layout="@layout/footer"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_44sdp"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
 </RelativeLayout>

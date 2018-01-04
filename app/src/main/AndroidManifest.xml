@@ -28,9 +28,8 @@
             android:windowSoftInputMode="stateHidden"/>
 
         <activity
-            android:name="com.linkmindpro.activities.DoctorListActivity"
-            android:theme="@style/showNotificationBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:theme="@style/NewAppTheme"
+            android:name="com.linkmindpro.activities.DoctorListActivity" />
 
         <activity
             android:name="com.linkmindpro.activities.ChatActivity"

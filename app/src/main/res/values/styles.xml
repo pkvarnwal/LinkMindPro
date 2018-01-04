@@ -30,6 +30,13 @@
         <item name="android:textColor">@color/eqdepot_blue</item>
     </style>
 
+    <style name="NewAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     //10px
 
     <style name="textSize_smallest" parent="@android:style/Widget.TextView">
