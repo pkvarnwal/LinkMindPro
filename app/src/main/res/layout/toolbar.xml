@@ -2,10 +2,9 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tool1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="?attr/actionBarSize"
     android:background="@color/background_color"
     android:elevation="5dp"
-    android:minHeight="?attr/actionBarSize"
     android:orientation="vertical">
 
     <TextView
@@ -20,7 +19,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_11sdp" />
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/text_view_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,6 +40,6 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:contentDescription="@null"
         android:src="@drawable/ic_settings"
-        android:visibility="gone"/>
+        android:visibility="gone"/>-->
 
 </android.support.v7.widget.Toolbar>
