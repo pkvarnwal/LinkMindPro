@@ -3,6 +3,7 @@
     package="constraint.com.linkmindpro">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -25,11 +26,11 @@
         <activity
             android:name="com.linkmindpro.activities.LoginActivity"
             android:theme="@style/showNotificationBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:theme="@style/NewAppTheme"
-            android:name="com.linkmindpro.activities.DoctorListActivity" />
+            android:name="com.linkmindpro.activities.DoctorListActivity"
+            android:theme="@style/NewAppTheme" />
 
         <activity
             android:name="com.linkmindpro.activities.ChatActivity"
