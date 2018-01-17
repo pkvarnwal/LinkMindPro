@@ -39,5 +39,9 @@
             android:name="com.linkmindpro.activities.EditProfileActivity"
             android:theme="@style/showNotificationBar" />
 
+        <activity
+            android:name="com.linkmindpro.activities.DoctorPatientInfoActivity"
+            android:theme="@style/showNotificationBar" />
+
     </application>
 </manifest>
