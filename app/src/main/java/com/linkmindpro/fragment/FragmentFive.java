@@ -11,6 +11,12 @@ import constraint.com.linkmindpro.R;
 
 public class FragmentFive extends Fragment {
 
+
+    public static Fragment getInstance(){
+        FragmentFive fragment = new FragmentFive();
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

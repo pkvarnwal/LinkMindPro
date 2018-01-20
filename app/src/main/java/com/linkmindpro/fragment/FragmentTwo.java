@@ -11,6 +11,11 @@ import constraint.com.linkmindpro.R;
 
 public class FragmentTwo extends Fragment {
 
+    public static Fragment getInstance(){
+        FragmentTwo fragment = new FragmentTwo();
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
