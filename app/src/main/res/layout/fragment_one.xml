@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/linear_layout_link_mind"
+        android:layout_width="@dimen/_240sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_44sdp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="@dimen/_44sdp"
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="link"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/_35sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="mind"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_35sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/text_fragment"
+        android:id="@+id/text_view_taking_therapy"
+        style="@style/textSize_medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Fragment" />
+        android:layout_below="@+id/linear_layout_link_mind"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/taking_therapy"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/text_view_broaden_your_reach"
+        style="@style/textSize_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_taking_therapy"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/broaden_your_reach"
+        android:textColor="@color/eqdepot_font_gray" />
+</RelativeLayout>

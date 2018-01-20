@@ -21,4 +21,17 @@
     <string name="change_image">Change Image</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="logout">Logout</string>
+    <string name="get_started">Get Started</string>
+    <string name="taking_therapy">Taking therapy \ncommunication to the \nnext level</string>
+    <string name="broaden_your_reach">Broaden your reach and availability \nwith your parents</string>
+    <string name="patient_can_apply">Patient can apply priority alerts to mark \n a message as urgent.</string>
+    <string name="emergency_paging">Emergency Paging</string>
+    <string name="you_have_a_clinical">You have a clinical emergency message</string>
+    <string name="message_is_in_urgent">Message is in urgent need of your attention.</string>
+    <string name="urgent">Urgent</string>
+    <string name="i_am_having">I\'m having a panic attack. Can we mee…</string>
+    <string name="do_not_disturb">Do Not Disturb</string>
+    <string name="do_not_disturb_function">Do-Not-Disturb function disables \nnotifications and lets patients know that \n therapists are not available.</string>
+    <string name="delivery_confirmation">Delivery Confirmation</string>
+    <string name="know_instantly">Know instantly when messages have \nbeen sent, delivered, and read.</string>
 </resources>
