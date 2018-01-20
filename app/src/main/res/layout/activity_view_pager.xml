@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linear_layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,14 +14,18 @@
         tools:ignore="UselessParent">
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager_default"
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/indicator_default"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_centerInParent="true" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
     </RelativeLayout>
 </LinearLayout>
