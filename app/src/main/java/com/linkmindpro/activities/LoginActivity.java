@@ -50,8 +50,11 @@ public class LoginActivity extends AppCompatActivity {
     @BindString(R.string.login_successfully)
     String stringLoginSuccessfully;
 
-//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php?name=anu&email=prinsu@gmail.com.com&password=12345&role=1&address=test12&state=up&city=mrt&zipcode=2323&phone=654665";
-    String urlToCall = "https://www.linkmindpro.com/admin/web_service/login_api.php?email=prinsu@gmail.com.com&password=12345";
+//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php?name=anu&email=prinsu@gmail.com&password=12345&role=1&address=test12&state=up&city=mrt&zipcode=2323&phone=654665";
+//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/login_api.php?email=prinsu@gmail.com&password=12345";
+//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php ?action=subscribe&ref_id=85&name=anu&email=anu@gmail.com.com&password=12345&address=test12&state=up&city=mrt&zipcode=2323&phone=654665";
+//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php?action=subscribe&ref_id=85";
+    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php ?action=subscribe&ref_id=85&name=anu&email=anu@gmail.com.com&password=12345&address=test12&state=up&city=mrt&zipcode=2323&phone=654665";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
