@@ -1,10 +1,23 @@
 package com.linkmindpro.http;
 
+import android.app.Activity;
+
+import com.google.gson.Gson;
+import com.linkmindpro.models.login.LoginRequest;
+import com.linkmindpro.models.login.LoginResponse;
+import com.linkmindpro.models.register.RegisterResponse;
+import com.linkmindpro.models.subscribe.SubsribeRequest;
+import com.linkmindpro.models.subscribe.SubsribeResponse;
 import com.linkmindpro.utils.AppConstant;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -24,7 +37,7 @@ public class DataManager implements AppConstant {
     }
 
     private ServiceInterface getService() {
-        if (retrofit == null)  {
+        if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(okHttpClient)
@@ -45,5 +58,76 @@ public class DataManager implements AppConstant {
         void onSuccess(Object response);
 
         void onError(Object response);
+    }
+
+    public void register(Activity activity, String name, String email, String password, final DataManagerListener dataManagerListener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("name", name);
+        map.put("email", email);
+        map.put("password", password);
+
+        Call<RegisterResponse> call = getService().register(map);
+        call.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.body().getErrorResponse());
+                }
+                dataManagerListener.onError(response.errorBody());
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
+    public void login(Activity activity, LoginRequest loginRequest, final DataManagerListener dataManagerListener) {
+        Gson gson = new Gson();
+        String jsonAsString = gson.toJson(loginRequest);
+        Map<String, String> map = gson.fromJson(jsonAsString, Map.class);
+        Call<LoginResponse> call = getService().login(map);
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.body().getErrorResponse());
+                }
+                dataManagerListener.onError(response.errorBody());
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
+    public void subscribe(Activity activity, SubsribeRequest subsribeRequest, final DataManagerListener dataManagerListener) {
+        Gson gson = new Gson();
+        String jsonAsString = gson.toJson(subsribeRequest);
+        Map<String, String> map = gson.fromJson(jsonAsString, Map.class);
+        Call<SubsribeResponse> call = getService().subscribe(map);
+        call.enqueue(new Callback<SubsribeResponse>() {
+            @Override
+            public void onResponse(Call<SubsribeResponse> call, Response<SubsribeResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.body().getErrorResponse());
+                }
+                dataManagerListener.onError(response.errorBody());
+            }
+
+            @Override
+            public void onFailure(Call<SubsribeResponse> call, Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
     }
 }

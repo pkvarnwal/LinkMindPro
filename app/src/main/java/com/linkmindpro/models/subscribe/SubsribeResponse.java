@@ -1,20 +1,23 @@
-package com.linkmindpro.models.login;
+package com.linkmindpro.models.subscribe;
 
 import com.google.gson.annotations.SerializedName;
 import com.linkmindpro.models.error.ErrorResponse;
 
-public class LoginResponse {
+public class SubsribeResponse {
 
-   @SerializedName("data") private LoginData loginData;
-   @SerializedName("status") private String status;
-    @SerializedName("error") private ErrorResponse errorResponse;
+    @SerializedName("data")
+    private SubsribeData subsribeData;
+    @SerializedName("status")
+    private String status;
+    @SerializedName("error")
+    private ErrorResponse errorResponse;
 
-    public LoginData getLoginData() {
-        return loginData;
+    public SubsribeData getSubsribeData() {
+        return subsribeData;
     }
 
-    public void setLoginData(LoginData loginData) {
-        this.loginData = loginData;
+    public void setSubsribeData(SubsribeData subsribeData) {
+        this.subsribeData = subsribeData;
     }
 
     public String getStatus() {

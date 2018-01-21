@@ -10,5 +10,9 @@ public interface AppConstant {
 
     String ACCESS_TOKEN = "access_token";
     String TITLE = "title";
-    String BASE_URL = "https://www.linkmindpro.com/";
+    String BASE_URL = "https://www.linkmindpro.com/admin/web_service/";
+
+    String REGISTER = "register";
+    String SUCCESS = "success";
+    String PREF_LOGINDATA = "pref_logindata";
 }

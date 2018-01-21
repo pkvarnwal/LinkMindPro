@@ -43,7 +43,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_get_started)
     void getStartedTapped() {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, RegisterActivity.class));
         finish();
     }
 

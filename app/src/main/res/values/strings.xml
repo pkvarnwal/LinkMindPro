@@ -34,4 +34,13 @@
     <string name="do_not_disturb_function">Do-Not-Disturb function disables \nnotifications and lets patients know that \n therapists are not available.</string>
     <string name="delivery_confirmation">Delivery Confirmation</string>
     <string name="know_instantly">Know instantly when messages have \nbeen sent, delivered, and read.</string>
+    <string name="sign_in">Sign in</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="hello">Hello</string>
+    <string name="please_enter_your_mail">Please enter your mail</string>
+    <string name="continue_">Continue</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password_did_not_match">Confirm password did not match</string>
+    <string name="eight_char">Password must contain at-least 8 characters</string>
+    <string name="please_wait">Please wait…</string>
 </resources>

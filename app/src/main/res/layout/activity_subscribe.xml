@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/_25sdp"
+    android:paddingRight="@dimen/_25sdp">
+
+    <EditText
+        android:id="@+id/edit_text_email"
+        style="@style/textSize_small"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/bg_button_blue_border"
+        android:gravity="start"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/black"
+        tools:ignore="TextFields" />
+
+    <Button
+        android:id="@+id/button_subscribe"
+        style="@style/textSize_medium"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="Subscribe"
+        android:textColor="@color/white" />
+</LinearLayout>

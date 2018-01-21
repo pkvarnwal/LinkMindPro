@@ -16,7 +16,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
+
+import com.linkmindpro.http.DataManager;
+import com.linkmindpro.http.ErrorManager;
+import com.linkmindpro.models.login.LoginRequest;
+import com.linkmindpro.models.login.LoginResponse;
+import com.linkmindpro.utils.AppConstant;
+import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.utils.ConnectionDetector;
+import com.linkmindpro.utils.ProgressHelper;
 import com.linkmindpro.utils.StringUtils;
 import com.linkmindpro.view.SnackBarFactory;
 
@@ -26,7 +34,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements AppConstant {
 
     private ProgressDialog progressDialog;
 
@@ -73,7 +81,8 @@ public class LoginActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
         if (validate(email, password)) {
-            new HttpAsyncTaskClass().execute();
+            doLogin(email, password);
+           // new HttpAsyncTaskClass().execute();
 //            startActivity(new Intent(this, DoctorListActivity.class));
         }
     }
@@ -93,6 +102,33 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+
+    private void doLogin(String email, String password){
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail(email);
+        loginRequest.setPassword(password);
+        ProgressHelper.start(this, getString(R.string.please_wait));
+        DataManager.getInstance().login(this, loginRequest, new DataManager.DataManagerListener() {
+            @Override
+            public void onSuccess(Object response) {
+                ProgressHelper.stop();
+                LoginResponse loginResponse = (LoginResponse) response;
+                AppPreference.getAppPreference(LoginActivity.this).putObject(PREF_LOGINDATA, loginResponse.getLoginData());
+                startActivity(new Intent(LoginActivity.this, DoctorListActivity.class));
+                finish();
+
+            }
+
+            @Override
+            public void onError(Object response) {
+                ProgressHelper.stop();
+                ErrorManager errorManager = new ErrorManager(LoginActivity.this, relativeLayoutRoot, response);
+                errorManager.handleErrorResponse();
+            }
+        });
+
     }
 
     public class HttpAsyncTaskClass extends AsyncTask<String, Void, String> {

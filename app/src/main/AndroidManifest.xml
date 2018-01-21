@@ -25,7 +25,7 @@
 
         <activity
             android:name="com.linkmindpro.activities.ViewPagerActivity"
-            android:theme="@style/FullScreen"/>
+            android:theme="@style/FullScreen" />
 
         <activity
             android:name="com.linkmindpro.activities.LoginActivity"
@@ -46,6 +46,37 @@
 
         <activity
             android:name="com.linkmindpro.activities.DoctorPatientInfoActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterFirstActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterSecondActivity"
+            android:theme="@style/showNotificationBar" />
+        <activity
+            android:name="com.linkmindpro.activities.RegisterThirdActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterFourthActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterFifthActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterReviewActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.SubscribeActivity"
             android:theme="@style/showNotificationBar" />
 
     </application>
