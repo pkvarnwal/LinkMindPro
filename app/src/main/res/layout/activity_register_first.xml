@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/_420sdp">
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:gravity="center_vertical"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/text_view_already_account"
+                    style="@style/textSize_smaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_toLeftOf="@+id/text_view_sign_in"
+                    android:layout_toStartOf="@+id/text_view_sign_in"
+                    android:text="@string/already_have_account"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_sign_in"
+                    style="@style/textSize_smaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_sign_in"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:minHeight="@dimen/_120sdp">
+
+                <TextView
+                    android:id="@+id/text_view_hello"
+                    style="@style/textSize_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/hello"
+                    android:textColor="@color/eqdepot_blue"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_view_email_label"
+                    style="@style/textSize_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_view_hello"
+                    android:text="@string/please_enter_your_mail"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <EditText
+                    android:id="@+id/edit_text_email"
+                    style="@style/textSize_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_below="@+id/text_view_email_label"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_button_blue_border"
+                    android:gravity="start"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/eqdepot_font_gray"
+                    tools:ignore="TextFields" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/space_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/relative_layout_mail" />
+
+            <Button
+                android:id="@+id/button_first_continue"
+                style="@style/textSize_medium"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/space_view"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/continue_"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

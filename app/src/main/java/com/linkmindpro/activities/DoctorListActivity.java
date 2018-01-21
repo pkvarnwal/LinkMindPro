@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.linkmindpro.adapters.DoctorListAdapter;
+import com.linkmindpro.utils.AppConstant;
+import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.view.SimpleDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import constraint.com.linkmindpro.R;
 
-public class DoctorListActivity extends AppCompatActivity {
+public class DoctorListActivity extends AppCompatActivity implements AppConstant {
 
     @BindView(R.id.title) TextView textViewTitle;
     @BindView(R.id.text_view_notification) TextView textViewNotification;
@@ -86,9 +88,15 @@ public class DoctorListActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
 
+            case R.id.item_send_invite:
+                Intent inviteIntent = new Intent(DoctorListActivity.this, SubscribeActivity.class);
+                startActivity(inviteIntent);
+                break;
+
             case R.id.item_logout:
                 Intent loginIntent = new Intent(DoctorListActivity.this, LoginActivity.class);
                 loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                AppPreference.getAppPreference(this).remove(PREF_LOGINDATA);
                 startActivity(loginIntent);
                 finish();
         }

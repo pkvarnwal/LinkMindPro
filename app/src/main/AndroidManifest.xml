@@ -3,6 +3,7 @@
     package="constraint.com.linkmindpro">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -23,13 +24,17 @@
         </activity>
 
         <activity
-            android:name="com.linkmindpro.activities.LoginActivity"
-            android:theme="@style/showNotificationBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:name="com.linkmindpro.activities.ViewPagerActivity"
+            android:theme="@style/FullScreen" />
 
         <activity
-            android:theme="@style/NewAppTheme"
-            android:name="com.linkmindpro.activities.DoctorListActivity" />
+            android:name="com.linkmindpro.activities.LoginActivity"
+            android:theme="@style/showNotificationBar"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name="com.linkmindpro.activities.DoctorListActivity"
+            android:theme="@style/NewAppTheme" />
 
         <activity
             android:name="com.linkmindpro.activities.ChatActivity"
@@ -37,6 +42,41 @@
 
         <activity
             android:name="com.linkmindpro.activities.EditProfileActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.DoctorPatientInfoActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterFirstActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterSecondActivity"
+            android:theme="@style/showNotificationBar" />
+        <activity
+            android:name="com.linkmindpro.activities.RegisterThirdActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterFourthActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterFifthActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterReviewActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.RegisterActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.SubscribeActivity"
             android:theme="@style/showNotificationBar" />
 
     </application>

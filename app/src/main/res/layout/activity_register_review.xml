@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/_600sdp">
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center_vertical"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/text_view_already_account"
+                    style="@style/textSize_smaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_toLeftOf="@+id/text_view_sign_in"
+                    android:layout_toStartOf="@+id/text_view_sign_in"
+                    android:text="@string/already_have_account"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_sign_in"
+                    style="@style/textSize_smaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_change_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_sign_in"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:minHeight="@dimen/_90sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_view_profile"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/text_view_change_image"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_view_profile"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/change_image"
+                    android:textColor="@color/eqdepot_blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_change_image"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:minHeight="@dimen/_35sdp">
+
+                <TextView
+                    android:id="@+id/text_view_name_label"
+                    style="@style/textSize_small"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:gravity="end"
+                    android:text="Name:"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_name"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_toRightOf="@+id/text_view_name_label"
+                    android:text="Will Rosenbloom"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_name"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:minHeight="@dimen/_35sdp">
+
+                <TextView
+                    android:id="@+id/text_view_address_label"
+                    style="@style/textSize_small"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:gravity="end"
+                    android:text="Address:"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_address"
+                    style="@style/textSize_small"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_toRightOf="@+id/text_view_address_label"
+                    android:text="1234 Main Street"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/text_view_address_edit"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:text="Edit"
+                    android:textColor="@color/eqdepot_blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_address"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:minHeight="@dimen/_35sdp">
+
+                <TextView
+                    android:id="@+id/text_view_phone_label"
+                    style="@style/textSize_small"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:gravity="end"
+                    android:text="Phone:"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_phone"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_toRightOf="@+id/text_view_phone_label"
+                    android:text="310-210-9876"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_date_of_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_phone"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:minHeight="@dimen/_35sdp">
+
+                <TextView
+                    android:id="@+id/text_view_date_of_birth_label"
+                    style="@style/textSize_small"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:gravity="end"
+                    android:text="Date of Birth:"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_date_of_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_toRightOf="@+id/text_view_date_of_birth_label"
+                    android:text="12/3/1974"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_pharmacy_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_date_of_birth"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:minHeight="@dimen/_35sdp">
+
+                <TextView
+                    android:id="@+id/text_view_pharmacy_info_label"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Pharmacy Info:"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_pharmacy_info"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_toRightOf="@+id/text_view_pharmacy_info_label"
+                    android:text="CVS Pharmacy 1244 Jones St."
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/text_view_pharmacy_info_edit"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:text="Edit"
+                    android:textColor="@color/eqdepot_blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_insurance_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_pharmacy_info"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:minHeight="@dimen/_35sdp">
+
+                <TextView
+                    android:id="@+id/text_view_insurance_info_label"
+                    style="@style/textSize_small"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Insurance Info:"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_insurance_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_toRightOf="@+id/text_view_insurance_info_label"
+                    android:text="Blue Sheild of "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/text_view_insurance_info_edit"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:text="Edit"
+                    android:textColor="@color/eqdepot_blue" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_insurance_info"
+                android:minHeight="@dimen/_25sdp">
+
+                <TextView
+                    android:id="@+id/text_view_group_label"
+                    style="@style/textSize_small"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:gravity="end"
+                    android:text="Group #"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_group"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_toRightOf="@+id/text_view_group_label"
+                    android:text="XMG343221"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_layout_group"
+                android:minHeight="@dimen/_25sdp">
+
+                <TextView
+                    android:id="@+id/text_view_id_label"
+                    style="@style/textSize_small"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:gravity="end"
+                    android:text="ID #"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_id"
+                    style="@style/textSize_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_toRightOf="@+id/text_view_id_label"
+                    android:text="FGDIK6554"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/button_save"
+                style="@style/textSize_medium"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/relative_layout_id"
+                android:layout_marginBottom="@dimen/_44sdp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Save"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
