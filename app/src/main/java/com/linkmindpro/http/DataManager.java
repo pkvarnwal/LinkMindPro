@@ -2,9 +2,9 @@ package com.linkmindpro.http;
 
 import android.app.Activity;
 
-import com.google.gson.Gson;
 import com.linkmindpro.models.login.LoginRequest;
 import com.linkmindpro.models.login.LoginResponse;
+import com.linkmindpro.models.register.RegisterRequest;
 import com.linkmindpro.models.register.RegisterResponse;
 import com.linkmindpro.models.subscribe.SubsribeRequest;
 import com.linkmindpro.models.subscribe.SubsribeResponse;
@@ -60,13 +60,14 @@ public class DataManager implements AppConstant {
         void onError(Object response);
     }
 
-    public void register(Activity activity, String name, String email, String password, final DataManagerListener dataManagerListener) {
-        Map<String, String> map = new HashMap<>();
-        map.put("name", name);
-        map.put("email", email);
-        map.put("password", password);
+    public void register(Activity activity, RegisterRequest registerRequest, final DataManagerListener dataManagerListener) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("name", name);
+//        map.put("email", email);
+//        map.put("password", password);
 
-        Call<RegisterResponse> call = getService().register(map);
+//        Call<RegisterResponse> call = getService().register(map);
+        Call<RegisterResponse> call = getService().register(registerRequest);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
@@ -86,10 +87,6 @@ public class DataManager implements AppConstant {
     }
 
     public void login(Activity activity, LoginRequest loginRequest, final DataManagerListener dataManagerListener) {
-//        Gson gson = new Gson();
-//        String jsonAsString = gson.toJson(loginRequest);
-//        Map<String, String> map = gson.fromJson(jsonAsString, Map.class);
-//        Call<LoginResponse> call = getService().login(map);
         Call<LoginResponse> call = getService().login(loginRequest);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
@@ -110,10 +107,7 @@ public class DataManager implements AppConstant {
     }
 
     public void subscribe(Activity activity, SubsribeRequest subsribeRequest, final DataManagerListener dataManagerListener) {
-        Gson gson = new Gson();
-        String jsonAsString = gson.toJson(subsribeRequest);
-        Map<String, String> map = gson.fromJson(jsonAsString, Map.class);
-        Call<SubsribeResponse> call = getService().subscribe(map);
+        Call<SubsribeResponse> call = getService().subscribe(subsribeRequest);
         call.enqueue(new Callback<SubsribeResponse>() {
             @Override
             public void onResponse(Call<SubsribeResponse> call, Response<SubsribeResponse> response) {

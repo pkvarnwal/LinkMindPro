@@ -3,7 +3,9 @@ package com.linkmindpro.models.login;
 import com.google.gson.annotations.SerializedName;
 import com.linkmindpro.models.error.ErrorResponse;
 
-public class LoginResponse {
+import java.io.Serializable;
+
+public class LoginResponse implements Serializable {
 
    @SerializedName("data") private LoginData loginData;
    @SerializedName("status") private String status;

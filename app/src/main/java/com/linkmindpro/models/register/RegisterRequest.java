@@ -31,6 +31,17 @@ public class RegisterRequest implements Serializable {
     @SerializedName("insurance_zipcode") private String insuranceZipcode;
     @SerializedName("insurance_phone") private String insurancePhone;
 
+    @SerializedName("profession") private String profession;
+
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
     public String getInsuranceName() {
         return insuranceName;
     }

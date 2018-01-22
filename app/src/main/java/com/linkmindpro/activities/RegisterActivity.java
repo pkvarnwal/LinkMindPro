@@ -80,48 +80,19 @@ public class RegisterActivity extends AppCompatActivity implements AppConstant {
         String password = editTextPassword.getText().toString();
         String confirmPassword = editTextConfirmPassword.getText().toString();
 
-        if (validate(name, email, password, confirmPassword)) register(name, email, password);
+//        if (validate(name, email, password, confirmPassword)) register(name, email, password);
+        if (validate(name, email, password, confirmPassword)) secondRegisterScreen(name, email, password);
     }
 
-
-    private void register(String name, String email, String password) {
-        final RegisterRequest registerRequest = new RegisterRequest();
+    private void secondRegisterScreen(String name, String email, String password) {
+        RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setName(name);
         registerRequest.setEmail(email);
         registerRequest.setPassword(password);
 
-        ProgressHelper.start(this, stringPleaseWait);
-
-        DataManager.getInstance().register(this, name, email, password, new DataManager.DataManagerListener() {
-            @Override
-            public void onSuccess(Object response) {
-                ProgressHelper.stop();
-                String message = ((RegisterResponse) response).getRegisterData().getMessage();
-                confirmPopUp(message);
-            }
-
-            @Override
-            public void onError(Object response) {
-                ProgressHelper.stop();
-                ErrorManager errorManager = new ErrorManager(RegisterActivity.this, relativeLayoutRoot, response);
-                errorManager.handleErrorResponse();
-            }
-        });
-    }
-
-    private void confirmPopUp(String message) {
-        PopUpHelper.showInfoAlertPopup(this, message, new PopUpHelper.InfoPopupListener() {
-            @Override
-            public void onConfirm() {
-                openLoginScreen();
-            }
-        });
-    }
-
-    private void openLoginScreen() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, RegisterThirdActivity.class);
+        intent.putExtra(REGISTER, registerRequest);
         startActivity(intent);
-        finish();
     }
 
     private boolean validate(String name, String email, String password, String confirmPassword) {

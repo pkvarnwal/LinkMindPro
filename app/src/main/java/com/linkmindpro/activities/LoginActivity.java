@@ -19,6 +19,7 @@ import constraint.com.linkmindpro.R;
 
 import com.linkmindpro.http.DataManager;
 import com.linkmindpro.http.ErrorManager;
+import com.linkmindpro.models.login.LoginData;
 import com.linkmindpro.models.login.LoginRequest;
 import com.linkmindpro.models.login.LoginResponse;
 import com.linkmindpro.utils.AppConstant;
@@ -87,6 +88,12 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
         }
     }
 
+    @OnClick(R.id.text_view_sign_up)
+    void signUpTapped() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
     private boolean validate(String email, String password) {
         if (TextUtils.isEmpty(email)) {
             SnackBarFactory.createSnackBar(this, relativeLayoutRoot, stringEnterEmailId);
@@ -114,9 +121,14 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
             @Override
             public void onSuccess(Object response) {
                 ProgressHelper.stop();
+                if (response == null) return;
                 LoginResponse loginResponse = (LoginResponse) response;
+
                 AppPreference.getAppPreference(LoginActivity.this).putObject(PREF_LOGINDATA, loginResponse.getLoginData());
-                startActivity(new Intent(LoginActivity.this, DoctorListActivity.class));
+
+                Intent intent = new Intent(LoginActivity.this, DoctorListActivity.class);
+//                intent.putExtra(ID, loginResponse.getLoginData().getId());
+                startActivity(intent);
                 finish();
 
             }

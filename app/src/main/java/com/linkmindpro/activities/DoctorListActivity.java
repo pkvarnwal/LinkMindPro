@@ -34,6 +34,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     @BindView(R.id.recycler_view_doctor) RecyclerView recyclerViewDoctor;
     @BindString(R.string.new_message) String stringNewMessage;
     Toolbar toolbar;
+    private String id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,8 +46,16 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getIntentData();
         updateUi();
         initView();
+    }
+
+    private void getIntentData() {
+        if (getIntent().hasExtra(ID)) {
+            id = getIntent().getStringExtra(ID);
+
+        }
     }
 
     private void updateUi() {
@@ -90,6 +99,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
 
             case R.id.item_send_invite:
                 Intent inviteIntent = new Intent(DoctorListActivity.this, SubscribeActivity.class);
+//                inviteIntent.putExtra(ID, id);
                 startActivity(inviteIntent);
                 break;
 

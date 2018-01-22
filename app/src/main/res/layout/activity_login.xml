@@ -17,7 +17,7 @@
             android:minHeight="@dimen/_420sdp">
 
             <TextView
-                android:id="@+id/text_sign_up"
+                android:id="@+id/text_view_sign_up"
                 style="@style/textSize_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

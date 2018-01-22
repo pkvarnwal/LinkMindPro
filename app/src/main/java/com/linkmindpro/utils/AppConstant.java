@@ -15,4 +15,6 @@ public interface AppConstant {
     String REGISTER = "register";
     String SUCCESS = "success";
     String PREF_LOGINDATA = "pref_logindata";
+    String DATA = "data";
+    String ID = "id";
 }
