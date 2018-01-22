@@ -86,10 +86,11 @@ public class DataManager implements AppConstant {
     }
 
     public void login(Activity activity, LoginRequest loginRequest, final DataManagerListener dataManagerListener) {
-        Gson gson = new Gson();
-        String jsonAsString = gson.toJson(loginRequest);
-        Map<String, String> map = gson.fromJson(jsonAsString, Map.class);
-        Call<LoginResponse> call = getService().login(map);
+//        Gson gson = new Gson();
+//        String jsonAsString = gson.toJson(loginRequest);
+//        Map<String, String> map = gson.fromJson(jsonAsString, Map.class);
+//        Call<LoginResponse> call = getService().login(map);
+        Call<LoginResponse> call = getService().login(loginRequest);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {

@@ -22,7 +22,8 @@ public interface ServiceInterface {
     Call<RegisterResponse> register(@QueryMap Map<String, String> options);
 
     @POST("login_api.php?")
-    Call<LoginResponse> login(@QueryMap Map<String, String> options);
+//    Call<LoginResponse> login(@QueryMap Map<String, String> options);
+    Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
     @POST("add_patient_invitation_api.php?")
     Call<SubsribeResponse> subscribe(@QueryMap Map<String, String> options);
