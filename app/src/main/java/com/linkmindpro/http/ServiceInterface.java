@@ -5,6 +5,8 @@ import com.linkmindpro.models.forgot.ForgotRequest;
 import com.linkmindpro.models.forgot.ForgotResponse;
 import com.linkmindpro.models.login.LoginRequest;
 import com.linkmindpro.models.login.LoginResponse;
+import com.linkmindpro.models.patient.PatientRequest;
+import com.linkmindpro.models.patient.PatientResponse;
 import com.linkmindpro.models.register.RegisterRequest;
 import com.linkmindpro.models.register.RegisterResponse;
 import com.linkmindpro.models.subscribe.SubsribeRequest;
@@ -28,4 +30,7 @@ public interface ServiceInterface {
 
     @POST("forgot_password_api.php?")
     Call<ForgotResponse> forgot(@Body ForgotRequest forgotRequest);
+
+    @POST("patient_list_api.php?")
+    Call<PatientResponse> patientList(@Body PatientRequest patientRequest);
 }

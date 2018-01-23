@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.linkmindpro.models.patient.PatientData;
 import com.linkmindpro.utils.AppConstant;
 
 import java.util.ArrayList;
@@ -23,11 +24,11 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
 
     private Activity mActivity;
     private LayoutInflater mLayoutInflater;
-    private ArrayList<String> mDoctorList;
+    private ArrayList<PatientData> mPatientData;
 
-    public DoctorListAdapter(Activity activity, ArrayList<String> doctorList) {
+    public DoctorListAdapter(Activity activity, ArrayList<PatientData> patientData) {
         mActivity = activity;
-        mDoctorList = doctorList;
+        mPatientData = patientData;
         mLayoutInflater = LayoutInflater.from(activity);
     }
 
@@ -40,19 +41,19 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
 
     @Override
     public void onBindViewHolder(DoctorListViewHolder holder, int position) {
-        holder.bindData(mDoctorList.get(position));
+        holder.bindData(mPatientData.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return mDoctorList.size();
+        return mPatientData.size();
     }
 
 
     class DoctorListViewHolder extends  RecyclerView.ViewHolder {
 
-        private String title;
+        private PatientData patientData;
 
         @BindView(R.id.image_view_item)
         ImageView imageViewItem;
@@ -64,15 +65,17 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
             ButterKnife.bind(this, itemView);
         }
 
-        void bindData(String s) {
-            title = s;
-            textViewItem.setText(s);
+        void bindData(PatientData patientData) {
+            this.patientData = patientData;
+            if (patientData == null) return;
+            if (patientData.getName() != null)
+            textViewItem.setText(patientData.getName());
         }
 
         @OnClick(R.id.relative_layout_row)
         void itemTapped() {
             Intent intent = new Intent(mActivity, ChatActivity.class);
-            intent.putExtra(TITLE, title);
+            intent.putExtra(DATA, patientData);
             mActivity.startActivity(intent);
         }
     }

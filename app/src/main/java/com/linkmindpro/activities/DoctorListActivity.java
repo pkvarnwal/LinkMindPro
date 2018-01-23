@@ -12,12 +12,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.linkmindpro.adapters.DoctorListAdapter;
+import com.linkmindpro.http.DataManager;
+import com.linkmindpro.models.patient.PatientData;
+import com.linkmindpro.models.patient.PatientRequest;
+import com.linkmindpro.models.patient.PatientResponse;
 import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
+import com.linkmindpro.utils.ConnectionDetector;
+import com.linkmindpro.utils.ProgressHelper;
 import com.linkmindpro.view.SimpleDividerItemDecoration;
+import com.linkmindpro.view.SnackBarFactory;
 
 import java.util.ArrayList;
 
@@ -32,6 +40,8 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     @BindView(R.id.text_view_notification) TextView textViewNotification;
     @BindView(R.id.edit_text_search) EditText editTextSearch;
     @BindView(R.id.recycler_view_doctor) RecyclerView recyclerViewDoctor;
+    @BindView(R.id.relative_layout_root) RelativeLayout relativeLayoutRoot;
+
     @BindString(R.string.new_message) String stringNewMessage;
     Toolbar toolbar;
     private String id;
@@ -46,16 +56,36 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        getIntentData();
         updateUi();
-        initView();
+        patientList();
     }
 
-    private void getIntentData() {
-        if (getIntent().hasExtra(ID)) {
-            id = getIntent().getStringExtra(ID);
-
+    private void patientList() {
+        if (!ConnectionDetector.isNetworkAvailable(this)) {
+            SnackBarFactory.showNoInternetSnackBar(DoctorListActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
+            return;
         }
+
+        PatientRequest patientRequest = new PatientRequest();
+        patientRequest.setUserId("29");
+
+        ProgressHelper.start(this, getString(R.string.please_wait));
+
+        DataManager.getInstance().patientList(this, patientRequest, new DataManager.DataManagerListener() {
+            @Override
+            public void onSuccess(Object response) {
+                ProgressHelper.stop();
+                if (response == null) return;
+                PatientResponse patientResponse = (PatientResponse) response;
+                if (patientResponse.getPatientData().size() > 0)
+                setRecycleAdapter(patientResponse.getPatientData());
+            }
+
+            @Override
+            public void onError(Object response) {
+
+            }
+        });
     }
 
     private void updateUi() {
@@ -72,12 +102,12 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         doctorList.add("William Thompson");
         doctorList.add("William Thompson");
 
-        setRecycleAdapter(doctorList);
+//        setRecycleAdapter(doctorList);
     }
 
-    private void setRecycleAdapter(ArrayList<String> doctorList) {
+    private void setRecycleAdapter(ArrayList<PatientData> patientData) {
         recyclerViewDoctor.addItemDecoration(new SimpleDividerItemDecoration(this));
-        DoctorListAdapter doctorListAdapter = new DoctorListAdapter(this, doctorList);
+        DoctorListAdapter doctorListAdapter = new DoctorListAdapter(this, patientData);
         recyclerViewDoctor.setAdapter(doctorListAdapter);
         recyclerViewDoctor.setLayoutManager(new LinearLayoutManager(this));
     }
