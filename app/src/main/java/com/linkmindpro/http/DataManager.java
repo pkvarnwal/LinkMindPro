@@ -2,6 +2,8 @@ package com.linkmindpro.http;
 
 import android.app.Activity;
 
+import com.linkmindpro.models.forgot.ForgotRequest;
+import com.linkmindpro.models.forgot.ForgotResponse;
 import com.linkmindpro.models.login.LoginRequest;
 import com.linkmindpro.models.login.LoginResponse;
 import com.linkmindpro.models.register.RegisterRequest;
@@ -75,8 +77,7 @@ public class DataManager implements AppConstant {
                     if (response.body().getStatus().equals(SUCCESS))
                         dataManagerListener.onSuccess(response.body());
                     else dataManagerListener.onError(response.body().getErrorResponse());
-                }
-                dataManagerListener.onError(response.errorBody());
+                } else dataManagerListener.onError(response.errorBody());
             }
 
             @Override
@@ -95,8 +96,7 @@ public class DataManager implements AppConstant {
                     if (response.body().getStatus().equals(SUCCESS))
                         dataManagerListener.onSuccess(response.body());
                     else dataManagerListener.onError(response.body().getErrorResponse());
-                }
-                dataManagerListener.onError(response.errorBody());
+                } else dataManagerListener.onError(response.errorBody());
             }
 
             @Override
@@ -115,12 +115,30 @@ public class DataManager implements AppConstant {
                     if (response.body().getStatus().equals(SUCCESS))
                         dataManagerListener.onSuccess(response.body());
                     else dataManagerListener.onError(response.body().getErrorResponse());
-                }
-                dataManagerListener.onError(response.errorBody());
+                } else dataManagerListener.onError(response.errorBody());
             }
 
             @Override
             public void onFailure(Call<SubsribeResponse> call, Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
+    public void forgot(Activity activity, ForgotRequest forgotRequest, final DataManagerListener dataManagerListener) {
+        Call<ForgotResponse> call = getService().forgot(forgotRequest);
+        call.enqueue(new Callback<ForgotResponse>() {
+            @Override
+            public void onResponse(Call<ForgotResponse> call, Response<ForgotResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                    dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ForgotResponse> call, Throwable t) {
                 dataManagerListener.onError(t);
             }
         });
