@@ -1,22 +1,20 @@
-package com.linkmindpro.models.login;
+package com.linkmindpro.models.forgot;
 
 import com.google.gson.annotations.SerializedName;
 import com.linkmindpro.models.error.ErrorResponse;
 
-import java.io.Serializable;
+public class ForgotResponse {
 
-public class LoginResponse implements Serializable {
-
-   @SerializedName("data") private LoginData loginData;
-   @SerializedName("status") private String status;
+    @SerializedName("data") private ForgotData forgotData;
+    @SerializedName("status") private String status;
     @SerializedName("error") private ErrorResponse errorResponse;
 
-    public LoginData getLoginData() {
-        return loginData;
+    public ForgotData getForgotData() {
+        return forgotData;
     }
 
-    public void setLoginData(LoginData loginData) {
-        this.loginData = loginData;
+    public void setForgotData(ForgotData forgotData) {
+        this.forgotData = forgotData;
     }
 
     public String getStatus() {

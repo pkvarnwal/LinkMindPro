@@ -79,5 +79,13 @@
             android:name="com.linkmindpro.activities.SubscribeActivity"
             android:theme="@style/showNotificationBar" />
 
+        <activity
+            android:name="com.linkmindpro.activities.RegisterCardActivity"
+            android:theme="@style/showNotificationBar" />
+
+        <activity
+            android:name="com.linkmindpro.activities.ForgotPasswordActivity"
+            android:theme="@style/showNotificationBar" />
+
     </application>
 </manifest>

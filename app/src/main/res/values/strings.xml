@@ -3,7 +3,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password_title">Forgot Password</string>
-    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="forgot_your_password">Forgot your Password?</string>
     <string name="login">Log in</string>
     <string name="already_a_customer">Already a Customer? </string>
     <string name="sign_up">Sign Up</string>
@@ -43,4 +43,6 @@
     <string name="password_did_not_match">Confirm password did not match</string>
     <string name="eight_char">Password must contain at-least 8 characters</string>
     <string name="please_wait">Please wait…</string>
+    <string name="enter_your_mail">Enter your mail</string>
+    <string name="submit">Submit</string>
 </resources>

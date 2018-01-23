@@ -12,7 +12,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/_450sdp">
+            android:minHeight="@dimen/_420sdp">
 
             <RelativeLayout
                 android:id="@+id/relative_layout_sign_in"
@@ -70,6 +70,7 @@
                     android:gravity="center_vertical"
                     android:paddingEnd="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
+                    android:visibility="gone"
                     tools:ignore="RtlSymmetry">
 
                     <TextView
@@ -95,20 +96,6 @@
                         android:textColor="@color/eqdepot_font_gray" />
                 </RelativeLayout>
 
-                <EditText
-                    android:id="@+id/edit_text_phone"
-                    style="@style/textSize_small"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_below="@+id/text_view_email_label"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/bg_button_blue_border"
-                    android:gravity="start"
-                    android:hint="Phone"
-                    android:inputType="textEmailAddress"
-                    android:padding="@dimen/_10sdp"
-                    android:textColor="@color/black"
-                    tools:ignore="TextFields" />
 
                 <EditText
                     android:id="@+id/edit_text_address"
@@ -120,7 +107,7 @@
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
                     android:hint="Address"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
                     tools:ignore="TextFields" />
@@ -136,7 +123,7 @@
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
                     android:hint="City"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
                     tools:ignore="TextFields" />
@@ -151,7 +138,7 @@
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
                     android:hint="State"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
                     tools:ignore="TextFields" />
@@ -166,13 +153,13 @@
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
                     android:hint="Zip"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
                     tools:ignore="TextFields" />
 
                 <EditText
-                    android:id="@+id/edit_text_date_of_birth"
+                    android:id="@+id/edit_text_phone"
                     style="@style/textSize_small"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
@@ -180,19 +167,17 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
-                    android:hint="Date of birth (mm/dd/yyyy)"
-                    android:inputType="textEmailAddress"
+                    android:hint="Phone"
+                    android:inputType="phone"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
                     tools:ignore="TextFields" />
-
-
             </LinearLayout>
 
             <View
                 android:id="@+id/space_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:layout_below="@+id/relative_layout_mail" />
 
             <Button

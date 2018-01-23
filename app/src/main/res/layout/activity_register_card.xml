@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relative_layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +12,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/_420sdp">
+            android:minHeight="@dimen/_450sdp">
 
             <RelativeLayout
                 android:id="@+id/relative_layout_sign_in"
@@ -24,7 +23,6 @@
                 android:gravity="center_vertical"
                 android:paddingEnd="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp"
-                android:visibility="gone"
                 tools:ignore="RtlSymmetry">
 
                 <TextView
@@ -51,7 +49,7 @@
                     android:textStyle="bold" />
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/relative_layout_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,87 +59,91 @@
                 android:layout_marginRight="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_50sdp"
-                android:minHeight="@dimen/_120sdp">
-
-                <TextView
-                    android:id="@+id/text_view_hello"
-                    style="@style/textSize_large"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/hello"
-                    android:textColor="@color/eqdepot_blue"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/text_view_email_label"
-                    style="@style/textSize_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_view_hello"
-                    android:text="@string/please_enter_your_mail"
-                    android:textColor="@color/eqdepot_font_gray"
-                    android:visibility="gone" />
+                android:minHeight="@dimen/_120sdp"
+                android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/edit_text_profession"
+                    android:id="@+id/edit_text_name_on_card"
                     style="@style/textSize_small"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
-                    android:layout_below="@+id/text_view_email_label"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
-                    android:hint="Profession(i.e Phychitry, Psychology)"
-                    android:inputType="textEmailAddress"
+                    android:hint="Name on Card"
+                    android:inputType="text"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/eqdepot_font_gray"
                     tools:ignore="TextFields" />
-            </RelativeLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_view_profession"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
-                android:layout_below="@+id/relative_layout_mail"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:src="@drawable/ic_launcher_background" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp">
 
-            <TextView
-                android:id="@+id/text_view_privacy_policy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/image_view_profession"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:text="By signing up you agree to our Terms and Privacy Policy" />
+                    <EditText
+                        android:id="@+id/edit_text_card_number"
+                        style="@style/textSize_smaller"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_button_blue_border"
+                        android:gravity="start"
+                        android:hint="Card Number"
+                        android:inputType="number"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/black"
+                        tools:ignore="TextFields" />
+
+                    <TextView
+                        android:id="@+id/text_view_date"
+                        style="@style/textSize_smaller"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_25sdp"
+                        android:text="MM/YY CVC" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/text_view_free_trail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="Your free trail ends on 04/23/2018(then only$35/mo). Cancel Anytime"/>
+            </LinearLayout>
 
             <View
                 android:id="@+id/space_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_below="@+id/text_view_privacy_policy" />
-
+                android:layout_height="@dimen/_70sdp"
+                android:layout_below="@+id/relative_layout_mail" />
 
             <Button
-                android:id="@+id/button_submit"
+                android:id="@+id/button_subscribe_now"
                 style="@style/textSize_medium"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_below="@+id/space_view"
-                android:layout_marginBottom="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_marginRight="@dimen/_15sdp"
                 android:background="@color/colorAccent"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:text="Submit"
+                android:text="Subscribe Now"
                 android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/text_view_skip"
+                style="@style/textSize_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_subscribe_now"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="Skip"
+                android:textColor="@color/eqdepot_font_gray" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

@@ -33,13 +33,11 @@ public class RegisterThirdActivity extends AppCompatActivity implements AppConst
     EditText editTextState;
     @BindView(R.id.edit_text_zip)
     EditText editTextZip;
-    @BindView(R.id.edit_text_date_of_birth)
-    EditText editTextDateOfBirth;
     @BindView(R.id.button_continue)
     Button buttonContinue;
     @BindView(R.id.text_view_skip)
     TextView textViewSkip;
-    private RegisterRequest registerRequest;
+    private RegisterRequest mRegisterRequest;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,53 +50,49 @@ public class RegisterThirdActivity extends AppCompatActivity implements AppConst
 
     private void getIntentData() {
         if (getIntent().hasExtra(REGISTER)) {
-            registerRequest = (RegisterRequest) getIntent().getSerializableExtra(REGISTER);
+            mRegisterRequest = (RegisterRequest) getIntent().getSerializableExtra(REGISTER);
         }
     }
 
     @OnClick(R.id.button_continue)
     void continueTapped() {
         RegisterRequest registerRequest = getPersonalData();
-        Intent intent = new Intent(this, RegisterFourthActivity.class);
+        Intent intent = new Intent(this, RegisterCardActivity.class);
         intent.putExtra(REGISTER, registerRequest);
         startActivity(intent);
     }
 
     @OnClick(R.id.text_view_skip)
     void skipTapped() {
-        Intent intent = new Intent(this, RegisterFourthActivity.class);
-        intent.putExtra(REGISTER, registerRequest);
+        Intent intent = new Intent(this, RegisterCardActivity.class);
+        intent.putExtra(REGISTER, mRegisterRequest);
         startActivity(intent);
     }
 
     private RegisterRequest getPersonalData() {
-        String phone = editTextPhone.getText().toString();
+
         String address = editTextAddress.getText().toString();
         String city = editTextCity.getText().toString();
         String state = editTextState.getText().toString();
         String zip = editTextZip.getText().toString();
-        String dob = editTextDateOfBirth.getText().toString();
+        String phone = editTextPhone.getText().toString();
 
         if (!TextUtils.isEmpty(phone)) {
-            registerRequest.setPhone(phone);
+            mRegisterRequest.setPhone(phone);
         }
         if (!TextUtils.isEmpty(address)) {
-            registerRequest.setAddress(address);
+            mRegisterRequest.setAddress(address);
         }
         if (!TextUtils.isEmpty(city)) {
-            registerRequest.setCity(city);
+            mRegisterRequest.setCity(city);
         }
         if (!TextUtils.isEmpty(state)) {
-            registerRequest.setState(state);
+            mRegisterRequest.setState(state);
         }
         if (!TextUtils.isEmpty(zip)) {
-            registerRequest.setZipcode(zip);
-        }
-        if (!TextUtils.isEmpty(dob)) {
-            registerRequest.setDob(dob);
+            mRegisterRequest.setZipcode(zip);
         }
 
-        return registerRequest;
+        return mRegisterRequest;
     }
-
 }

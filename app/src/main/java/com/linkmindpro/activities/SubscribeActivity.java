@@ -61,12 +61,21 @@ public class SubscribeActivity extends AppCompatActivity implements AppConstant 
     LinearLayout relativeLayoutRoot;
 
     private RegisterRequest registerRequest;
+    private String id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscribe);
         ButterKnife.bind(this);
+//        getIntentData();
+    }
+
+    private void getIntentData() {
+        if (getIntent().hasExtra(ID)) {
+            id = getIntent().getStringExtra(ID);
+
+        }
     }
 
     @OnClick(R.id.button_subscribe)
@@ -77,8 +86,9 @@ public class SubscribeActivity extends AppCompatActivity implements AppConstant 
     }
 
     private void subscribe(String email) {
-        final SubsribeRequest subsribeRequest = new SubsribeRequest();
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
+
+        final SubsribeRequest subsribeRequest = new SubsribeRequest();
         subsribeRequest.setId(loginData.getId());
         subsribeRequest.setEmail(email);
 

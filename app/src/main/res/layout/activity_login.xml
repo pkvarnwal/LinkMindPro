@@ -17,7 +17,7 @@
             android:minHeight="@dimen/_420sdp">
 
             <TextView
-                android:id="@+id/text_sign_up"
+                android:id="@+id/text_view_sign_up"
                 style="@style/textSize_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,7 +36,8 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/text_sign_up"
                 android:layout_marginTop="@dimen/_44sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="UnknownId">
 
                 <ImageView
                     android:layout_width="@dimen/_44sdp"
@@ -97,6 +98,21 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="@dimen/_10sdp"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/text_view_forgot_password"
+                style="@style/textSize_smaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/edit_text_password"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="@string/forgot_your_password"
                 android:textColor="@color/black" />
 
             <Button
