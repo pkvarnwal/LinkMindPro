@@ -1,6 +1,5 @@
 package com.linkmindpro.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,8 +27,6 @@ import constraint.com.linkmindpro.R;
 
 public class LoginActivity extends AppCompatActivity implements AppConstant {
 
-    private ProgressDialog progressDialog;
-
     @BindView(R.id.edit_text_email)
     EditText editTextEmail;
     @BindView(R.id.edit_text_password)
@@ -49,12 +46,6 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
     String stringPassword;
     @BindString(R.string.login_successfully)
     String stringLoginSuccessfully;
-
-//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php?name=anu&email=prinsu@gmail.com&password=12345&role=1&address=test12&state=up&city=mrt&zipcode=2323&phone=654665";
-//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/login_api.php?email=prinsu@gmail.com&password=12345";
-//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php ?action=subscribe&ref_id=85&name=anu&email=anu@gmail.com.com&password=12345&address=test12&state=up&city=mrt&zipcode=2323&phone=654665";
-//    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php?action=subscribe&ref_id=85";
-    String urlToCall = "https://www.linkmindpro.com/admin/web_service/register_api.php ?action=subscribe&ref_id=85&name=anu&email=anu@gmail.com.com&password=12345&address=test12&state=up&city=mrt&zipcode=2323&phone=654665";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

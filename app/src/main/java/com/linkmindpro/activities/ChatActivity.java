@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.linkmindpro.adapters.ChatAdapter;
+import com.linkmindpro.models.patient.PatientData;
 import com.linkmindpro.utils.AppConstant;
 
 import java.util.ArrayList;
@@ -35,12 +36,15 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     }
 
     private void getIntentData() {
-        if (getIntent().hasExtra(TITLE)) updateUi(getIntent().getStringExtra(TITLE));
+        if (getIntent().hasExtra(DATA)) {
+            PatientData patientData = (PatientData) getIntent().getSerializableExtra(DATA);
+            updateUi(patientData);
+        }
     }
 
-    private void updateUi(String title) {
+    private void updateUi(PatientData patientData) {
         ArrayList<String> arrayList = new ArrayList<>();
-        textViewTitle.setText(title);
+        if (patientData.getName() != null) textViewTitle.setText(patientData.getName());
         setRecycleAdapter(arrayList);
     }
 

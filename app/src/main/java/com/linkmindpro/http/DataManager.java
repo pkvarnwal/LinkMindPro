@@ -6,6 +6,8 @@ import com.linkmindpro.models.forgot.ForgotRequest;
 import com.linkmindpro.models.forgot.ForgotResponse;
 import com.linkmindpro.models.login.LoginRequest;
 import com.linkmindpro.models.login.LoginResponse;
+import com.linkmindpro.models.patient.PatientRequest;
+import com.linkmindpro.models.patient.PatientResponse;
 import com.linkmindpro.models.register.RegisterRequest;
 import com.linkmindpro.models.register.RegisterResponse;
 import com.linkmindpro.models.subscribe.SubsribeRequest;
@@ -143,4 +145,24 @@ public class DataManager implements AppConstant {
             }
         });
     }
+
+    public void patientList(Activity activity, PatientRequest patientRequest, final DataManagerListener dataManagerListener) {
+        Call<PatientResponse> call = getService().patientList(patientRequest);
+        call.enqueue(new Callback<PatientResponse>() {
+            @Override
+            public void onResponse(Call<PatientResponse> call, Response<PatientResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PatientResponse> call, Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
 }
