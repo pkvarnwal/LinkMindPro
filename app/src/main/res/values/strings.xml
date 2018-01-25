@@ -20,6 +20,8 @@
     <string name="cancel">Cancel</string>
     <string name="change_image">Change Image</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="send_invitation">Send Invitation</string>
     <string name="logout">Logout</string>
     <string name="get_started">Get Started</string>
     <string name="taking_therapy">Taking therapy \ncommunication to the \nnext level</string>

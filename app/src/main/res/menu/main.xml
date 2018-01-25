@@ -5,9 +5,14 @@
         android:id="@+id/item_edit_profile"
         android:title="@string/edit_profile"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_reset_password"
+        android:title="@string/reset_password"
+        app:showAsAction="never" />
     <item
         android:id="@+id/item_send_invite"
-        android:title="Send Invite" />
+        android:title="@string/send_invitation" />
 
     <item
         android:id="@+id/item_logout"
