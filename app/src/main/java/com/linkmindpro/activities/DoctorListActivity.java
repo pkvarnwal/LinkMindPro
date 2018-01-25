@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.linkmindpro.adapters.DoctorListAdapter;
 import com.linkmindpro.http.DataManager;
+import com.linkmindpro.http.ErrorManager;
+import com.linkmindpro.models.login.LoginData;
 import com.linkmindpro.models.patient.PatientData;
 import com.linkmindpro.models.patient.PatientRequest;
 import com.linkmindpro.models.patient.PatientResponse;
@@ -65,9 +67,11 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
             SnackBarFactory.showNoInternetSnackBar(DoctorListActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
             return;
         }
-
+        LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
         PatientRequest patientRequest = new PatientRequest();
+
         patientRequest.setUserId("29");
+//        patientRequest.setUserId(loginData.getId());
 
         ProgressHelper.start(this, getString(R.string.please_wait));
 
@@ -83,7 +87,9 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
 
             @Override
             public void onError(Object response) {
-
+                ProgressHelper.stop();
+                ErrorManager errorManager = new ErrorManager(DoctorListActivity.this, relativeLayoutRoot, response);
+                errorManager.handleErrorResponse();
             }
         });
     }
@@ -91,18 +97,6 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     private void updateUi() {
         textViewTitle.setText(stringNewMessage);
         textViewNotification.setVisibility(View.VISIBLE);
-    }
-
-    private void initView() {
-        ArrayList<String> doctorList = new ArrayList<>();
-        doctorList.add("Will ResonBloom");
-        doctorList.add("Will ResonBloom");
-        doctorList.add("Will ResonBloom");
-        doctorList.add("William Thompson");
-        doctorList.add("William Thompson");
-        doctorList.add("William Thompson");
-
-//        setRecycleAdapter(doctorList);
     }
 
     private void setRecycleAdapter(ArrayList<PatientData> patientData) {

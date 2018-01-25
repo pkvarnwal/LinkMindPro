@@ -1,6 +1,7 @@
 package com.linkmindpro.http;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 
 import com.linkmindpro.models.forgot.ForgotRequest;
 import com.linkmindpro.models.forgot.ForgotResponse;
@@ -150,7 +151,7 @@ public class DataManager implements AppConstant {
         Call<PatientResponse> call = getService().patientList(patientRequest);
         call.enqueue(new Callback<PatientResponse>() {
             @Override
-            public void onResponse(Call<PatientResponse> call, Response<PatientResponse> response) {
+            public void onResponse(@NonNull Call<PatientResponse> call, @NonNull Response<PatientResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus().equals(SUCCESS))
                         dataManagerListener.onSuccess(response.body());
@@ -159,7 +160,7 @@ public class DataManager implements AppConstant {
             }
 
             @Override
-            public void onFailure(Call<PatientResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<PatientResponse> call, @NonNull Throwable t) {
                 dataManagerListener.onError(t);
             }
         });

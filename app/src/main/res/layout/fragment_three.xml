@@ -2,7 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image_view_three"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170sdp"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_view_pager_three" />
 
     <TextView
         android:id="@+id/text_view_fragment_two_do_not_disturb"
@@ -18,6 +27,7 @@
 
     <TextView
         android:id="@+id/text_view_fragment_two_do_not_disturb_function"
+        style="@style/textSize_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -33,4 +33,6 @@ public interface ServiceInterface {
 
     @POST("patient_list_api.php?")
     Call<PatientResponse> patientList(@Body PatientRequest patientRequest);
+
+    
 }
