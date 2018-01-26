@@ -3,6 +3,8 @@ package com.linkmindpro.http;
 
 import com.linkmindpro.models.changepassword.ChangeRequest;
 import com.linkmindpro.models.changepassword.ChangeResponse;
+import com.linkmindpro.models.editprofile.EditProfileRequest;
+import com.linkmindpro.models.editprofile.EditProfileResponse;
 import com.linkmindpro.models.forgot.ForgotRequest;
 import com.linkmindpro.models.forgot.ForgotResponse;
 import com.linkmindpro.models.login.LoginRequest;
@@ -38,4 +40,10 @@ public interface ServiceInterface {
 
     @POST("change_password_api.php?")
     Call<ChangeResponse> changePassword(@Body ChangeRequest changeRequest);
+
+    @POST("edit_profile_api.php?")
+    Call<EditProfileResponse> getProfile(@Body EditProfileRequest editProfileRequest);
+
+    @POST("edit_profile_api.php?")
+    Call<EditProfileResponse> updateProfile(@Body EditProfileRequest editProfileRequest);
 }

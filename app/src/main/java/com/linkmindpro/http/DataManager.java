@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 
 import com.linkmindpro.models.changepassword.ChangeRequest;
 import com.linkmindpro.models.changepassword.ChangeResponse;
+import com.linkmindpro.models.editprofile.EditProfileRequest;
+import com.linkmindpro.models.editprofile.EditProfileResponse;
 import com.linkmindpro.models.forgot.ForgotRequest;
 import com.linkmindpro.models.forgot.ForgotResponse;
 import com.linkmindpro.models.login.LoginRequest;
@@ -176,6 +178,44 @@ public class DataManager implements AppConstant {
 
             @Override
             public void onFailure(@NonNull Call<ChangeResponse> call, @NonNull Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
+    public void getProfile(Activity activity, EditProfileRequest editProfileRequest, final DataManagerListener dataManagerListener) {
+        Call<EditProfileResponse> call = getService().getProfile(editProfileRequest);
+        call.enqueue(new Callback<EditProfileResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<EditProfileResponse> call, @NonNull Response<EditProfileResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<EditProfileResponse> call, @NonNull Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
+    public void updateProfile(Activity activity, EditProfileRequest editProfileRequest, final DataManagerListener dataManagerListener) {
+        Call<EditProfileResponse> call = getService().updateProfile(editProfileRequest);
+        call.enqueue(new Callback<EditProfileResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<EditProfileResponse> call, @NonNull Response<EditProfileResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<EditProfileResponse> call, @NonNull Throwable t) {
                 dataManagerListener.onError(t);
             }
         });

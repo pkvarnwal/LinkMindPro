@@ -129,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relative_layout_email"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="gone"
                 android:minHeight="@dimen/_35sdp">
 
                 <TextView
@@ -180,6 +181,7 @@
                     android:textColor="@color/eqdepot_font_gray" />
 
                 <EditText
+                    android:id="@+id/edit_text_profession"
                     style="@style/textSize_small"
                     android:layout_width="@dimen/_200sdp"
                     android:layout_height="@dimen/_35sdp"
@@ -232,6 +234,7 @@
             <RelativeLayout
                 android:id="@+id/relative_layout_fax"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relative_layout_phone"
                 android:layout_marginTop="@dimen/_10sdp"
