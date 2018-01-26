@@ -42,9 +42,14 @@
     <string name="please_enter_your_mail">Please enter your mail</string>
     <string name="continue_">Continue</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
     <string name="password_did_not_match">Confirm password did not match</string>
     <string name="eight_char">Password must contain at-least 8 characters</string>
     <string name="please_wait">Please wait…</string>
     <string name="enter_your_mail">Enter your mail</string>
     <string name="submit">Submit</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="current_password">Current Password</string>
+
 </resources>

@@ -1,6 +1,8 @@
 package com.linkmindpro.http;
 
 
+import com.linkmindpro.models.changepassword.ChangeRequest;
+import com.linkmindpro.models.changepassword.ChangeResponse;
 import com.linkmindpro.models.forgot.ForgotRequest;
 import com.linkmindpro.models.forgot.ForgotResponse;
 import com.linkmindpro.models.login.LoginRequest;
@@ -34,5 +36,6 @@ public interface ServiceInterface {
     @POST("patient_list_api.php?")
     Call<PatientResponse> patientList(@Body PatientRequest patientRequest);
 
-    
+    @POST("change_password_api.php?")
+    Call<ChangeResponse> changePassword(@Body ChangeRequest changeRequest);
 }

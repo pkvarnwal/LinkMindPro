@@ -70,8 +70,8 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
         PatientRequest patientRequest = new PatientRequest();
 
-        patientRequest.setUserId("29");
-//        patientRequest.setUserId(loginData.getId());
+//        patientRequest.setUserId("29");
+        patientRequest.setUserId(loginData.getId());
 
         ProgressHelper.start(this, getString(R.string.please_wait));
 
@@ -116,14 +116,19 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
             case R.id.item_edit_profile:
                 Intent intent = new Intent(DoctorListActivity.this, EditProfileActivity.class);
                 startActivity(intent);
                 break;
 
+            case R.id.item_reset_password:
+                Intent resetIntent = new Intent(DoctorListActivity.this, ChangePasswordActivity.class);
+                startActivity(resetIntent);
+                break;
+
             case R.id.item_send_invite:
                 Intent inviteIntent = new Intent(DoctorListActivity.this, SubscribeActivity.class);
-//                inviteIntent.putExtra(ID, id);
                 startActivity(inviteIntent);
                 break;
 
