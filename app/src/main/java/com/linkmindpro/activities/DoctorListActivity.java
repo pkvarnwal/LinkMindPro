@@ -38,15 +38,20 @@ import constraint.com.linkmindpro.R;
 
 public class DoctorListActivity extends AppCompatActivity implements AppConstant {
 
-    @BindView(R.id.title) TextView textViewTitle;
-    @BindView(R.id.text_view_notification) TextView textViewNotification;
-    @BindView(R.id.edit_text_search) EditText editTextSearch;
-    @BindView(R.id.recycler_view_doctor) RecyclerView recyclerViewDoctor;
-    @BindView(R.id.relative_layout_root) RelativeLayout relativeLayoutRoot;
+    @BindView(R.id.title)
+    TextView textViewTitle;
+    @BindView(R.id.text_view_notification)
+    TextView textViewNotification;
+    @BindView(R.id.edit_text_search)
+    EditText editTextSearch;
+    @BindView(R.id.recycler_view_doctor)
+    RecyclerView recyclerViewDoctor;
+    @BindView(R.id.relative_layout_root)
+    RelativeLayout relativeLayoutRoot;
 
-    @BindString(R.string.new_message) String stringNewMessage;
+    @BindString(R.string.new_message)
+    String stringNewMessage;
     Toolbar toolbar;
-    private String id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,8 +75,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
         PatientRequest patientRequest = new PatientRequest();
 
-        patientRequest.setUserId("29");
-//        patientRequest.setUserId(loginData.getId());
+        patientRequest.setUserId(loginData.getId());
 
         ProgressHelper.start(this, getString(R.string.please_wait));
 
@@ -82,7 +86,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
                 if (response == null) return;
                 PatientResponse patientResponse = (PatientResponse) response;
                 if (patientResponse.getPatientData().size() > 0)
-                setRecycleAdapter(patientResponse.getPatientData());
+                    setRecycleAdapter(patientResponse.getPatientData());
             }
 
             @Override
@@ -116,14 +120,19 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
             case R.id.item_edit_profile:
                 Intent intent = new Intent(DoctorListActivity.this, EditProfileActivity.class);
                 startActivity(intent);
                 break;
 
+            case R.id.item_reset_password:
+                Intent resetIntent = new Intent(DoctorListActivity.this, ChangePasswordActivity.class);
+                startActivity(resetIntent);
+                break;
+
             case R.id.item_send_invite:
                 Intent inviteIntent = new Intent(DoctorListActivity.this, SubscribeActivity.class);
-//                inviteIntent.putExtra(ID, id);
                 startActivity(inviteIntent);
                 break;
 

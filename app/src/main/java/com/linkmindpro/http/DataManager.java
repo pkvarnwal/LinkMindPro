@@ -3,6 +3,8 @@ package com.linkmindpro.http;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 
+import com.linkmindpro.models.changepassword.ChangeRequest;
+import com.linkmindpro.models.changepassword.ChangeResponse;
 import com.linkmindpro.models.forgot.ForgotRequest;
 import com.linkmindpro.models.forgot.ForgotResponse;
 import com.linkmindpro.models.login.LoginRequest;
@@ -66,16 +68,10 @@ public class DataManager implements AppConstant {
     }
 
     public void register(Activity activity, RegisterRequest registerRequest, final DataManagerListener dataManagerListener) {
-//        Map<String, String> map = new HashMap<>();
-//        map.put("name", name);
-//        map.put("email", email);
-//        map.put("password", password);
-
-//        Call<RegisterResponse> call = getService().register(map);
         Call<RegisterResponse> call = getService().register(registerRequest);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+            public void onResponse(@NonNull Call<RegisterResponse> call, @NonNull Response<RegisterResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus().equals(SUCCESS))
                         dataManagerListener.onSuccess(response.body());
@@ -84,7 +80,7 @@ public class DataManager implements AppConstant {
             }
 
             @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<RegisterResponse> call, @NonNull Throwable t) {
                 dataManagerListener.onError(t);
             }
         });
@@ -165,5 +161,25 @@ public class DataManager implements AppConstant {
             }
         });
     }
+
+    public void changePassword(Activity activity, ChangeRequest changeRequest, final DataManagerListener dataManagerListener) {
+        Call<ChangeResponse> call = getService().changePassword(changeRequest);
+        call.enqueue(new Callback<ChangeResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<ChangeResponse> call, @NonNull Response<ChangeResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ChangeResponse> call, @NonNull Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
 
 }
