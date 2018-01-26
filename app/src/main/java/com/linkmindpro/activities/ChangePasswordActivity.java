@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.linkmindpro.dialog.PopUpHelper;
 import com.linkmindpro.http.DataManager;
@@ -32,6 +33,8 @@ import constraint.com.linkmindpro.R;
 
 public class ChangePasswordActivity extends AppCompatActivity implements AppConstant {
 
+    @BindView(R.id.title)
+    TextView textViewTitle;
     @BindView(R.id.edit_text_current_password)
     EditText editTextCurrentPassword;
     @BindView(R.id.edit_text_new_password)
@@ -52,21 +55,20 @@ public class ChangePasswordActivity extends AppCompatActivity implements AppCons
     String stringEightChar;
     @BindString(R.string.please_enter)
     String stringPleaseEnter;
-    @BindString(R.string.enter_emailId)
-    String stringEnterEmailId;
-    @BindString(R.string.invalid_email)
-    String stringInvalidEmail;
     @BindString(R.string.please_wait)
     String stringPleaseWait;
     @BindString(R.string.current_password)
     String stringCurrentPassword;
+    @BindString(R.string.reset_password)
+    String stringResetPassword;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
         ButterKnife.bind(this);
-
+        textViewTitle.setText(stringResetPassword);
     }
 
     @OnClick(R.id.button_continue)
@@ -94,7 +96,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements AppCons
         changeRequest.setPassword(newPassword);
         changeRequest.setCpassword(newPassword);
 
-        ProgressHelper.start(this, getString(R.string.please_wait));
+        ProgressHelper.start(this, stringPleaseWait);
         DataManager.getInstance().changePassword(this, changeRequest, new DataManager.DataManagerListener() {
             @Override
             public void onSuccess(Object response) {
