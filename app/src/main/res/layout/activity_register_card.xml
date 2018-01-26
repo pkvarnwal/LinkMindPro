@@ -73,6 +73,7 @@
                     android:hint="Name on Card"
                     android:inputType="text"
                     android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/eqdepot_font_gray"
                     android:textColor="@color/black"
                     tools:ignore="TextFields" />
 
@@ -90,6 +91,7 @@
                         android:gravity="start"
                         android:hint="Card Number"
                         android:inputType="number"
+                        android:textColorHint="@color/eqdepot_font_gray"
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/black"
                         tools:ignore="TextFields" />

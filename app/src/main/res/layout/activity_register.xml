@@ -67,14 +67,14 @@
                     style="@style/textSize_small"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
-                    android:layout_below="@+id/text_view_email_label"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
                     android:hint="Name"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/eqdepot_font_gray"
                     tools:ignore="TextFields" />
 
                 <EditText
@@ -89,6 +89,7 @@
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/eqdepot_font_gray"
                     tools:ignore="TextFields" />
 
                 <EditText
@@ -100,9 +101,10 @@
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
                     android:hint="@string/password"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/eqdepot_font_gray"
                     tools:ignore="TextFields" />
 
                 <EditText
@@ -114,9 +116,10 @@
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
                     android:hint="Confirm Password"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/eqdepot_font_gray"
                     tools:ignore="TextFields" />
             </LinearLayout>
 

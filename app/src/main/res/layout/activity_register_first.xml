@@ -94,7 +94,7 @@
                     android:background="@drawable/bg_button_blue_border"
                     android:gravity="start"
                     android:hint="Profession(i.e Phychitry, Psychology)"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/eqdepot_font_gray"
