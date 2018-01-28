@@ -15,13 +15,15 @@ import com.linkmindpro.fragment.FragmentFour;
 import com.linkmindpro.fragment.FragmentOne;
 import com.linkmindpro.fragment.FragmentThree;
 import com.linkmindpro.fragment.FragmentTwo;
+import com.linkmindpro.utils.AppConstant;
+import com.linkmindpro.utils.AppPreference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
 
-public class ViewPagerActivity extends AppCompatActivity {
+public class ViewPagerActivity extends AppCompatActivity implements AppConstant {
 
     private Fragment [] fragments;
     private IntroViewPagerAdapter mAdapter;
@@ -43,6 +45,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_get_started)
     void getStartedTapped() {
+        AppPreference.getAppPreference(this).putBoolean(INTRO_SEEN);
         startActivity(new Intent(this, RegisterActivity.class));
         finish();
     }
