@@ -3,6 +3,9 @@ package com.linkmindpro.http;
 
 import com.linkmindpro.models.changepassword.ChangeRequest;
 import com.linkmindpro.models.changepassword.ChangeResponse;
+import com.linkmindpro.models.chat.GetChatRequest;
+import com.linkmindpro.models.chat.GetChatResponse;
+import com.linkmindpro.models.chat.SendChatRequest;
 import com.linkmindpro.models.editprofile.EditProfileRequest;
 import com.linkmindpro.models.editprofile.EditProfileResponse;
 import com.linkmindpro.models.forgot.ForgotRequest;
@@ -46,4 +49,10 @@ public interface ServiceInterface {
 
     @POST("edit_profile_api.php?")
     Call<EditProfileResponse> updateProfile(@Body EditProfileRequest editProfileRequest);
+
+    @POST("chat_view_api.php?")
+    Call<GetChatResponse> getChat(@Body GetChatRequest getChatRequest);
+
+    @POST("send_message_api.php?")
+    Call<GetChatResponse> sendChat(@Body SendChatRequest sendChatRequest);
 }

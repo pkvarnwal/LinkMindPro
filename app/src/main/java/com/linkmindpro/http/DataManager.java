@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 
 import com.linkmindpro.models.changepassword.ChangeRequest;
 import com.linkmindpro.models.changepassword.ChangeResponse;
+import com.linkmindpro.models.chat.GetChatRequest;
+import com.linkmindpro.models.chat.GetChatResponse;
+import com.linkmindpro.models.chat.SendChatRequest;
 import com.linkmindpro.models.editprofile.EditProfileRequest;
 import com.linkmindpro.models.editprofile.EditProfileResponse;
 import com.linkmindpro.models.forgot.ForgotRequest;
@@ -92,7 +95,7 @@ public class DataManager implements AppConstant {
         Call<LoginResponse> call = getService().login(loginRequest);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus().equals(SUCCESS))
                         dataManagerListener.onSuccess(response.body());
@@ -216,6 +219,45 @@ public class DataManager implements AppConstant {
 
             @Override
             public void onFailure(@NonNull Call<EditProfileResponse> call, @NonNull Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
+    public void getChat(Activity activity, GetChatRequest getChatRequest, final DataManagerListener dataManagerListener) {
+        Call<GetChatResponse> call = getService().getChat(getChatRequest);
+        call.enqueue(new Callback<GetChatResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<GetChatResponse> call, @NonNull Response<GetChatResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<GetChatResponse> call, @NonNull Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
+
+
+    public void sendChat(Activity activity, SendChatRequest sendChatRequest, final DataManagerListener dataManagerListener) {
+        Call<GetChatResponse> call = getService().sendChat(sendChatRequest);
+        call.enqueue(new Callback<GetChatResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<GetChatResponse> call, @NonNull Response<GetChatResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<GetChatResponse> call, @NonNull Throwable t) {
                 dataManagerListener.onError(t);
             }
         });

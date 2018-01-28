@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class PatientData implements Serializable {
 
-    @SerializedName("id") private String id;
+    @SerializedName("patient_id") private String id;
     @SerializedName("ref_id") private String refId;
     @SerializedName("name") private String name;
     @SerializedName("email") private String email;
