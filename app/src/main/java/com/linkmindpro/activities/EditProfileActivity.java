@@ -1,8 +1,15 @@
 package com.linkmindpro.activities;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -10,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.linkmindpro.http.DataManager;
+import com.linkmindpro.http.ErrorManager;
 import com.linkmindpro.models.editprofile.EditProfileData;
 import com.linkmindpro.models.editprofile.EditProfileRequest;
 import com.linkmindpro.models.editprofile.EditProfileResponse;
@@ -17,7 +25,14 @@ import com.linkmindpro.models.login.LoginData;
 import com.linkmindpro.models.patient.PatientResponse;
 import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
+import com.linkmindpro.utils.AppUtils;
+import com.linkmindpro.utils.ConnectionDetector;
+import com.linkmindpro.utils.FileUtils;
+import com.linkmindpro.utils.Gallery;
+import com.linkmindpro.utils.ImageHelper;
+import com.linkmindpro.utils.PermissionClass;
 import com.linkmindpro.utils.ProgressHelper;
+import com.linkmindpro.view.SnackBarFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +73,11 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
     @BindView(R.id.linear_layout_root)
     LinearLayout linearLayoutRoot;
     private LoginData loginData;
+    private final String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    private final int REQUEST_PERMISSION_CODE = 200;
+    private static final int GALLERY_REQUEST = 2000;
+    private String profilePath;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,10 +120,16 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         editTextState.setText(profileData.getState());
         editTextZip.setText(profileData.getZipcode());
         editTextProfession.setText(profileData.getProfession());
+        if (!TextUtils.isEmpty(profileData.getImage()))
+        AppUtils.getInstance().display(this, profileData.getImage(), imageViewProfile, R.drawable.ic_user);
     }
 
     @OnClick(R.id.button_save)
-    void saveTapped(){
+    void saveTapped() {
+        if (!ConnectionDetector.isNetworkAvailable(this)) {
+            SnackBarFactory.showNoInternetSnackBar(EditProfileActivity.this, linearLayoutRoot, getString(R.string.no_internet_message));
+            return;
+        }
         EditProfileRequest editProfileRequest = new EditProfileRequest();
         String name =  editTextName.getText().toString();
         String email =  editTextEmail.getText().toString();
@@ -112,6 +138,12 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         String state =  editTextState.getText().toString();
         String zip =  editTextZip.getText().toString();
         String profession =  editTextProfession.getText().toString();
+
+        if (!profilePath.equals("")) {
+            String base64Image = Base64.encodeToString(ImageHelper.convertImageToByteArray(profilePath, 200, 200), Base64.DEFAULT);
+            String imgType ="image/png";
+            editProfileRequest.setImage(base64Image);
+        }
 
         editProfileRequest.setUserId(loginData.getId());
         editProfileRequest.setAction("edit");
@@ -134,8 +166,61 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
 
             @Override
             public void onError(Object response) {
-
+                ProgressHelper.stop();
+                ErrorManager errorManager = new ErrorManager(EditProfileActivity.this, linearLayoutRoot, response);
+                errorManager.handleErrorResponse();
             }
         });
+    }
+
+
+    @OnClick(R.id.image_view_profile) void imageTapped(){
+        PermissionClass permissionClass = new PermissionClass(this);
+        if (permissionClass.checkPermission(permissions)) {
+            openGallery(GALLERY_REQUEST);
+        } else {
+            permissionClass.requestPermission(REQUEST_PERMISSION_CODE, permissions);
+        }
+    }
+
+
+    private void openGallery(int requestCode) {
+        Gallery gallery = new Gallery(this);
+        gallery.openPhoto(requestCode);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_PERMISSION_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openGallery(GALLERY_REQUEST);
+                }
+                break;
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            switch (requestCode) {
+
+                case GALLERY_REQUEST:
+                    profilePath = FileUtils.getPath(this, data.getData());
+                    setPhoto(profilePath);
+                    break;
+            }
+        }
+    }
+
+    private void setPhoto(String profileImagePath) {
+        if (ImageHelper.getBitmapFromPath(profileImagePath) != null) {
+            imageViewProfile.setImageBitmap(ImageHelper.getBitmapFromPath(profileImagePath));
+        }
     }
 }

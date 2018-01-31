@@ -90,8 +90,13 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
 
     private void setRecycleAdapter(ArrayList<ChatData> chatDatas) {
         chatAdapter = new ChatAdapter(this, chatDatas, loginData.getId());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager.setReverseLayout(true);
+        recyclerViewChat.setLayoutManager(linearLayoutManager);
+//        recyclerViewChat.scrollToPosition(chatDatas.size());
         recyclerViewChat.setAdapter(chatAdapter);
-        recyclerViewChat.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerViewChat.scrollToPosition(recyclerViewChat.getAdapter().getItemCount() - 1);
     }
 
 
@@ -113,6 +118,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
                     chatDatas.clear();
                     chatDatas.addAll(chatResponse.getChatData());
                     chatAdapter.notifyDataSetChanged();
+                    recyclerViewChat.scrollToPosition(recyclerViewChat.getAdapter().getItemCount() - 1);
                 }
             }
 

@@ -33,6 +33,18 @@ public class EditProfileRequest {
     @Expose
     private String phone;
 
+    @SerializedName("image")
+    @Expose
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getAction() {
         return action;
     }

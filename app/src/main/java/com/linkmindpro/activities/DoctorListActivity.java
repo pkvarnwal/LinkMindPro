@@ -51,6 +51,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
 
     @BindString(R.string.new_message)
     String stringNewMessage;
+    @BindString(R.string.please_wait) String stringPleaseWait;
     Toolbar toolbar;
 
     @Override
@@ -77,7 +78,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
 
         patientRequest.setUserId(loginData.getId());
 
-        ProgressHelper.start(this, getString(R.string.please_wait));
+        ProgressHelper.start(this, stringPleaseWait);
 
         DataManager.getInstance().patientList(this, patientRequest, new DataManager.DataManagerListener() {
             @Override

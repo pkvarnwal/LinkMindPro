@@ -7,6 +7,15 @@ public class SendChatRequest {
     @SerializedName("sender_id") private String senderId;
     @SerializedName("reciever_id") private String recieverId;
     @SerializedName("message") private String message;
+    @SerializedName("urgent") private String urgent;
+
+    public String getUrgent() {
+        return urgent;
+    }
+
+    public void setUrgent(String urgent) {
+        this.urgent = urgent;
+    }
 
     public String getSenderId() {
         return senderId;
