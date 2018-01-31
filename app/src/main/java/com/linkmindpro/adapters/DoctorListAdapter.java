@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
 import com.linkmindpro.activities.ChatActivity;
+import com.linkmindpro.utils.AppUtils;
 
 public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.DoctorListViewHolder> implements AppConstant {
 
@@ -70,6 +71,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
             if (patientData == null) return;
             if (patientData.getName() != null)
             textViewItem.setText(patientData.getName());
+            AppUtils.getInstance().display(mActivity, patientData.getImage(), imageViewItem, R.drawable.ic_launcher_background);
         }
 
         @OnClick(R.id.relative_layout_row)
