@@ -17,6 +17,9 @@ public class ChatData {
     @SerializedName("date_time")
     @Expose
     private String dateTime;
+    @SerializedName("urgent")
+    @Expose
+    private int urgent;
 
     public String getSenderId() {
         return senderId;
@@ -48,5 +51,13 @@ public class ChatData {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public int getUrgent() {
+        return urgent;
+    }
+
+    public void setUrgent(int urgent) {
+        this.urgent = urgent;
     }
 }

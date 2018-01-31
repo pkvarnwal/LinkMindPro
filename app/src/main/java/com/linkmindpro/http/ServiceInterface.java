@@ -6,6 +6,8 @@ import com.linkmindpro.models.changepassword.ChangeResponse;
 import com.linkmindpro.models.chat.GetChatRequest;
 import com.linkmindpro.models.chat.GetChatResponse;
 import com.linkmindpro.models.chat.SendChatRequest;
+import com.linkmindpro.models.donotdisturb.DoNotDisturbRequest;
+import com.linkmindpro.models.donotdisturb.DoNotDisturbResponse;
 import com.linkmindpro.models.editprofile.EditProfileRequest;
 import com.linkmindpro.models.editprofile.EditProfileResponse;
 import com.linkmindpro.models.forgot.ForgotRequest;
@@ -55,4 +57,8 @@ public interface ServiceInterface {
 
     @POST("send_message_api.php?")
     Call<GetChatResponse> sendChat(@Body SendChatRequest sendChatRequest);
+
+    @POST("do_not_distrube_api.php?")
+    Call<DoNotDisturbResponse> doNotDisturb(@Body DoNotDisturbRequest doNotDisturbRequest);
+
 }

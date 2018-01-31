@@ -8,8 +8,7 @@
 
     <ImageView
         android:id="@+id/image_view_logo"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_splash" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/image_view_splash" />
 </LinearLayout>

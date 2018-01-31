@@ -8,6 +8,8 @@ import com.linkmindpro.models.changepassword.ChangeResponse;
 import com.linkmindpro.models.chat.GetChatRequest;
 import com.linkmindpro.models.chat.GetChatResponse;
 import com.linkmindpro.models.chat.SendChatRequest;
+import com.linkmindpro.models.donotdisturb.DoNotDisturbRequest;
+import com.linkmindpro.models.donotdisturb.DoNotDisturbResponse;
 import com.linkmindpro.models.editprofile.EditProfileRequest;
 import com.linkmindpro.models.editprofile.EditProfileResponse;
 import com.linkmindpro.models.forgot.ForgotRequest;
@@ -263,5 +265,22 @@ public class DataManager implements AppConstant {
         });
     }
 
+    public void doNotDisturb(Activity activity, DoNotDisturbRequest doNotDisturbRequest, final DataManagerListener dataManagerListener) {
+        Call<DoNotDisturbResponse> call = getService().doNotDisturb(doNotDisturbRequest);
+        call.enqueue(new Callback<DoNotDisturbResponse>() {
+            @Override
+            public void onResponse(Call<DoNotDisturbResponse> call, Response<DoNotDisturbResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals(SUCCESS))
+                        dataManagerListener.onSuccess(response.body());
+                    else dataManagerListener.onError(response.errorBody());
+                }
+            }
 
+            @Override
+            public void onFailure(Call<DoNotDisturbResponse> call, Throwable t) {
+                dataManagerListener.onError(t);
+            }
+        });
+    }
 }

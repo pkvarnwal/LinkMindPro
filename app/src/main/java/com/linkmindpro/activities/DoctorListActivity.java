@@ -11,17 +11,22 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.linkmindpro.adapters.DoctorListAdapter;
+import com.linkmindpro.dialog.PopUpHelper;
 import com.linkmindpro.http.DataManager;
 import com.linkmindpro.http.ErrorManager;
+import com.linkmindpro.models.donotdisturb.DoNotDisturbRequest;
+import com.linkmindpro.models.donotdisturb.DoNotDisturbResponse;
 import com.linkmindpro.models.login.LoginData;
 import com.linkmindpro.models.patient.PatientData;
 import com.linkmindpro.models.patient.PatientRequest;
 import com.linkmindpro.models.patient.PatientResponse;
+import com.linkmindpro.models.register.RegisterResponse;
 import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.utils.ConnectionDetector;
@@ -34,6 +39,7 @@ import java.util.ArrayList;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
 
 public class DoctorListActivity extends AppCompatActivity implements AppConstant {
@@ -48,6 +54,12 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     RecyclerView recyclerViewDoctor;
     @BindView(R.id.relative_layout_root)
     RelativeLayout relativeLayoutRoot;
+    @BindView(R.id.relative_layout_dnd)
+    RelativeLayout relativeLayoutDND;
+    @BindView(R.id.text_view_dnd)
+    TextView textViewDND;
+    @BindView(R.id.checkbox_dnd)
+    CheckBox checkBoxDND;
 
     @BindString(R.string.new_message)
     String stringNewMessage;
@@ -147,4 +159,52 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
 
         return super.onOptionsItemSelected(item);
     }
+
+    @OnClick(R.id.checkbox_dnd)
+    void checkBoxDNDTapped() {
+        if (checkBoxDND.isChecked()) doNotDisturb(true);
+    }
+
+    private void doNotDisturb(boolean active) {
+        if (!ConnectionDetector.isNetworkAvailable(this)) {
+            SnackBarFactory.showNoInternetSnackBar(DoctorListActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
+            return;
+        }
+
+        LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
+
+        DoNotDisturbRequest doNotDisturbRequest = new DoNotDisturbRequest();
+        doNotDisturbRequest.setMessage("I am currently unavailable now.");
+        doNotDisturbRequest.setUserId(loginData.getId());
+        doNotDisturbRequest.setDnd(active ? "1" : "0");
+
+        ProgressHelper.start(this, stringPleaseWait);
+
+        DataManager.getInstance().doNotDisturb(this, doNotDisturbRequest, new DataManager.DataManagerListener() {
+            @Override
+            public void onSuccess(Object response) {
+                ProgressHelper.stop();
+                ProgressHelper.stop();
+                String message = ((DoNotDisturbResponse) response).getDoNotDisturbData().getMessage();
+                confirmPopUp(message);
+
+            }
+
+            @Override
+            public void onError(Object response) {
+                ProgressHelper.stop();
+                ErrorManager errorManager = new ErrorManager(DoctorListActivity.this, relativeLayoutRoot, response);
+                errorManager.handleErrorResponse();
+            }
+        });
+    }
+
+    private void confirmPopUp(String message) {
+        PopUpHelper.showInfoAlertPopup(this, message, new PopUpHelper.InfoPopupListener() {
+            @Override
+            public void onConfirm() {
+            }
+        });
+    }
+
 }

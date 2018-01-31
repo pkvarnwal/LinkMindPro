@@ -56,8 +56,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         RelativeLayout relativeLayoutOtherUser;
         @BindView(R.id.text_view_user_date)
         TextView textViewUserDate;
-        @BindView(R.id.text_view_user_message)
-        TextView textViewUserMessage;
+        @BindView(R.id.text_view_user_message) TextView textViewUserMessage;
+        @BindView(R.id.text_view_other_emergency) TextView textViewOtherEmergency;
+        @BindView(R.id.text_view_user_emergency) TextView textViewUserEmergency;
         @BindView(R.id.relative_layout_current_user)
         RelativeLayout relativeLayoutCurrentUser;
 
@@ -73,6 +74,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
                 relativeLayoutCurrentUser.setVisibility(View.VISIBLE);
                 textViewUserDate.setText(chatData.getDateTime());
                 textViewUserMessage.setText(chatData.getMessage());
+                textViewUserEmergency.setVisibility(chatData.getUrgent() == 0 ? View.GONE : View.VISIBLE);
 
                 return;
             }
@@ -81,6 +83,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             relativeLayoutCurrentUser.setVisibility(View.GONE);
             textViewOtherDate.setText(chatData.getDateTime());
             textViewOtherMessage.setText(chatData.getMessage());
+            textViewOtherEmergency.setVisibility(chatData.getUrgent() == 0 ? View.GONE : View.VISIBLE);
         }
     }
 }

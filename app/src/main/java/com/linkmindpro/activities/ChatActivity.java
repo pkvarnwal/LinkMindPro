@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,8 +37,9 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     @BindView(R.id.recycler_view_chat)
     RecyclerView recyclerViewChat;
     @BindView(R.id.image_view_send) ImageView imageViewSend;
-    @BindView(R.id.edit_text_chat)
-    EditText editTextChat;
+    @BindView(R.id.edit_text_chat) EditText editTextChat;
+    @BindView(R.id.checkbox_urgent)
+    CheckBox checkBoxUrgent;
     private LoginData loginData;
     private PatientData patientData;
     private ArrayList<ChatData> chatDatas = new ArrayList<>();
@@ -108,6 +110,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         sendChatRequest.setRecieverId(patientData.getId());
         sendChatRequest.setSenderId(loginData.getId());
         sendChatRequest.setMessage(message);
+        sendChatRequest.setUrgent(checkBoxUrgent.isChecked() ? 1 : 0);
         DataManager.getInstance().sendChat(this, sendChatRequest, new DataManager.DataManagerListener() {
             @Override
             public void onSuccess(Object response) {

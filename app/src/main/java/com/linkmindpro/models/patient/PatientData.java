@@ -10,6 +10,9 @@ public class PatientData implements Serializable {
     @SerializedName("ref_id") private String refId;
     @SerializedName("name") private String name;
     @SerializedName("email") private String email;
+    @SerializedName("image") private String image;
+    @SerializedName("dnd") private String dnd;
+    @SerializedName("dnd_message") private String dndMessage;
 
     public String getId() {
         return id;
@@ -41,5 +44,29 @@ public class PatientData implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDnd() {
+        return dnd;
+    }
+
+    public void setDnd(String dnd) {
+        this.dnd = dnd;
+    }
+
+    public String getDndMessage() {
+        return dndMessage;
+    }
+
+    public void setDndMessage(String dndMessage) {
+        this.dndMessage = dndMessage;
     }
 }
