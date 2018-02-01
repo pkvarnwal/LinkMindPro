@@ -17,4 +17,6 @@ public interface AppConstant {
     String PREF_LOGINDATA = "pref_logindata";
     String DATA = "data";
     String ID = "id";
+    String INTRO_SEEN = "intro_seen";
+    String IMAGE_BASE_URL = "";
 }

@@ -27,13 +27,17 @@ public class SplashActivity extends AppCompatActivity implements AppConstant {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                LoginData loginData = AppPreference.getAppPreference(SplashActivity.this).getObject(PREF_LOGINDATA, LoginData.class);
-                if(loginData != null) {
-                    startActivity(new Intent(SplashActivity.this, DoctorListActivity.class));
+                if (AppPreference.getAppPreference(SplashActivity.this).getBoolean(INTRO_SEEN)) {
+                    LoginData loginData = AppPreference.getAppPreference(SplashActivity.this).getObject(PREF_LOGINDATA, LoginData.class);
+                    if(loginData != null) {
+                        startActivity(new Intent(SplashActivity.this, DoctorListActivity.class));
+                    } else {
+                        startActivity(new Intent(SplashActivity.this, RegisterActivity.class));
+                    }
                 } else {
                     startActivity(new Intent(SplashActivity.this, ViewPagerActivity.class));
                 }
-
+                
                 finish();
             }
         }, SPLASH_TIME);

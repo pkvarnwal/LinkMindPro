@@ -15,9 +15,15 @@
         android:id="@+id/recycler_view_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linear_layout_chat"
+        android:layout_above="@+id/checkbox_urgent"
         android:layout_below="@+id/toolbar" />
 
+    <CheckBox
+        android:id="@+id/checkbox_urgent"
+        android:layout_above="@+id/linear_layout_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mark if urgent"/>
     <LinearLayout
         android:id="@+id/linear_layout_chat"
         android:layout_width="match_parent"

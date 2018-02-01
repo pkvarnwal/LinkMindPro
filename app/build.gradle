@@ -4,10 +4,10 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "constraint.com.linkmindpro"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0.4"
+        versionName "1.0.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,6 +34,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'de.hdodenhof:circleimageview:2.1.0' // CircleImage
+    compile 'com.squareup.picasso:picasso:2.5.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
 }

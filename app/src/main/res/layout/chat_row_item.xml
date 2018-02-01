@@ -14,7 +14,20 @@
         android:layout_marginRight="70dp"
         android:background="@color/white">
 
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/text_view_other_emergency"
+            style="@style/textSize_smaller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:background="@color/red"
+            android:text="Clinical Emergency"
+            android:textColor="@color/white" />
+
         <RelativeLayout
+            android:layout_below="@+id/text_view_other_emergency"
             android:id="@+id/relative_layout_other_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,11 +67,24 @@
         android:layout_marginTop="10dp"
         android:background="@color/green">
 
+        <TextView
+            android:id="@+id/text_view_user_emergency"
+            style="@style/textSize_smaller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:background="@color/red"
+            android:visibility="gone"
+            android:text="Clinical Emergency"
+            android:textColor="@color/white" />
+
         <RelativeLayout
             android:id="@+id/relative_layout_user_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_below="@+id/text_view_user_emergency"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:paddingBottom="5dp"
