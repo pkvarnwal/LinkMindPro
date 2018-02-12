@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.linkmindpro.dialog.PopUpHelper;
+import com.linkmindpro.font.FontHelper;
 import com.linkmindpro.http.DataManager;
 import com.linkmindpro.http.ErrorManager;
 import com.linkmindpro.models.editprofile.EditProfileData;
@@ -72,6 +74,17 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
     Button buttonSave;
     @BindView(R.id.linear_layout_root)
     LinearLayout linearLayoutRoot;
+
+    @BindView(R.id.text_view_name) TextView textViewName;
+    @BindView(R.id.text_view_email) TextView textViewEmail;
+    @BindView(R.id.text_view_profession) TextView textViewProfession;
+    @BindView(R.id.text_view_phone) TextView textViewPhone;
+    @BindView(R.id.text_view_address) TextView textViewAddress;
+    @BindView(R.id.text_view_city) TextView textViewCity;
+    @BindView(R.id.text_view_state) TextView textViewState;
+    @BindView(R.id.text_view_zip) TextView textViewZip;
+    @BindView(R.id.text_view_change_image) TextView textViewChangeImage;
+
     private LoginData loginData;
     private final String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     private final int REQUEST_PERMISSION_CODE = 200;
@@ -85,6 +98,7 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         setContentView(R.layout.activity_edit_profile);
         ButterKnife.bind(this);
 
+        setFont();
         getProfileRequest();
     }
 
@@ -110,6 +124,16 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
             }
         });
     }
+
+    private void confirmPopUp(String message) {
+        PopUpHelper.showInfoAlertPopup(this, message, new PopUpHelper.InfoPopupListener() {
+            @Override
+            public void onConfirm() {
+                finish();
+            }
+        });
+    }
+
 
     private void updateView(EditProfileResponse profileResponse) {
         EditProfileData profileData = profileResponse.getEditProfileData();
@@ -139,7 +163,8 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         String zip =  editTextZip.getText().toString();
         String profession =  editTextProfession.getText().toString();
 
-        if (!profilePath.equals("")) {
+//        if (!profilePath.equals("")) {
+        if (!TextUtils.isEmpty(profilePath)) {
             String base64Image = Base64.encodeToString(ImageHelper.convertImageToByteArray(profilePath, 200, 200), Base64.DEFAULT);
             String imgType ="image/png";
             editProfileRequest.setImage(base64Image);
@@ -162,6 +187,7 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
                 if (response == null) return;
                 EditProfileResponse profileResponse = (EditProfileResponse) response;
                 updateView(profileResponse);
+                confirmPopUp("Profile updated successfully");
             }
 
             @Override
@@ -222,5 +248,13 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         if (ImageHelper.getBitmapFromPath(profileImagePath) != null) {
             imageViewProfile.setImageBitmap(ImageHelper.getBitmapFromPath(profileImagePath));
         }
+    }
+
+    private void setFont() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_MEDIUM, editTextName, editTextEmail, editTextProfession,
+                editTextPhone, editTextAddress, editTextCity, editTextState, editTextZip);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewName, textViewEmail, textViewProfession,
+                textViewPhone, textViewAddress, textViewCity, textViewState, textViewZip, buttonSave,
+                textViewCancel, textViewChangeImage);
     }
 }

@@ -70,7 +70,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Name:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_name"
@@ -105,7 +105,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Email:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_email"
@@ -142,7 +142,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Password:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_password"
@@ -178,7 +178,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Profession:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_profession"
@@ -213,7 +213,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Phone:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_phone"
@@ -250,7 +250,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Fax:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_fax"
@@ -286,7 +286,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Address:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_address"
@@ -321,7 +321,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="City:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_city"
@@ -356,7 +356,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="State:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_state"
@@ -391,7 +391,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Zip:"
-                    android:textColor="@color/eqdepot_font_gray" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/edit_text_zip"

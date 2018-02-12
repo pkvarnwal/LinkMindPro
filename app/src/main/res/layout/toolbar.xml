@@ -36,6 +36,7 @@
         android:id="@+id/relative_layout_dnd"
         android:layout_width="@dimen/_180sdp"
         android:layout_height="@dimen/_40sdp"
+        android:visibility="gone"
         android:layout_gravity="center">
 
         <ImageView
