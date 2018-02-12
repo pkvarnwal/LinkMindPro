@@ -125,12 +125,13 @@
                 android:id="@+id/relative_layout_dnd"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:paddingLeft="@dimen/_10sdp">
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp">
 
                 <ImageView
                     android:id="@+id/image_view_dnd"
-                    android:layout_width="@dimen/_18sdp"
-                    android:layout_height="@dimen/_18sdp"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_dnd" />
@@ -229,6 +230,7 @@
                     android:id="@+id/relative_layout_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:layout_below="@+id/text_view_address">
 
                     <TextView
@@ -236,7 +238,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginTop="@dimen/_5sdp"
                         android:text="P."
                         android:textColor="@color/black" />
 
@@ -244,7 +245,7 @@
                         android:id="@+id/text_view_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_toRightOf="@+id/text_view_phone_label"
                         android:text="310-666-5654"
                         android:textColor="@color/eqdepot_font_gray" />
@@ -254,6 +255,7 @@
                     android:id="@+id/relative_layout_fax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:layout_below="@+id/relative_layout_phone">
 
 
@@ -262,7 +264,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginTop="@dimen/_5sdp"
                         android:text="F."
                         android:textColor="@color/black" />
 
@@ -270,8 +271,7 @@
                         android:id="@+id/text_view_fax"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_toRightOf="@+id/text_view_fax_label"
                         android:text="310-666-5111"
                         android:textColor="@color/eqdepot_font_gray" />
