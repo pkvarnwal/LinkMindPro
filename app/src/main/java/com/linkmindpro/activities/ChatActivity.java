@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -56,7 +57,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     private void getIntentData() {
         if (getIntent().hasExtra(DATA)) {
             patientData = (PatientData) getIntent().getSerializableExtra(DATA);
-            //updateUi(patientData);
+            updateUi();
 
             getChat();
         }
@@ -83,12 +84,14 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
             }
         });
     }
-//
-//    private void updateUi(PatientData patientData) {
-//        ArrayList<String> arrayList = new ArrayList<>();
-//        if (patientData.getName() != null) textViewTitle.setText(patientData.getName());
-//        setRecycleAdapter(arrayList);
-//    }
+
+    private void updateUi() {
+        LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
+        if (TextUtils.isEmpty(loginData.getRole())) return;
+        if (loginData.getRole().equals("Doctor")) {
+            checkBoxUrgent.setVisibility(View.GONE);
+        }
+    }
 
     private void setRecycleAdapter(ArrayList<ChatData> chatDatas) {
         chatAdapter = new ChatAdapter(this, chatDatas, loginData.getId());

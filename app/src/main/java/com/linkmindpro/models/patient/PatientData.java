@@ -12,7 +12,38 @@ public class PatientData implements Serializable {
     @SerializedName("email") private String email;
     @SerializedName("image") private String image;
     @SerializedName("dnd") private String dnd;
+    @SerializedName("message") private String message;
     @SerializedName("dnd_message") private String dndMessage;
+    @SerializedName("message_count")
+    private int messageCount;
+    @SerializedName("urgent")
+    private String urgent;
+    @SerializedName("date_time")
+    private String dateTime;
+
+    public int getMessageCount() {
+        return messageCount;
+    }
+
+    public void setMessageCount(int messageCount) {
+        this.messageCount = messageCount;
+    }
+
+    public String getUrgent() {
+        return urgent;
+    }
+
+    public void setUrgent(String urgent) {
+        this.urgent = urgent;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
 
     public String getId() {
         return id;
@@ -68,5 +99,13 @@ public class PatientData implements Serializable {
 
     public void setDndMessage(String dndMessage) {
         this.dndMessage = dndMessage;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
