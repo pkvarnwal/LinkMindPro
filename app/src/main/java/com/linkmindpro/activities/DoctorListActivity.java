@@ -6,13 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,7 +22,6 @@ import com.linkmindpro.models.login.LoginData;
 import com.linkmindpro.models.patient.PatientData;
 import com.linkmindpro.models.patient.PatientRequest;
 import com.linkmindpro.models.patient.PatientResponse;
-import com.linkmindpro.models.register.RegisterResponse;
 import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.utils.ConnectionDetector;
@@ -58,13 +53,19 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     RelativeLayout relativeLayoutDND;
     @BindView(R.id.text_view_dnd)
     TextView textViewDND;
-    @BindView(R.id.checkbox_dnd)
-    CheckBox checkBoxDND;
+    @BindView(R.id.image_view_setting)
+    ImageView imageViewSetting;
+    @BindView(R.id.image_view_edit_profile)
+    ImageView imageViewEditProfile;
+//    @BindView(R.id.checkbox_dnd)
+//    CheckBox checkBoxDND;
 
     @BindString(R.string.new_message)
     String stringNewMessage;
-    @BindString(R.string.please_wait) String stringPleaseWait;
-    Toolbar toolbar;
+    @BindString(R.string.please_wait)
+    String stringPleaseWait;
+    //    Toolbar toolbar;
+    boolean isVisible;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,9 +74,9 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
 
         ButterKnife.bind(this);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
         updateUi();
         patientList();
     }
@@ -112,8 +113,11 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     }
 
     private void updateUi() {
-        textViewTitle.setText(stringNewMessage);
-        textViewNotification.setVisibility(View.VISIBLE);
+//        textViewTitle.setText(stringNewMessage);
+//        textViewNotification.setVisibility(View.VISIBLE);
+        imageViewSetting.setVisibility(View.VISIBLE);
+        imageViewEditProfile.setVisibility(View.VISIBLE);
+        relativeLayoutDND.setVisibility(View.VISIBLE);
     }
 
     private void setRecycleAdapter(ArrayList<PatientData> patientData) {
@@ -123,46 +127,64 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         recyclerViewDoctor.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.main, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//
+//            case R.id.item_edit_profile:
+//                Intent intent = new Intent(DoctorListActivity.this, EditProfileActivity.class);
+//                startActivity(intent);
+//                break;
+//
+//            case R.id.item_reset_password:
+//                Intent resetIntent = new Intent(DoctorListActivity.this, ChangePasswordActivity.class);
+//                startActivity(resetIntent);
+//                break;
+//
+//            case R.id.item_send_invite:
+//                Intent inviteIntent = new Intent(DoctorListActivity.this, SubscribeActivity.class);
+//                startActivity(inviteIntent);
+//                break;
+//
+//            case R.id.item_logout:
+//                Intent loginIntent = new Intent(DoctorListActivity.this, LoginActivity.class);
+//                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                AppPreference.getAppPreference(this).remove(PREF_LOGINDATA);
+//                startActivity(loginIntent);
+//                finish();
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
-            case R.id.item_edit_profile:
-                Intent intent = new Intent(DoctorListActivity.this, EditProfileActivity.class);
-                startActivity(intent);
-                break;
+//    @OnClick(R.id.checkbox_dnd)
+//    void checkBoxDNDTapped() {
+//        if (checkBoxDND.isChecked()) doNotDisturb(true);
+//    }
 
-            case R.id.item_reset_password:
-                Intent resetIntent = new Intent(DoctorListActivity.this, ChangePasswordActivity.class);
-                startActivity(resetIntent);
-                break;
 
-            case R.id.item_send_invite:
-                Intent inviteIntent = new Intent(DoctorListActivity.this, SubscribeActivity.class);
-                startActivity(inviteIntent);
-                break;
-
-            case R.id.item_logout:
-                Intent loginIntent = new Intent(DoctorListActivity.this, LoginActivity.class);
-                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                AppPreference.getAppPreference(this).remove(PREF_LOGINDATA);
-                startActivity(loginIntent);
-                finish();
+    @OnClick(R.id.image_view_edit_profile)
+    void editProfileTapped() {
+        if (isVisible) {
+            editTextSearch.setVisibility(View.GONE);
+            isVisible = false;
+        } else {
+            editTextSearch.setVisibility(View.VISIBLE);
+            isVisible = true;
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
-    @OnClick(R.id.checkbox_dnd)
-    void checkBoxDNDTapped() {
-        if (checkBoxDND.isChecked()) doNotDisturb(true);
+    @OnClick(R.id.image_view_setting)
+    void settingTapped() {
+        Intent intent = new Intent(this, DoctorSettingActivity.class);
+        startActivity(intent);
     }
 
     private void doNotDisturb(boolean active) {
