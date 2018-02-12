@@ -14,7 +14,7 @@ public class FontHelper {
 
     public enum FontType {
 
-        FONT_BOLD("fonts/opensans_bold.ttf"),
+        FONT_BOLD("fonts/lato_bold.ttf"),
         FONT_REGULAR("fonts/lato_regular.ttf"),
         FONT_MEDIUM("fonts/lato_medium.ttf");
 
