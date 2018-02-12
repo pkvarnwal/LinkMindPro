@@ -5,73 +5,9 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <android.support.v7.widget.Toolbar
+    <include
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/background_color">
-
-        <TextView
-            android:id="@+id/text_view_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:background="@drawable/bg_circle_red"
-            android:gravity="center"
-            android:text="1"
-            android:textColor="@color/white"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/ToolbarTitleAppearance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_11sdp"
-            android:visibility="gone" />
-
-        <RelativeLayout
-            android:id="@+id/relative_layout_dnd"
-            android:layout_width="@dimen/_180sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_gravity="center"
-            android:background="@color/white">
-
-            <ImageView
-                android:id="@+id/image_view_dnd"
-                android:layout_width="@dimen/_17sdp"
-                android:layout_height="@dimen/_17sdp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/ic_dnd" />
-
-            <TextView
-                android:id="@+id/text_view_dnd"
-                style="@style/textSize_small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:text="Do Not Disturb"
-                android:textColor="@color/black" />
-
-            <CheckBox
-                android:id="@+id/checkbox_dnd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
-        </RelativeLayout>
-
-    </android.support.v7.widget.Toolbar>
+        layout="@layout/toolbar" />
 
     <EditText
         android:id="@+id/edit_text_search"
@@ -88,6 +24,7 @@
         android:imeOptions="actionNext"
         android:paddingLeft="@dimen/_20sdp"
         android:singleLine="true"
+        android:visibility="gone"
         android:textColor="@color/eqdepot_font_gray"
         android:textColorHint="@color/eqdepot_font_gray_hint" />
 

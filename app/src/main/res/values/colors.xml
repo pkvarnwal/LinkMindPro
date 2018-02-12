@@ -20,4 +20,6 @@
     <color name="red">#FF4500</color>
     <color name="red_dark">#DC143C</color>
     <color name="background_color">#F6F7F9</color>
+    <color name="light_blue">#12A1DB</color>
+
 </resources>

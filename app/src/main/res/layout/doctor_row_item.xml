@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relative_layout_row"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_60sdp"
+    android:layout_height="@dimen/_65sdp"
     android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -16,14 +16,66 @@
         android:layout_marginStart="@dimen/_15sdp"
         android:src="@drawable/ic_launcher_background" />
 
-    <TextView
-        android:id="@+id/text_view_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_15sdp"
-        android:layout_toEndOf="@+id/image_view_item"
         android:layout_toRightOf="@+id/image_view_item"
-        android:textColor="@color/eqdepot_blue" />
+        android:layout_toLeftOf="@+id/relative_layout_count"
+        android:paddingTop="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/text_view_urgent"
+            style="@style/textSize_smaller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingRight="@dimen/_5sdp"
+            android:text="Urgent"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_view_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_urgent"
+            android:layout_centerVertical="true"
+            android:text="hvkjsdvjs"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/text_view_last_message"
+            style="@style/textSize_smaller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_item"
+            android:text="bssbjbns"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_count"
+        android:minWidth="@dimen/_20sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            style="@style/textSize_smallest"
+            android:id="@+id/text_view_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/textSize_small"
+            android:visibility="gone"
+            android:id="@+id/text_view_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5" />
+    </RelativeLayout>
 </RelativeLayout>
