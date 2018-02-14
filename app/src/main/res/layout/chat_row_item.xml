@@ -44,12 +44,21 @@
                 android:layout_height="wrap_content"
                 android:text="01/01/2018" />
 
+            <ImageView
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/text_view_other_date"
+                android:id="@+id/image_view_other"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:visibility="gone"
+                android:scaleType="centerCrop"/>
+
             <TextView
                 android:id="@+id/text_view_other_message"
                 style="@style/textSize_smaller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/text_view_other_date"
+                android:layout_below="@+id/image_view_other"
                 android:layout_marginRight="5dp"
                 android:paddingTop="2dp"
                 android:text="Hi There!" />
@@ -98,12 +107,22 @@
                 android:text="01/01/2018"
                 android:textColor="@color/white" />
 
+            <ImageView
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/text_view_user_date"
+                android:id="@+id/image_view_user"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:visibility="gone"
+                android:src="@drawable/ic_view_pager_three"
+                android:scaleType="centerCrop"/>
+
             <TextView
                 android:id="@+id/text_view_user_message"
                 style="@style/textSize_smaller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/text_view_user_date"
+                android:layout_below="@+id/image_view_user"
                 android:layout_marginRight="5dp"
                 android:paddingTop="2dp"
                 android:text="I am good and you?"

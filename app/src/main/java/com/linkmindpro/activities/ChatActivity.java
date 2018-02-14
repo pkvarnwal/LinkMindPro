@@ -1,6 +1,10 @@
 package com.linkmindpro.activities;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +28,9 @@ import com.linkmindpro.models.patient.PatientData;
 import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.utils.AppUtils;
+import com.linkmindpro.utils.FileUtils;
+import com.linkmindpro.utils.Gallery;
+import com.linkmindpro.utils.PermissionClass;
 
 import java.util.ArrayList;
 
@@ -47,6 +54,10 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     private PatientData patientData;
     private ArrayList<ChatData> chatDatas = new ArrayList<>();
     private ChatAdapter chatAdapter;
+    private final String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+    private final int REQUEST_PERMISSION_CODE = 200;
+    private static final int GALLERY_REQUEST = 2000;
+    private String profilePath;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -139,4 +150,46 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         });
 
     }
+
+    @OnClick(R.id.image_view_camera) void cameraTapped(){
+        PermissionClass permissionClass = new PermissionClass(this);
+        if (permissionClass.checkPermission(permissions)) {
+            openGallery(GALLERY_REQUEST);
+        } else {
+            permissionClass.requestPermission(REQUEST_PERMISSION_CODE, permissions);
+        }
+    }
+
+    private void openGallery(int requestCode) {
+        Gallery gallery = new Gallery(this);
+        gallery.openPhoto(requestCode);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_PERMISSION_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openGallery(GALLERY_REQUEST);
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            switch (requestCode) {
+
+                case GALLERY_REQUEST:
+                    profilePath = FileUtils.getPath(this, data.getData());
+                    break;
+            }
+        }
+    }
 }
+
