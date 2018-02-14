@@ -21,6 +21,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_15sdp"
+        android:gravity="center_vertical"
         android:layout_toRightOf="@+id/image_view_item"
         android:layout_toLeftOf="@+id/relative_layout_count"
         android:paddingTop="@dimen/_10sdp">
@@ -35,7 +36,7 @@
             android:paddingRight="@dimen/_5sdp"
             android:text="Urgent"
             android:textColor="@color/white"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_view_item"

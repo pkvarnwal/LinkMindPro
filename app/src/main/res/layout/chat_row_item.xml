@@ -65,7 +65,7 @@
         android:layout_marginLeft="70dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:background="@color/green">
+        android:background="@color/light_blue">
 
         <TextView
             android:id="@+id/text_view_user_emergency"

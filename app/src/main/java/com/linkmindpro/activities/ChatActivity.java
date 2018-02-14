@@ -23,6 +23,7 @@ import com.linkmindpro.models.login.LoginData;
 import com.linkmindpro.models.patient.PatientData;
 import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
+import com.linkmindpro.utils.AppUtils;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     @BindView(R.id.recycler_view_chat)
     RecyclerView recyclerViewChat;
     @BindView(R.id.image_view_send) ImageView imageViewSend;
+    @BindView(R.id.image_view_profile) ImageView imageViewProfile;
     @BindView(R.id.edit_text_chat) EditText editTextChat;
     @BindView(R.id.checkbox_urgent)
     CheckBox checkBoxUrgent;
@@ -91,6 +93,8 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         if (loginData.getRole().equals("Doctor")) {
             checkBoxUrgent.setVisibility(View.GONE);
         }
+        textViewTitle.setText(patientData.getName());
+        AppUtils.getInstance().display(this, patientData.getImage(),imageViewProfile, R.drawable.ic_user_profile);
     }
 
     private void setRecycleAdapter(ArrayList<ChatData> chatDatas) {

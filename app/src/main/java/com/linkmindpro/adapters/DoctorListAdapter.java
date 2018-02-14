@@ -87,6 +87,9 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
                 textViewLastMessage.setVisibility(View.VISIBLE);
                 textViewLastMessage.setText(patientData.getMessage());
             }
+            if (patientData.getUrgent().equals("1")){
+                textViewUrgent.setVisibility(View.VISIBLE);
+            }
             if (patientData.getMessageCount() > 0)  {
                 textViewCount.setVisibility(View.VISIBLE);
                 textViewCount.setText(patientData.getMessageCount()+"");
