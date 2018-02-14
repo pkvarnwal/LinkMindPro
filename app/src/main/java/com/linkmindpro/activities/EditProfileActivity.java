@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -16,13 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.linkmindpro.dialog.PopUpHelper;
+import com.linkmindpro.font.FontHelper;
 import com.linkmindpro.http.DataManager;
 import com.linkmindpro.http.ErrorManager;
 import com.linkmindpro.models.editprofile.EditProfileData;
 import com.linkmindpro.models.editprofile.EditProfileRequest;
 import com.linkmindpro.models.editprofile.EditProfileResponse;
 import com.linkmindpro.models.login.LoginData;
-import com.linkmindpro.models.patient.PatientResponse;
 import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.utils.AppUtils;
@@ -66,12 +66,34 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
     EditText editTextCity;
     @BindView(R.id.edit_text_state)
     EditText editTextState;
-    @BindView(R.id.edit_text_zip) EditText editTextZip;
-    @BindView(R.id.edit_text_profession) EditText editTextProfession;
+    @BindView(R.id.edit_text_zip)
+    EditText editTextZip;
+    @BindView(R.id.edit_text_profession)
+    EditText editTextProfession;
     @BindView(R.id.button_save)
     Button buttonSave;
     @BindView(R.id.linear_layout_root)
     LinearLayout linearLayoutRoot;
+
+    @BindView(R.id.text_view_name)
+    TextView textViewName;
+    @BindView(R.id.text_view_email)
+    TextView textViewEmail;
+    @BindView(R.id.text_view_profession)
+    TextView textViewProfession;
+    @BindView(R.id.text_view_phone)
+    TextView textViewPhone;
+    @BindView(R.id.text_view_address)
+    TextView textViewAddress;
+    @BindView(R.id.text_view_city)
+    TextView textViewCity;
+    @BindView(R.id.text_view_state)
+    TextView textViewState;
+    @BindView(R.id.text_view_zip)
+    TextView textViewZip;
+    @BindView(R.id.text_view_change_image)
+    TextView textViewChangeImage;
+
     private LoginData loginData;
     private final String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     private final int REQUEST_PERMISSION_CODE = 200;
@@ -85,6 +107,7 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         setContentView(R.layout.activity_edit_profile);
         ButterKnife.bind(this);
 
+        setFont();
         getProfileRequest();
     }
 
@@ -111,6 +134,16 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         });
     }
 
+    private void confirmPopUp(String message) {
+        PopUpHelper.showInfoAlertPopup(this, message, new PopUpHelper.InfoPopupListener() {
+            @Override
+            public void onConfirm() {
+                finish();
+            }
+        });
+    }
+
+
     private void updateView(EditProfileResponse profileResponse) {
         EditProfileData profileData = profileResponse.getEditProfileData();
         editTextName.setText(profileData.getName());
@@ -121,7 +154,7 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         editTextZip.setText(profileData.getZipcode());
         editTextProfession.setText(profileData.getProfession());
         if (!TextUtils.isEmpty(profileData.getImage()))
-        AppUtils.getInstance().display(this, profileData.getImage(), imageViewProfile, R.drawable.ic_user);
+            AppUtils.getInstance().display(this, profileData.getImage(), imageViewProfile, R.drawable.ic_user);
     }
 
     @OnClick(R.id.button_save)
@@ -131,17 +164,18 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
             return;
         }
         EditProfileRequest editProfileRequest = new EditProfileRequest();
-        String name =  editTextName.getText().toString();
-        String email =  editTextEmail.getText().toString();
-        String address =  editTextAddress.getText().toString();
-        String city =  editTextCity.getText().toString();
-        String state =  editTextState.getText().toString();
-        String zip =  editTextZip.getText().toString();
-        String profession =  editTextProfession.getText().toString();
+        String name = editTextName.getText().toString();
+        String email = editTextEmail.getText().toString();
+        String address = editTextAddress.getText().toString();
+        String city = editTextCity.getText().toString();
+        String state = editTextState.getText().toString();
+        String zip = editTextZip.getText().toString();
+        String profession = editTextProfession.getText().toString();
 
-        if (!profilePath.equals("")) {
+//        if (!profilePath.equals("")) {
+        if (!TextUtils.isEmpty(profilePath)) {
             String base64Image = Base64.encodeToString(ImageHelper.convertImageToByteArray(profilePath, 200, 200), Base64.DEFAULT);
-            String imgType ="image/png";
+            String imgType = "image/png";
             editProfileRequest.setImage(base64Image);
         }
 
@@ -162,6 +196,7 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
                 if (response == null) return;
                 EditProfileResponse profileResponse = (EditProfileResponse) response;
                 updateView(profileResponse);
+                confirmPopUp("Profile updated successfully");
             }
 
             @Override
@@ -174,7 +209,8 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
     }
 
 
-    @OnClick(R.id.image_view_profile) void imageTapped(){
+    @OnClick(R.id.image_view_profile)
+    void imageTapped() {
         PermissionClass permissionClass = new PermissionClass(this);
         if (permissionClass.checkPermission(permissions)) {
             openGallery(GALLERY_REQUEST);
@@ -222,5 +258,13 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         if (ImageHelper.getBitmapFromPath(profileImagePath) != null) {
             imageViewProfile.setImageBitmap(ImageHelper.getBitmapFromPath(profileImagePath));
         }
+    }
+
+    private void setFont() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_MEDIUM, editTextName, editTextEmail, editTextProfession,
+                editTextPhone, editTextAddress, editTextCity, editTextState, editTextZip);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewName, textViewEmail, textViewProfession,
+                textViewPhone, textViewAddress, textViewCity, textViewState, textViewZip, buttonSave,
+                textViewCancel, textViewChangeImage);
     }
 }

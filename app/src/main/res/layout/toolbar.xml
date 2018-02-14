@@ -32,14 +32,67 @@
         android:textColor="@color/white"
         android:visibility="gone" />
 
+    <RelativeLayout
+        android:id="@+id/relative_layout_dnd"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:visibility="gone"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/image_view_dnd"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:src="@drawable/ic_dnd" />
+
+        <TextView
+            android:id="@+id/text_view_dnd"
+            style="@style/textSize_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="Do Not Disturb:"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/text_view_dnd_on_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_toRightOf="@+id/text_view_dnd"
+            android:text="OFF"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/image_view_edit_profile"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:visibility="gone"
+        android:src="@drawable/ic_edit" />
+
     <ImageView
         android:id="@+id/image_view_setting"
         android:layout_width="@dimen/_22sdp"
         android:layout_height="@dimen/_22sdp"
-        android:layout_gravity="end"
-        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="@dimen/_10sdp"
         android:contentDescription="@null"
         android:src="@drawable/ic_settings"
-        android:visibility="gone"/>
+        android:visibility="gone" />
+
 
 </android.support.v7.widget.Toolbar>

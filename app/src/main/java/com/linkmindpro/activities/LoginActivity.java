@@ -7,7 +7,9 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.linkmindpro.font.FontHelper;
 import com.linkmindpro.http.DataManager;
 import com.linkmindpro.http.ErrorManager;
 import com.linkmindpro.models.login.LoginRequest;
@@ -31,6 +33,10 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
     EditText editTextEmail;
     @BindView(R.id.edit_text_password)
     EditText editTextPassword;
+    @BindView(R.id.text_view_sign_up)
+    TextView textViewSignUp;
+    @BindView(R.id.text_view_forgot_password)
+    TextView textViewForgotPassword;
     @BindView(R.id.button_login)
     Button buttonLogin;
     @BindView(R.id.relative_layout_root)
@@ -52,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        setFont();
     }
 
     @OnClick(R.id.button_login)
@@ -120,5 +127,11 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
                 errorManager.handleErrorResponse();
             }
         });
+    }
+
+    private void setFont() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_MEDIUM, editTextEmail, editTextPassword,
+                textViewSignUp, textViewForgotPassword);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, buttonLogin);
     }
 }

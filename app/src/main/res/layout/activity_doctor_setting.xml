@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="@dimen/_540sdp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linear_layout_invite_patient"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:background="@color/light_blue"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_view_invite_patient"
+                    style="@style/textSize_smaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/invite_patients"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:src="@drawable/ic_add_user" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:paddingLeft="@dimen/_10sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_view_doctor"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_toLeftOf="@+id/relative_layout_count"
+                    android:layout_toRightOf="@+id/image_view_doctor"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/text_view_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Richard Hindrisks, MD"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/text_view_profession"
+                        style="@style/textSize_smaller"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_view_name"
+                        android:text="Psychiatry"
+                        android:textColor="@color/eqdepot_font_gray" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout_count"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:minWidth="@dimen/_20sdp">
+
+                    <TextView
+                        android:id="@+id/text_view_count"
+                        style="@style/textSize_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/image_view_arrow"
+                        android:layout_toStartOf="@+id/image_view_arrow"
+                        android:background="@drawable/bg_circle_red"
+                        android:text="5"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/image_view_arrow"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_arrow_grey" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@color/eqdepot_light_black" />
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_dnd"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/image_view_dnd"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_dnd" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/switch_compat_dnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/image_view_dnd"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:text="Do Not Disturb (DND)">
+
+                </android.support.v7.widget.SwitchCompat>
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:background="@color/divider_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/_50sdp"
+                android:paddingLeft="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/text_view_dnd_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="left"
+                    android:text="I am unavailable until July 19. In case of a \nclinical emergency, contact Dr. Mark Price \n(310) 555-3456"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <ImageView
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:src="@drawable/ic_info" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@color/eqdepot_light_black" />
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/text_view_edit_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Edit Profile"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/text_view_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_view_edit_profile"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Steve.hindricks@gmail.com"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <TextView
+                    android:id="@+id/text_view_address"
+                    style="@style/textSize_smaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_view_email"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="12566 S. Sepulveda Blvd Suite 6 \nLos Angeles, CA 91313"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_below="@+id/text_view_address">
+
+                    <TextView
+                        android:id="@+id/text_view_phone_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="P."
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/text_view_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/text_view_phone_label"
+                        android:text="310-666-5654"
+                        android:textColor="@color/eqdepot_font_gray" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout_fax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_below="@+id/relative_layout_phone">
+
+
+                    <TextView
+                        android:id="@+id/text_view_fax_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="F."
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/text_view_fax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/text_view_fax_label"
+                        android:text="310-666-5111"
+                        android:textColor="@color/eqdepot_font_gray" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:src="@drawable/ic_arrow_grey" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/eqdepot_light_black" />
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/text_view_payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Payment Method"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/text_view_visa_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_view_payment_method"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_button_blue_border"
+                    android:padding="@dimen/_3sdp"
+                    android:text="VISA"
+                    android:textColor="@color/eqdepot_blue" />
+
+                <TextView
+                    android:id="@+id/text_view_visa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_view_payment_method"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/text_view_visa_label"
+                    android:padding="@dimen/_3sdp"
+                    android:text="Visa"
+                    android:textColor="@color/eqdepot_font_gray" />
+
+
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:src="@drawable/ic_arrow_grey" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/eqdepot_light_black" />
+
+            <TextView
+                android:id="@+id/text_view_help_and_support"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Help and Support"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_view_reset_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/reset_password"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_view_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/logout"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

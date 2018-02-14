@@ -9,6 +9,7 @@ public class LoginData {
     @SerializedName("email") private String email;
     @SerializedName("profession") private String profession;
     @SerializedName("image") private String image;
+    @SerializedName("role") private String role;
 
     public String getId() {
         return id;
@@ -48,5 +49,14 @@ public class LoginData {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getRole() {
+        if (role.equals("1")) return "Doctor";
+        return "Patient";
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

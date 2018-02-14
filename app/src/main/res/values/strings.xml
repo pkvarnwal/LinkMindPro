@@ -51,5 +51,6 @@
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="current_password">Current Password</string>
+    <string name="invite_patients">INVITE PATIENTS</string>
 
 </resources>
