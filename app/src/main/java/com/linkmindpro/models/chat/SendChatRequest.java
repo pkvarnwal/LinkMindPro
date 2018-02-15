@@ -8,6 +8,7 @@ public class SendChatRequest {
     @SerializedName("reciever_id") private String recieverId;
     @SerializedName("message") private String message;
     @SerializedName("urgent") private int urgent;
+    @SerializedName("attachment") private String attachment;
 
     public int getUrgent() {
         return urgent;
@@ -39,5 +40,13 @@ public class SendChatRequest {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(String attachment) {
+        this.attachment = attachment;
     }
 }
