@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -30,6 +31,7 @@ import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.utils.AppUtils;
 import com.linkmindpro.utils.FileUtils;
 import com.linkmindpro.utils.Gallery;
+import com.linkmindpro.utils.ImageHelper;
 import com.linkmindpro.utils.PermissionClass;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     RecyclerView recyclerViewChat;
     @BindView(R.id.image_view_send) ImageView imageViewSend;
     @BindView(R.id.image_view_profile) ImageView imageViewProfile;
+    @BindView(R.id.image_view_attached) ImageView imageViewAttached;
     @BindView(R.id.edit_text_chat) EditText editTextChat;
     @BindView(R.id.checkbox_urgent)
     CheckBox checkBoxUrgent;
@@ -122,22 +125,31 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
 
     @OnClick(R.id.image_view_send) void sendMesaageTapped(){
         String message = editTextChat.getText().toString();
-        if (TextUtils.isEmpty(message)) return;
+        if (TextUtils.isEmpty(message) && TextUtils.isEmpty(profilePath)) return;
 
         SendChatRequest sendChatRequest = new SendChatRequest();
         sendChatRequest.setRecieverId(patientData.getId());
         sendChatRequest.setSenderId(loginData.getId());
-        sendChatRequest.setMessage(message);
         sendChatRequest.setUrgent(checkBoxUrgent.isChecked() ? 1 : 0);
+        imageViewAttached.setVisibility(View.GONE);
+        if (!TextUtils.isEmpty(profilePath)) {
+            String base64Image = Base64.encodeToString(ImageHelper.convertImageToByteArray(profilePath, 50, 50), Base64.DEFAULT);
+            sendChatRequest.setAttachment(base64Image);
+            sendChatRequest.setMessage(null);
+        } else {
+            sendChatRequest.setMessage(message);
+        }
         DataManager.getInstance().sendChat(this, sendChatRequest, new DataManager.DataManagerListener() {
             @Override
             public void onSuccess(Object response) {
                 GetChatResponse chatResponse = (GetChatResponse) response;
                 if (chatResponse == null) return;
                 if (chatResponse.getChatData() != null && chatResponse.getChatData().size() >0 ){
+                    imageViewAttached.setVisibility(View.GONE);
                     editTextChat.setText("");
                     chatDatas.clear();
                     chatDatas.addAll(chatResponse.getChatData());
+                    profilePath = null;
                     chatAdapter.notifyDataSetChanged();
                     recyclerViewChat.scrollToPosition(recyclerViewChat.getAdapter().getItemCount() - 1);
                 }
@@ -187,8 +199,16 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
 
                 case GALLERY_REQUEST:
                     profilePath = FileUtils.getPath(this, data.getData());
+                    setPhoto(profilePath);
                     break;
             }
+        }
+    }
+
+    private void setPhoto(String profileImagePath) {
+        if (ImageHelper.getBitmapFromPath(profileImagePath) != null) {
+            imageViewAttached.setVisibility(View.VISIBLE);
+            imageViewAttached.setImageBitmap(ImageHelper.getBitmapFromPath(profileImagePath));
         }
     }
 }

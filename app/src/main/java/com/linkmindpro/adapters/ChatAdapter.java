@@ -2,13 +2,17 @@ package com.linkmindpro.adapters;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.linkmindpro.models.chat.ChatData;
+import com.linkmindpro.utils.AppUtils;
+import com.linkmindpro.utils.ImageHelper;
 
 import java.util.ArrayList;
 
@@ -42,6 +46,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     }
 
     @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
         return mChatDatas.size();
     }
@@ -59,8 +73,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         @BindView(R.id.text_view_user_message) TextView textViewUserMessage;
         @BindView(R.id.text_view_other_emergency) TextView textViewOtherEmergency;
         @BindView(R.id.text_view_user_emergency) TextView textViewUserEmergency;
-        @BindView(R.id.relative_layout_current_user)
-        RelativeLayout relativeLayoutCurrentUser;
+        @BindView(R.id.relative_layout_current_user) RelativeLayout relativeLayoutCurrentUser;
+        @BindView(R.id.image_view_user) ImageView imageViewUser;
+        @BindView(R.id.image_view_other) ImageView imageViewOther;
 
         ChatViewHolder(View itemView) {
             super(itemView);
@@ -73,7 +88,15 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
                 relativeLayoutOtherUser.setVisibility(View.GONE);
                 relativeLayoutCurrentUser.setVisibility(View.VISIBLE);
                 textViewUserDate.setText(chatData.getDateTime());
-                textViewUserMessage.setText(chatData.getMessage());
+                if (!TextUtils.isEmpty(chatData.getAttachment())) {
+                    imageViewUser.setVisibility(View.VISIBLE);
+                    AppUtils.getInstance().display(mActivity, chatData.getAttachment(), imageViewUser, null);
+                    textViewUserMessage.setVisibility(View.GONE);
+                }
+                if (!TextUtils.isEmpty(chatData.getMessage())) {
+                    textViewUserMessage.setVisibility(View.VISIBLE);
+                    textViewUserMessage.setText(chatData.getMessage());
+                }
                 textViewUserEmergency.setVisibility(chatData.getUrgent() == 0 ? View.GONE : View.VISIBLE);
 
                 return;
@@ -82,8 +105,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             relativeLayoutOtherUser.setVisibility(View.VISIBLE);
             relativeLayoutCurrentUser.setVisibility(View.GONE);
             textViewOtherDate.setText(chatData.getDateTime());
-            textViewOtherMessage.setText(chatData.getMessage());
             textViewOtherEmergency.setVisibility(chatData.getUrgent() == 0 ? View.GONE : View.VISIBLE);
+            if (!TextUtils.isEmpty(chatData.getAttachment())) {
+                imageViewOther.setVisibility(View.VISIBLE);
+                AppUtils.getInstance().display(mActivity, chatData.getAttachment(), imageViewOther, null);
+                textViewOtherMessage.setVisibility(View.GONE);
+            }
+            if (!TextUtils.isEmpty(chatData.getMessage())) {
+                textViewOtherMessage.setVisibility(View.VISIBLE);
+                textViewOtherMessage.setText(chatData.getMessage());
+            }
         }
     }
 }

@@ -20,6 +20,9 @@ public class ChatData {
     @SerializedName("urgent")
     @Expose
     private int urgent;
+    @SerializedName("attachment")
+    @Expose
+    private String attachment;
 
     public String getSenderId() {
         return senderId;
@@ -59,5 +62,13 @@ public class ChatData {
 
     public void setUrgent(int urgent) {
         this.urgent = urgent;
+    }
+
+    public String getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(String attachment) {
+        this.attachment = attachment;
     }
 }
