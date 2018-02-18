@@ -31,10 +31,12 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
     private Activity mActivity;
     private LayoutInflater mLayoutInflater;
     private ArrayList<PatientData> mPatientData;
+    private ArrayList<PatientData> mCompleteList = new ArrayList<>();
 
     public DoctorListAdapter(Activity activity, ArrayList<PatientData> patientData) {
         mActivity = activity;
         mPatientData = patientData;
+        mCompleteList.addAll(patientData);
         mLayoutInflater = LayoutInflater.from(activity);
     }
 
@@ -48,14 +50,12 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
     @Override
     public void onBindViewHolder(DoctorListViewHolder holder, int position) {
         holder.bindData(mPatientData.get(position));
-
     }
 
     @Override
     public int getItemCount() {
         return mPatientData.size();
     }
-
 
     class DoctorListViewHolder extends RecyclerView.ViewHolder {
 
@@ -107,5 +107,16 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
             intent.putExtra(DATA, patientData);
             mActivity.startActivity(intent);
         }
+    }
+
+    public void getFilteredItem(String name) {
+        mPatientData.clear();
+        if (!name.equals("")) {
+            for (int i = 0; i < mCompleteList.size(); i++) {
+                if (mCompleteList.get(i).getName().toLowerCase().contains(name.toLowerCase()))
+                    mPatientData.add(mCompleteList.get(i));
+            }
+        } else mPatientData.addAll(mCompleteList);
+        notifyDataSetChanged();
     }
 }

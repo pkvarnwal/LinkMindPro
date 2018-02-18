@@ -21,9 +21,9 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_15sdp"
-        android:gravity="center_vertical"
-        android:layout_toRightOf="@+id/image_view_item"
         android:layout_toLeftOf="@+id/relative_layout_count"
+        android:layout_toRightOf="@+id/image_view_item"
+        android:gravity="center_vertical"
         android:paddingTop="@dimen/_10sdp">
 
         <TextView
@@ -59,24 +59,34 @@
 
     <RelativeLayout
         android:id="@+id/relative_layout_count"
-        android:minWidth="@dimen/_20sdp"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_50sdp"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:minWidth="@dimen/_20sdp"
+        android:paddingRight="@dimen/_5sdp">
 
         <TextView
-            style="@style/textSize_smallest"
             android:id="@+id/text_view_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            style="@style/textSize_small"
-            android:visibility="gone"
-            android:id="@+id/text_view_count"
+            style="@style/textSize_smallest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5" />
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/text_view_count"
+            style="@style/textSize_smallest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/text_view_date"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="5"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_circle_red"
+            android:visibility="gone" />
     </RelativeLayout>
 </RelativeLayout>

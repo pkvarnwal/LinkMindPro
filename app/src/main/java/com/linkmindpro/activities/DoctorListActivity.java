@@ -6,14 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.linkmindpro.adapters.DoctorListAdapter;
 import com.linkmindpro.dialog.PopUpHelper;
+import com.linkmindpro.font.FontHelper;
 import com.linkmindpro.http.DataManager;
 import com.linkmindpro.http.ErrorManager;
 import com.linkmindpro.models.donotdisturb.DoNotDisturbRequest;
@@ -44,7 +45,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     @BindView(R.id.text_view_notification)
     TextView textViewNotification;
     @BindView(R.id.edit_text_search)
-    EditText editTextSearch;
+    SearchView searchView;
     @BindView(R.id.recycler_view_doctor)
     RecyclerView recyclerViewDoctor;
     @BindView(R.id.relative_layout_root)
@@ -57,15 +58,13 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     ImageView imageViewSetting;
     @BindView(R.id.image_view_edit_profile)
     ImageView imageViewEditProfile;
-//    @BindView(R.id.checkbox_dnd)
-//    CheckBox checkBoxDND;
 
     @BindString(R.string.new_message)
     String stringNewMessage;
     @BindString(R.string.please_wait)
     String stringPleaseWait;
-    //    Toolbar toolbar;
     boolean isVisible;
+    private DoctorListAdapter doctorListAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,12 +72,13 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         setContentView(R.layout.activity_doctor_list);
 
         ButterKnife.bind(this);
-
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        setFonts();
         updateUi();
         patientList();
+    }
+
+    private void setFonts() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, searchView, textViewDND);
     }
 
     private void patientList() {
@@ -113,70 +113,26 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     }
 
     private void updateUi() {
-//        textViewTitle.setText(stringNewMessage);
-//        textViewNotification.setVisibility(View.VISIBLE);
         imageViewSetting.setVisibility(View.VISIBLE);
         imageViewEditProfile.setVisibility(View.VISIBLE);
         relativeLayoutDND.setVisibility(View.VISIBLE);
+        searchView.setOnQueryTextListener(textWatcher);
     }
 
     private void setRecycleAdapter(ArrayList<PatientData> patientData) {
         recyclerViewDoctor.addItemDecoration(new SimpleDividerItemDecoration(this));
-        DoctorListAdapter doctorListAdapter = new DoctorListAdapter(this, patientData);
+        doctorListAdapter = new DoctorListAdapter(this, patientData);
         recyclerViewDoctor.setAdapter(doctorListAdapter);
         recyclerViewDoctor.setLayoutManager(new LinearLayoutManager(this));
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.main, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//
-//            case R.id.item_edit_profile:
-//                Intent intent = new Intent(DoctorListActivity.this, EditProfileActivity.class);
-//                startActivity(intent);
-//                break;
-//
-//            case R.id.item_reset_password:
-//                Intent resetIntent = new Intent(DoctorListActivity.this, ChangePasswordActivity.class);
-//                startActivity(resetIntent);
-//                break;
-//
-//            case R.id.item_send_invite:
-//                Intent inviteIntent = new Intent(DoctorListActivity.this, SubscribeActivity.class);
-//                startActivity(inviteIntent);
-//                break;
-//
-//            case R.id.item_logout:
-//                Intent loginIntent = new Intent(DoctorListActivity.this, LoginActivity.class);
-//                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                AppPreference.getAppPreference(this).remove(PREF_LOGINDATA);
-//                startActivity(loginIntent);
-//                finish();
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    @OnClick(R.id.checkbox_dnd)
-//    void checkBoxDNDTapped() {
-//        if (checkBoxDND.isChecked()) doNotDisturb(true);
-//    }
-
-
     @OnClick(R.id.image_view_edit_profile)
     void editProfileTapped() {
         if (isVisible) {
-            editTextSearch.setVisibility(View.GONE);
+            searchView.setVisibility(View.GONE);
             isVisible = false;
         } else {
-            editTextSearch.setVisibility(View.VISIBLE);
+            searchView.setVisibility(View.VISIBLE);
             isVisible = true;
         }
     }
@@ -209,7 +165,6 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
                 ProgressHelper.stop();
                 String message = ((DoNotDisturbResponse) response).getDoNotDisturbData().getMessage();
                 confirmPopUp(message);
-
             }
 
             @Override
@@ -228,5 +183,19 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
             }
         });
     }
+
+    SearchView.OnQueryTextListener textWatcher = new  SearchView.OnQueryTextListener() {
+
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            doctorListAdapter.getFilteredItem(newText);
+            return false;
+        }
+    };
 
 }
