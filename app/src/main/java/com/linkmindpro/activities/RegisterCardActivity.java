@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.linkmindpro.font.FontHelper;
 import com.linkmindpro.models.register.RegisterRequest;
 import com.linkmindpro.utils.AppConstant;
 
@@ -17,7 +18,6 @@ import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
 
 public class RegisterCardActivity extends AppCompatActivity implements AppConstant {
-
 
     @BindView(R.id.text_view_sign_in)
     TextView textViewSignIn;
@@ -33,6 +33,8 @@ public class RegisterCardActivity extends AppCompatActivity implements AppConsta
     Button buttonSubscribeNow;
     @BindView(R.id.text_view_skip)
     TextView textViewSkip;
+    @BindView(R.id.text_view_already_account)
+    TextView textViewAlreadyAccount;
     private RegisterRequest registerRequest;
 
     @Override
@@ -41,7 +43,14 @@ public class RegisterCardActivity extends AppCompatActivity implements AppConsta
         setContentView(R.layout.activity_register_card);
         ButterKnife.bind(this);
 
+        setFonts();
         getIntentData();
+    }
+
+    private void setFonts() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, buttonSubscribeNow);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewAlreadyAccount, textViewSignIn, textViewSkip, textViewFreeTrail,
+                editTextNameOnCard, editTextCardNumber);
     }
 
     private void getIntentData() {
