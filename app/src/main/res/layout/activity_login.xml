@@ -127,7 +127,7 @@
                 android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_marginRight="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_50sdp"
-                android:background="@color/colorAccent"
+                android:background="@color/color_blue"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
                 android:text="@string/login"

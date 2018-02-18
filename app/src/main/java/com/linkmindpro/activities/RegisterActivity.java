@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.linkmindpro.dialog.PopUpHelper;
+import com.linkmindpro.font.FontHelper;
 import com.linkmindpro.http.DataManager;
 import com.linkmindpro.http.ErrorManager;
 import com.linkmindpro.models.register.RegisterRequest;
@@ -66,6 +67,12 @@ public class RegisterActivity extends AppCompatActivity implements AppConstant {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+        setFonts();
+    }
+
+    private void setFonts() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, buttonContinue);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewAlreadyAccount, textViewSignIn, editTextName, editTextEmail, editTextPassword, editTextConfirmPassword);
     }
 
     @OnClick(R.id.text_view_sign_in)

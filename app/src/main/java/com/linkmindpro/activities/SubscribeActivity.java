@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.linkmindpro.dialog.PopUpHelper;
 import com.linkmindpro.http.DataManager;
@@ -58,7 +59,7 @@ public class SubscribeActivity extends AppCompatActivity implements AppConstant 
     @BindView(R.id.button_subscribe)
     Button buttonSubsribe;
     @BindView(R.id.relative_layout_root)
-    LinearLayout relativeLayoutRoot;
+    RelativeLayout relativeLayoutRoot;
 
     private RegisterRequest registerRequest;
     private String id;

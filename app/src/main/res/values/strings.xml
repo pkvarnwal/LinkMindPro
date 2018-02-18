@@ -6,7 +6,7 @@
     <string name="forgot_your_password">Forgot your Password?</string>
     <string name="login">Log in</string>
     <string name="already_a_customer">Already a Customer? </string>
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">Sign up</string>
     <string name="register_with_us"><u>Register</u></string>
     <string name="catalog">Catalog</string>
     <string name="setting">Setting</string>
@@ -52,5 +52,7 @@
     <string name="new_password">New Password</string>
     <string name="current_password">Current Password</string>
     <string name="invite_patients">INVITE PATIENTS</string>
+    <string name="patients_email">Patient\'s Email</string>
+    <string name="patient_info">Enter your patient\'s email address to \ninvite them to your network</string>
 
 </resources>
