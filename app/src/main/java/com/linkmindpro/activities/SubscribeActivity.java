@@ -1,22 +1,20 @@
 package com.linkmindpro.activities;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.linkmindpro.dialog.PopUpHelper;
+import com.linkmindpro.font.FontHelper;
 import com.linkmindpro.http.DataManager;
 import com.linkmindpro.http.ErrorManager;
 import com.linkmindpro.models.login.LoginData;
 import com.linkmindpro.models.register.RegisterRequest;
-import com.linkmindpro.models.register.RegisterResponse;
 import com.linkmindpro.models.subscribe.SubsribeRequest;
 import com.linkmindpro.models.subscribe.SubsribeResponse;
 import com.linkmindpro.utils.AppConstant;
@@ -25,8 +23,6 @@ import com.linkmindpro.utils.ProgressHelper;
 import com.linkmindpro.utils.StringUtils;
 import com.linkmindpro.view.SnackBarFactory;
 
-import java.util.Objects;
-
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +30,6 @@ import butterknife.OnClick;
 import constraint.com.linkmindpro.R;
 
 public class SubscribeActivity extends AppCompatActivity implements AppConstant {
-
 
     @BindString(R.string.confirm_password)
     String stringConfirmPassword;
@@ -51,7 +46,6 @@ public class SubscribeActivity extends AppCompatActivity implements AppConstant 
     @BindString(R.string.invalid_email)
     String stringInvalidEmail;
 
-
     @BindString(R.string.please_wait)
     String stringPleaseWait;
     @BindView(R.id.edit_text_email)
@@ -60,6 +54,8 @@ public class SubscribeActivity extends AppCompatActivity implements AppConstant 
     Button buttonSubsribe;
     @BindView(R.id.relative_layout_root)
     RelativeLayout relativeLayoutRoot;
+    @BindView(R.id.text_view_patient_info)
+    TextView textViewPatientInfo;
 
     private RegisterRequest registerRequest;
     private String id;
@@ -69,7 +65,13 @@ public class SubscribeActivity extends AppCompatActivity implements AppConstant 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscribe);
         ButterKnife.bind(this);
+        setFonts();
 //        getIntentData();
+    }
+
+    private void setFonts() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, buttonSubsribe);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, editTextEmail, textViewPatientInfo);
     }
 
     private void getIntentData() {
