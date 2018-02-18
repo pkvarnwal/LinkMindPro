@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
     }
 
     private void setFont() {
-        FontHelper.setFontFace(FontHelper.FontType.FONT_MEDIUM, editTextEmail, editTextPassword,
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, editTextEmail, editTextPassword,
                 textViewSignUp, textViewForgotPassword);
         FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, buttonLogin);
     }

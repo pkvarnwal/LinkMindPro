@@ -24,8 +24,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/sign_up"
                 android:textColor="@color/black" />
@@ -73,8 +72,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/linear_layout_link_mind"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_40sdp"
                 android:background="@drawable/bg_button_blue_border"
                 android:gravity="start"
@@ -91,8 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/edit_text_email"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/bg_button_blue_border"
                 android:gravity="start"
@@ -102,7 +101,6 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/eqdepot_font_gray" />
 
-
             <TextView
                 android:id="@+id/text_view_forgot_password"
                 style="@style/textSize_smaller"
@@ -111,8 +109,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/edit_text_password"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:text="@string/forgot_your_password"
                 android:textColor="@color/black" />
@@ -124,9 +122,9 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/_44sdp"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginRight="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_40sdp"
                 android:background="@color/color_blue"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
