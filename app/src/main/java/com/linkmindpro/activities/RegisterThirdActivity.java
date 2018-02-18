@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.linkmindpro.font.FontHelper;
 import com.linkmindpro.models.register.RegisterRequest;
 import com.linkmindpro.utils.AppConstant;
 
@@ -45,7 +46,13 @@ public class RegisterThirdActivity extends AppCompatActivity implements AppConst
         setContentView(R.layout.activity_register_third);
         ButterKnife.bind(this);
         getIntentData();
+        setFonts();
+    }
 
+    private void setFonts() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, buttonContinue);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewAlreadyAccount, textViewSignIn, textViewSkip, editTextAddress,
+                editTextCity, editTextState, editTextZip, editTextPhone);
     }
 
     private void getIntentData() {
@@ -70,7 +77,6 @@ public class RegisterThirdActivity extends AppCompatActivity implements AppConst
     }
 
     private RegisterRequest getPersonalData() {
-
         String address = editTextAddress.getText().toString();
         String city = editTextCity.getText().toString();
         String state = editTextState.getText().toString();
