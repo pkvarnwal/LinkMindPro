@@ -119,8 +119,10 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
             AppUtils.getInstance().display(this, loginData.getImage(), imageViewDoctor, R.drawable.ic_user);
         if (!TextUtils.isEmpty(loginData.getProfession()))
             textViewProfession.setText(loginData.getProfession());
-        if (!TextUtils.isEmpty(loginData.getEmail()))
-            textViewEmail.setText(loginData.getEmail());
+        if (!TextUtils.isEmpty(loginData.getEmail())) textViewEmail.setText(loginData.getEmail());
+        if (!TextUtils.isEmpty(loginData.getEmail())) textViewEmail.setText(loginData.getEmail());
+        if (!TextUtils.isEmpty(loginData.getCompleteAddress())) textViewAddress.setText(loginData.getCompleteAddress());
+        if (!TextUtils.isEmpty(loginData.getPhone())) textViewPhone.setText(loginData.getPhone());
     }
 
     @OnClick(R.id.linear_layout_invite_patient)
@@ -198,10 +200,10 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
     }
 
     private void setFont() {
-        FontHelper.setFontFace(FontHelper.FontType.FONT_MEDIUM, textViewProfession, textViewAddress,
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewProfession, textViewAddress,
                 textViewDndMessage, textViewInvitePatient, textViewFax, textViewPhone, textViewEmail);
         FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewName, textViewEditProfile,
                 textViewPaymentMethod, textViewHelpAndSupport, textViewLogout, textViewResetPassword,
-                switchCompatDnd);
+                switchCompatDnd, textViewVisaLabel, textViewVisa);
     }
 }
