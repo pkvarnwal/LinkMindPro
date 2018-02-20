@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <color name="colorPrimary">#0064a8</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#0064a8</color>
+    <color name="colorAccent">#0f9cd9</color>
     <color name="white">#ffffff</color>
     <color name="eqdepot_blue">#0064a8</color>
     <color name="eqdepot_font_gray">#7f8083</color>
@@ -21,5 +20,6 @@
     <color name="red_dark">#DC143C</color>
     <color name="background_color">#F6F7F9</color>
     <color name="light_blue">#12A1DB</color>
+    <color name="color_blue">#0f9cd9</color>
 
 </resources>

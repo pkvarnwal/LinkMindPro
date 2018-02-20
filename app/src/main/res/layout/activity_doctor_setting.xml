@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:minHeight="@dimen/_540sdp"
+            android:paddingBottom="@dimen/_10sdp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -65,6 +66,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        style="@style/textSize_small"
                         android:id="@+id/text_view_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -122,67 +124,73 @@
                 android:background="@color/eqdepot_light_black" />
 
             <RelativeLayout
-                android:id="@+id/relative_layout_dnd"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_10sdp"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingStart="@dimen/_10sdp">
 
-                <ImageView
-                    android:id="@+id/image_view_dnd"
-                    android:layout_width="@dimen/_16sdp"
-                    android:layout_height="@dimen/_16sdp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_dnd" />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/switch_compat_dnd"
+                <RelativeLayout
+                    android:id="@+id/relative_layout_dnd"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toRightOf="@+id/image_view_dnd"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:paddingRight="@dimen/_5sdp"
-                    android:text="Do Not Disturb (DND)">
+                    android:layout_height="@dimen/_40sdp">
 
-                </android.support.v7.widget.SwitchCompat>
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/image_view_dnd"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_dnd" />
 
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/switch_compat_dnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/image_view_dnd"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_5sdp"
+                        android:text="Do Not Disturb (DND)">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:background="@color/divider_gray" />
+                    </android.support.v7.widget.SwitchCompat>
+                </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/_50sdp"
-                android:paddingLeft="@dimen/_10sdp">
-
-                <TextView
-                    android:id="@+id/text_view_dnd_message"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="left"
-                    android:text="I am unavailable until July 19. In case of a \nclinical emergency, contact Dr. Mark Price \n(310) 555-3456"
-                    android:textColor="@color/eqdepot_font_gray" />
-
-                <ImageView
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="@dimen/_14sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/_5sdp"
+                <View
+                    android:id="@+id/view_seperator_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/relative_layout_dnd"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:src="@drawable/ic_info" />
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="@color/divider_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_seperator_one"
+                    android:minHeight="@dimen/_50sdp">
+
+                    <TextView
+                        android:id="@+id/text_view_dnd_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="left"
+                        android:text="I am unavailable until July 19. In case of a \nclinical emergency, contact Dr. Mark Price \n(310) 555-3456"
+                        android:textColor="@color/eqdepot_font_gray" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:src="@drawable/ic_info" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <View
@@ -223,6 +231,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/text_view_email"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_toLeftOf="@+id/image_view_arrow_address"
                     android:text="12566 S. Sepulveda Blvd Suite 6 \nLos Angeles, CA 91313"
                     android:textColor="@color/eqdepot_font_gray" />
 
@@ -230,8 +239,8 @@
                     android:id="@+id/relative_layout_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:layout_below="@+id/text_view_address">
+                    android:layout_below="@+id/text_view_address"
+                    android:layout_marginTop="@dimen/_3sdp">
 
                     <TextView
                         android:id="@+id/text_view_phone_label"
@@ -255,8 +264,8 @@
                     android:id="@+id/relative_layout_fax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:layout_below="@+id/relative_layout_phone">
+                    android:layout_below="@+id/relative_layout_phone"
+                    android:layout_marginTop="@dimen/_3sdp">
 
 
                     <TextView
@@ -278,6 +287,7 @@
                 </RelativeLayout>
 
                 <ImageView
+                    android:id="@+id/image_view_arrow_address"
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="@dimen/_16sdp"
                     android:layout_alignParentRight="true"
@@ -316,7 +326,10 @@
                     android:layout_below="@+id/text_view_payment_method"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/bg_button_blue_border"
-                    android:padding="@dimen/_3sdp"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:text="VISA"
                     android:textColor="@color/eqdepot_blue" />
 

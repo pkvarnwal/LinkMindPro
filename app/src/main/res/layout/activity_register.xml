@@ -21,8 +21,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:gravity="center_vertical"
-                android:paddingEnd="@dimen/_10sdp"
-                android:paddingRight="@dimen/_10sdp"
+                android:paddingRight="@dimen/_25sdp"
                 tools:ignore="RtlSymmetry">
 
                 <TextView
@@ -133,11 +132,11 @@
                 android:id="@+id/button_continue"
                 style="@style/textSize_medium"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/space_view"
                 android:layout_marginBottom="@dimen/_30sdp"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_25sdp"
                 android:background="@color/colorAccent"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"

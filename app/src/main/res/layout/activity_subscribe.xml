@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relative_layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="@dimen/_25sdp"
     android:paddingRight="@dimen/_25sdp">
+
+    <TextView
+        android:id="@+id/text_view_patient_info"
+        style="@style/textSize_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:text="@string/patient_info" />
 
     <EditText
         android:id="@+id/edit_text_email"
         style="@style/textSize_small"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/text_view_patient_info"
+        android:layout_marginTop="@dimen/_15sdp"
         android:background="@drawable/bg_button_blue_border"
         android:gravity="start"
-        android:hint="@string/email"
+        android:hint="@string/patients_email"
         android:inputType="textEmailAddress"
         android:padding="@dimen/_10sdp"
-        android:textColorHint="@color/eqdepot_font_gray"
         android:textColor="@color/black"
+        android:textColorHint="@color/eqdepot_font_gray"
         tools:ignore="TextFields" />
 
     <Button
         android:id="@+id/button_subscribe"
         style="@style/textSize_medium"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/_30sdp"
-        android:background="@color/colorAccent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:background="@color/color_blue"
         android:gravity="center"
         android:padding="@dimen/_10sdp"
-        android:text="Subscribe"
+        android:text="@string/send_invitation"
         android:textColor="@color/white" />
-</LinearLayout>
+</RelativeLayout>

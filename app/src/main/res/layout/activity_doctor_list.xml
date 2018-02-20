@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/relative_layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <EditText
+    <android.support.v7.widget.SearchView
         android:id="@+id/edit_text_search"
         style="@style/textSize_smaller"
         android:layout_width="match_parent"
@@ -18,11 +19,9 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:background="@color/white"
-        android:drawablePadding="@dimen/_10sdp"
-        android:hint="Search"
-        android:imeOptions="actionNext"
-        android:paddingLeft="@dimen/_20sdp"
+        app:queryHint="Search"
+        app:iconifiedByDefault="false"
+        app:closeIcon="@null"
         android:singleLine="true"
         android:visibility="gone"
         android:textColor="@color/eqdepot_font_gray"
