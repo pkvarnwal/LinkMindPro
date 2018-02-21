@@ -87,7 +87,6 @@ public class RegisterActivity extends AppCompatActivity implements AppConstant {
         String password = editTextPassword.getText().toString();
         String confirmPassword = editTextConfirmPassword.getText().toString();
 
-//        if (validate(name, email, password, confirmPassword)) register(name, email, password);
         if (validate(name, email, password, confirmPassword)) secondRegisterScreen(name, email, password);
     }
 

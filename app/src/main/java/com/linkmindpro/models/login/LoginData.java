@@ -19,6 +19,7 @@ public class LoginData {
     @SerializedName("city") private String city;
     @SerializedName("zip") private String zip;
     @SerializedName("phone") private String phone;
+    @SerializedName("reference_id") private String referenceId;
     private String completeAddress = "";
 
     public String getId() {
@@ -141,5 +142,17 @@ public class LoginData {
             completeAddress = completeAddress + ", "+ zip;
         }
         return completeAddress;
+    }
+
+    public String getReferenceId() {
+        return referenceId;
+    }
+
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
+    }
+
+    public void setCompleteAddress(String completeAddress) {
+        this.completeAddress = completeAddress;
     }
 }

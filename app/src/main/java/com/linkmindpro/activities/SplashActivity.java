@@ -30,7 +30,14 @@ public class SplashActivity extends AppCompatActivity implements AppConstant {
                 if (AppPreference.getAppPreference(SplashActivity.this).getBoolean(INTRO_SEEN)) {
                     LoginData loginData = AppPreference.getAppPreference(SplashActivity.this).getObject(PREF_LOGINDATA, LoginData.class);
                     if(loginData != null) {
-                        startActivity(new Intent(SplashActivity.this, DoctorListActivity.class));
+                        if (loginData.getRole().equals("Patient")) {
+                            Intent intent = new Intent(SplashActivity.this, ChatActivity.class);
+                            intent.putExtra(IS_PATIENT, true);
+                            startActivity(intent);
+                        } else {
+                            startActivity(new Intent(SplashActivity.this, DoctorListActivity.class));
+                        }
+
                     } else {
                         startActivity(new Intent(SplashActivity.this, RegisterActivity.class));
                     }

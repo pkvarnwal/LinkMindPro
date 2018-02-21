@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -166,6 +167,12 @@ public class RegisterFirstActivity extends AppCompatActivity implements AppConst
     private void register(String profession) {
 //        final RegisterRequest registerRequest = new RegisterRequest();
 
+        if (!TextUtils.isEmpty(profilePath)) {
+            String base64Image = Base64.encodeToString(ImageHelper.convertImageToByteArray(profilePath, 200, 200), Base64.DEFAULT);
+            String imgType = "image/png";
+//            registerRequest.setImage(base64Image);
+            registerRequest.setImage(base64Image);
+        }
         registerRequest.setProfession(profession);
 
         ProgressHelper.start(this, stringPleaseWait);
