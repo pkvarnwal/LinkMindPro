@@ -45,7 +45,7 @@ public class ViewPagerActivity extends AppCompatActivity implements AppConstant 
 
     @OnClick(R.id.button_get_started)
     void getStartedTapped() {
-        AppPreference.getAppPreference(this).putBoolean(INTRO_SEEN);
+        AppPreference.getAppPreference(this).putBoolean(INTRO_SEEN, true);
         startActivity(new Intent(this, RegisterActivity.class));
         finish();
     }

@@ -123,6 +123,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         if (!TextUtils.isEmpty(loginData.getEmail())) textViewEmail.setText(loginData.getEmail());
         if (!TextUtils.isEmpty(loginData.getCompleteAddress())) textViewAddress.setText(loginData.getCompleteAddress());
         if (!TextUtils.isEmpty(loginData.getPhone())) textViewPhone.setText(loginData.getPhone());
+
+        switchCompatDnd.setChecked(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? true : false);
     }
 
     @OnClick(R.id.linear_layout_invite_patient)
@@ -130,8 +132,10 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         startActivity(new Intent(this, SubscribeActivity.class));
     }
 
-    @OnClick(R.id.relative_layout_dnd)
+    @OnClick(R.id.relative_dnd)
     void dndTapped() {
+        switchCompatDnd.setChecked(!switchCompatDnd.isChecked());
+        AppPreference.getAppPreference(this).putBoolean(PREF_DND_STATUS, switchCompatDnd.isChecked());
         doNotDisturb(true);
     }
 
@@ -153,6 +157,7 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         Intent loginIntent = new Intent(DoctorSettingActivity.this, LoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         AppPreference.getAppPreference(this).remove(PREF_LOGINDATA);
+        AppPreference.getAppPreference(this).remove(PREF_DND_STATUS);
         startActivity(loginIntent);
         finish();
     }

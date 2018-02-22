@@ -32,7 +32,15 @@ public class RegisterRequest implements Serializable {
     @SerializedName("insurance_phone") private String insurancePhone;
 
     @SerializedName("profession") private String profession;
+    @SerializedName("image") private String image;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getProfession() {
         return profession;

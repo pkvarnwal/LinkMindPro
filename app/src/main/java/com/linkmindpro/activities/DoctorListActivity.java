@@ -52,8 +52,8 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     RelativeLayout relativeLayoutRoot;
     @BindView(R.id.relative_layout_dnd)
     RelativeLayout relativeLayoutDND;
-    @BindView(R.id.text_view_dnd)
-    TextView textViewDND;
+    @BindView(R.id.text_view_dnd) TextView textViewDND;
+    @BindView(R.id.text_view_dnd_on_off) TextView textViewDNDStatus;
     @BindView(R.id.image_view_setting)
     ImageView imageViewSetting;
     @BindView(R.id.image_view_edit_profile)
@@ -198,4 +198,10 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         }
     };
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        textViewDNDStatus.setText(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? "ON" :"OFF");
+    }
 }

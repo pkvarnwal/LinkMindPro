@@ -61,6 +61,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     private final int REQUEST_PERMISSION_CODE = 200;
     private static final int GALLERY_REQUEST = 2000;
     private String profilePath;
+    private String recieverId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,24 +72,32 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     }
 
     private void getIntentData() {
+        loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
+
         if (getIntent().hasExtra(DATA)) {
             patientData = (PatientData) getIntent().getSerializableExtra(DATA);
             updateUi();
-
+            getChat();
+        }
+        if (getIntent().hasExtra(IS_PATIENT)) {
+            updateUi();
             getChat();
         }
     }
 
     private void getChat() {
+        recieverId = loginData.getRole().equals("Patient") ? loginData.getReferenceId() : patientData.getId();
+
         final GetChatRequest getChatRequest = new GetChatRequest();
-        loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
+
         getChatRequest.setSenderId(loginData.getId());
-        getChatRequest.setRecieverId(patientData.getId());
+        getChatRequest.setRecieverId(recieverId);
+
         DataManager.getInstance().getChat(this, getChatRequest, new DataManager.DataManagerListener() {
             @Override
             public void onSuccess(Object response) {
                 GetChatResponse chatResponse = (GetChatResponse) response;
-                if (getChatRequest != null) {
+                if (chatResponse != null) {
                     chatDatas = chatResponse.getChatData();
                     setRecycleAdapter(chatDatas);
                 }
@@ -107,8 +116,11 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         if (loginData.getRole().equals("Doctor")) {
             checkBoxUrgent.setVisibility(View.GONE);
         }
-        textViewTitle.setText(patientData.getName());
-        AppUtils.getInstance().display(this, patientData.getImage(),imageViewProfile, R.drawable.ic_user_profile);
+        if (patientData != null) {
+            textViewTitle.setText(patientData.getName());
+            AppUtils.getInstance().display(this, patientData.getImage(),imageViewProfile, R.drawable.ic_user_profile);
+        }
+
     }
 
     private void setRecycleAdapter(ArrayList<ChatData> chatDatas) {
@@ -128,10 +140,12 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         if (TextUtils.isEmpty(message) && TextUtils.isEmpty(profilePath)) return;
 
         SendChatRequest sendChatRequest = new SendChatRequest();
-        sendChatRequest.setRecieverId(patientData.getId());
+        sendChatRequest.setRecieverId(recieverId);
+
         sendChatRequest.setSenderId(loginData.getId());
         sendChatRequest.setUrgent(checkBoxUrgent.isChecked() ? 1 : 0);
         imageViewAttached.setVisibility(View.GONE);
+
         if (!TextUtils.isEmpty(profilePath)) {
             String base64Image = Base64.encodeToString(ImageHelper.convertImageToByteArray(profilePath, 50, 50), Base64.DEFAULT);
             sendChatRequest.setAttachment(base64Image);
@@ -139,6 +153,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         } else {
             sendChatRequest.setMessage(message);
         }
+
         DataManager.getInstance().sendChat(this, sendChatRequest, new DataManager.DataManagerListener() {
             @Override
             public void onSuccess(Object response) {
@@ -147,11 +162,15 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
                 if (chatResponse.getChatData() != null && chatResponse.getChatData().size() >0 ){
                     imageViewAttached.setVisibility(View.GONE);
                     editTextChat.setText("");
-                    chatDatas.clear();
-                    chatDatas.addAll(chatResponse.getChatData());
-                    profilePath = null;
-                    chatAdapter.notifyDataSetChanged();
-                    recyclerViewChat.scrollToPosition(recyclerViewChat.getAdapter().getItemCount() - 1);
+                    if (chatAdapter == null) {
+                        setRecycleAdapter(chatResponse.getChatData());
+                    } else {
+                        chatDatas.clear();
+                        chatDatas.addAll(chatResponse.getChatData());
+                        profilePath = null;
+                        chatAdapter.notifyDataSetChanged();
+                        recyclerViewChat.scrollToPosition(recyclerViewChat.getAdapter().getItemCount() - 1);
+                    }
                 }
             }
 

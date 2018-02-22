@@ -19,4 +19,6 @@ public interface AppConstant {
     String ID = "id";
     String INTRO_SEEN = "intro_seen";
     String IMAGE_BASE_URL = "";
+    String IS_PATIENT = "is_patient";
+    String PREF_DND_STATUS = "pref_dnd_status";
 }

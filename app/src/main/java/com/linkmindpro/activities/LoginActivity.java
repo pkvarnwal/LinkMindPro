@@ -115,6 +115,14 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
 
                 AppPreference.getAppPreference(LoginActivity.this).putObject(PREF_LOGINDATA, loginResponse.getLoginData());
 
+                if (loginResponse.getLoginData().getRole().equals("Patient")) {
+                    Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
+                    intent.putExtra(IS_PATIENT, true);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
+
                 Intent intent = new Intent(LoginActivity.this, DoctorListActivity.class);
                 startActivity(intent);
                 finish();
