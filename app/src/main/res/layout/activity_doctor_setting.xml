@@ -177,20 +177,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view_seperator_one"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:minHeight="@dimen/_50sdp">
 
-                    <TextView
-                        android:id="@+id/text_view_dnd_message"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="left"
-                        android:text="I am unavailable until July 19. In case of a \nclinical emergency, contact Dr. Mark Price \n(310) 555-3456"
-                        android:textColor="@color/eqdepot_font_gray" />
+                    <EditText
+                        android:id="@+id/edit_text_dnd_message"
+                        style="@style/textSize_smaller"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:gravity="top"
+                        android:layout_centerInParent="true"
+                        android:enabled="false"
+                        android:background="@null"
+                        android:hint="I am currently unavailable now."/>
 
                     <ImageView
+                        android:id="@+id/image_view_enable_dnd"
                         android:layout_width="@dimen/_14sdp"
                         android:layout_height="@dimen/_14sdp"
                         android:layout_alignParentEnd="true"

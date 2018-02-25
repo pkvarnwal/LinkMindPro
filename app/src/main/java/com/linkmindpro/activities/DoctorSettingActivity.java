@@ -1,12 +1,17 @@
 package com.linkmindpro.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -55,8 +60,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
     ImageView imageViewDnd;
     @BindView(R.id.switch_compat_dnd)
     SwitchCompat switchCompatDnd;
-    @BindView(R.id.text_view_dnd_message)
-    TextView textViewDndMessage;
+    @BindView(R.id.edit_text_dnd_message)
+    EditText editTextDndMessage;
     @BindView(R.id.text_view_edit_profile)
     TextView textViewEditProfile;
     @BindView(R.id.text_view_email)
@@ -96,6 +101,7 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
 
     @BindString(R.string.please_wait) String stringPleaseWait;
     @BindString(R.string.are_you_sure_logout) String stringAreYouSureLogout;
+    @BindString(R.string.please_enter_dnd_message) String stringEnterDndMessage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,7 +110,16 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         ButterKnife.bind(this);
         setFont();
         updateUi();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("Image Updated"));
     }
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateUi();
+        }
+    };
 
     private void updateUi() {
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
@@ -124,6 +139,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         if (!TextUtils.isEmpty(loginData.getPhone())) textViewPhone.setText(loginData.getPhone());
 
         switchCompatDnd.setChecked(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? true : false);
+
+        editTextDndMessage.setEnabled(false);
     }
 
     @OnClick(R.id.linear_layout_invite_patient)
@@ -135,7 +152,10 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
     void dndTapped() {
         switchCompatDnd.setChecked(!switchCompatDnd.isChecked());
         AppPreference.getAppPreference(this).putBoolean(PREF_DND_STATUS, switchCompatDnd.isChecked());
-        doNotDisturb(true);
+
+        editTextDndMessage.setEnabled(false);
+        String dndMessage = editTextDndMessage.getText().toString();
+        if (validate(dndMessage)) doNotDisturb(dndMessage, true);
     }
 
     @OnClick(R.id.relative_layout_edit_profile)
@@ -173,7 +193,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         startActivity(loginIntent);
         finish();
     }
-    private void doNotDisturb(boolean active) {
+
+    private void doNotDisturb(String dndMessage, boolean active) {
         if (!ConnectionDetector.isNetworkAvailable(this)) {
             SnackBarFactory.showNoInternetSnackBar(DoctorSettingActivity.this, linearLayoutRoot, getString(R.string.no_internet_message));
             return;
@@ -182,7 +203,7 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
 
         DoNotDisturbRequest doNotDisturbRequest = new DoNotDisturbRequest();
-        doNotDisturbRequest.setMessage("I am currently unavailable now.");
+        doNotDisturbRequest.setMessage(dndMessage);
         doNotDisturbRequest.setUserId(loginData.getId());
         doNotDisturbRequest.setDnd(active ? "1" : "0");
 
@@ -217,9 +238,25 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
 
     private void setFont() {
         FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewProfession, textViewAddress,
-                textViewDndMessage, textViewFax, textViewPhone, textViewEmail);
+                editTextDndMessage, textViewFax, textViewPhone, textViewEmail);
         FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewName, textViewEditProfile,
                 textViewPaymentMethod, textViewLogout, textViewResetPassword,
                 switchCompatDnd, textViewVisa, textViewInvitePatient);
+    }
+
+    @OnClick(R.id.image_view_enable_dnd)
+    void enableDndTapped() {
+        editTextDndMessage.setEnabled(true);
+        editTextDndMessage.setText("");
+    }
+
+    private boolean validate(String dndMessage) {
+        if (TextUtils.isEmpty(dndMessage)) {
+            SnackBarFactory.createSnackBar(this, linearLayoutRoot, stringEnterDndMessage);
+            switchCompatDnd.setChecked(false);
+            return false;
+        }
+
+        return true;
     }
 }

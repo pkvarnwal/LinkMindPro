@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -155,6 +156,22 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         editTextProfession.setText(profileData.getProfession());
         if (!TextUtils.isEmpty(profileData.getImage()))
             AppUtils.getInstance().display(this, profileData.getImage(), imageViewProfile, R.drawable.ic_user);
+
+        LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
+
+        if (!TextUtils.isEmpty(profileData.getImage())) loginData.setImage(profileData.getImage());
+        if (!TextUtils.isEmpty(profileData.getName())) loginData.setName(profileData.getName());
+        if (!TextUtils.isEmpty(profileData.getEmail())) loginData.setEmail(profileData.getEmail());
+        if (!TextUtils.isEmpty(profileData.getProfession())) loginData.setProfession(profileData.getProfession());
+        if (!TextUtils.isEmpty(profileData.getPhone())) loginData.setPhone(profileData.getPhone());
+        if (!TextUtils.isEmpty(profileData.getAddress())) loginData.setAddress(profileData.getAddress());
+        if (!TextUtils.isEmpty(profileData.getCity())) loginData.setCity(profileData.getCity());
+        if (!TextUtils.isEmpty(profileData.getState())) loginData.setState(profileData.getState());
+        if (!TextUtils.isEmpty(profileData.getZipcode())) loginData.setZip(profileData.getZipcode());
+
+        AppPreference.getAppPreference(this).putObject(PREF_LOGINDATA, loginData);
+
+        LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("Image Updated"));
     }
 
     @OnClick(R.id.button_save)
@@ -166,6 +183,7 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
         EditProfileRequest editProfileRequest = new EditProfileRequest();
         String name = editTextName.getText().toString();
         String email = editTextEmail.getText().toString();
+        String phone = editTextPhone.getText().toString();
         String address = editTextAddress.getText().toString();
         String city = editTextCity.getText().toString();
         String state = editTextState.getText().toString();
@@ -181,12 +199,13 @@ public class EditProfileActivity extends AppCompatActivity implements AppConstan
 
         editProfileRequest.setUserId(loginData.getId());
         editProfileRequest.setAction("edit");
-        editProfileRequest.setName(name);
-        editProfileRequest.setAddress(address);
-        editProfileRequest.setCity(city);
-        editProfileRequest.setState(state);
-        editProfileRequest.setZipcode(zip);
-        editProfileRequest.setProfession(profession);
+        if (!TextUtils.isEmpty(name)) editProfileRequest.setName(name);
+        if (!TextUtils.isEmpty(phone)) editProfileRequest.setPhone(phone);
+        if (!TextUtils.isEmpty(address)) editProfileRequest.setAddress(address);
+        if (!TextUtils.isEmpty(city)) editProfileRequest.setCity(city);
+        if (!TextUtils.isEmpty(state)) editProfileRequest.setState(state);
+        if (!TextUtils.isEmpty(zip)) editProfileRequest.setZipcode(zip);
+        if (!TextUtils.isEmpty(profession)) editProfileRequest.setProfession(profession);
 
         ProgressHelper.start(this, getString(R.string.please_wait));
         DataManager.getInstance().updateProfile(this, editProfileRequest, new DataManager.DataManagerListener() {
