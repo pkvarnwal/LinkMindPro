@@ -58,4 +58,5 @@
     <string name="no">No</string>
     <string name="na">N/A</string>
     <string name="do_not_disturb_">Do Not Disturb:</string>
+    <string name="are_you_sure_logout">Are you sure you want to logout?</string>
 </resources>

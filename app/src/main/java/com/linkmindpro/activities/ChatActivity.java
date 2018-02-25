@@ -230,5 +230,10 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
             imageViewAttached.setImageBitmap(ImageHelper.getBitmapFromPath(profileImagePath));
         }
     }
+
+    @OnClick(R.id.image_view_back)
+    void backButtonTapped() {
+        onBackPressed();
+    }
 }
 

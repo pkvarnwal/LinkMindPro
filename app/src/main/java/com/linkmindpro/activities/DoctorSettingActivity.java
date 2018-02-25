@@ -94,8 +94,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
     @BindView(R.id.relative_layout_dnd)
     RelativeLayout RelativeLayoutDnd;
 
-    @BindString(R.string.please_wait)
-    String stringPleaseWait;
+    @BindString(R.string.please_wait) String stringPleaseWait;
+    @BindString(R.string.are_you_sure_logout) String stringAreYouSureLogout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -152,7 +152,7 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
 
     @OnClick(R.id.text_view_logout)
     void logoutTapped() {
-        PopUpHelper.showConfirmPopup(this, "Are you sure you want to logout?", new PopUpHelper.ConfirmPopUp() {
+        PopUpHelper.showConfirmPopup(this, stringAreYouSureLogout, new PopUpHelper.ConfirmPopUp() {
             @Override
             public void onConfirm(boolean isConfirm) {
                 clearPrefOnLogout();
