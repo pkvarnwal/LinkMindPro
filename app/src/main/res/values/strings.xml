@@ -56,4 +56,5 @@
     <string name="patient_info">Enter your patient\'s email address to \ninvite them to your network</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="na">N/A</string>
 </resources>

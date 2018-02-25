@@ -33,12 +33,13 @@ public class PopUpHelper {
         return alertDialog;
     }
 
-    public static AlertDialog showConfirmPopup(Activity activity, String message, final InfoPopupListener confirmPopup) {
+    public static AlertDialog showConfirmPopup(Activity activity, String message, final ConfirmPopUp confirmPopup) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setCancelable(false);
         builder.setMessage(message);
 
         builder.setPositiveButton(activity.getString(R.string.yes), new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 confirmPopup.onConfirm(true);
@@ -46,11 +47,13 @@ public class PopUpHelper {
         });
 
         builder.setNegativeButton(activity.getString(R.string.no), new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 confirmPopup.onDismiss(false);
             }
         });
+
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 

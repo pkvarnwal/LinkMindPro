@@ -119,7 +119,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
             textViewProfession.setText(loginData.getProfession());
         if (!TextUtils.isEmpty(loginData.getEmail())) textViewEmail.setText(loginData.getEmail());
         if (!TextUtils.isEmpty(loginData.getEmail())) textViewEmail.setText(loginData.getEmail());
-        if (!TextUtils.isEmpty(loginData.getCompleteAddress())) textViewAddress.setText(loginData.getCompleteAddress());
+        if (!TextUtils.isEmpty(loginData.getCompleteAddress()))
+            textViewAddress.setText(loginData.getCompleteAddress());
         if (!TextUtils.isEmpty(loginData.getPhone())) textViewPhone.setText(loginData.getPhone());
 
         switchCompatDnd.setChecked(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? true : false);
@@ -149,23 +150,29 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         startActivity(resetIntent);
     }
 
-
     @OnClick(R.id.text_view_logout)
     void logoutTapped() {
-
-        PopUpHelper.showConfirmPopup(this, "Are you sure you want to logout?", new PopUpHelper.InfoPopupListener() {
+        PopUpHelper.showConfirmPopup(this, "Are you sure you want to logout?", new PopUpHelper.ConfirmPopUp() {
             @Override
-            public void onConfirm() {
-                Intent loginIntent = new Intent(DoctorSettingActivity.this, LoginActivity.class);
-                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                AppPreference.getAppPreference(DoctorSettingActivity.this).remove(PREF_LOGINDATA);
-                AppPreference.getAppPreference(DoctorSettingActivity.this).remove(PREF_DND_STATUS);
-                startActivity(loginIntent);
-                finish();
+            public void onConfirm(boolean isConfirm) {
+                clearPrefOnLogout();
+            }
+
+            @Override
+            public void onDismiss(boolean isDismiss) {
+
             }
         });
     }
 
+    private void clearPrefOnLogout() {
+        Intent loginIntent = new Intent(DoctorSettingActivity.this, LoginActivity.class);
+        loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppPreference.getAppPreference(DoctorSettingActivity.this).remove(PREF_LOGINDATA);
+        AppPreference.getAppPreference(DoctorSettingActivity.this).remove(PREF_DND_STATUS);
+        startActivity(loginIntent);
+        finish();
+    }
     private void doNotDisturb(boolean active) {
         if (!ConnectionDetector.isNetworkAvailable(this)) {
             SnackBarFactory.showNoInternetSnackBar(DoctorSettingActivity.this, linearLayoutRoot, getString(R.string.no_internet_message));
@@ -200,6 +207,7 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         });
     }
 
+
     private void confirmPopUp(String message) {
         PopUpHelper.showInfoAlertPopup(this, message, new PopUpHelper.InfoPopupListener() {
             @Override
@@ -215,7 +223,6 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
                 textViewPaymentMethod, textViewLogout, textViewResetPassword,
                 switchCompatDnd, textViewVisa);
     }
-
 
 
 }
