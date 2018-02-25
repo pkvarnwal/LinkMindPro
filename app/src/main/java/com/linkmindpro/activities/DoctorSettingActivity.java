@@ -79,14 +79,12 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
     RelativeLayout relativeLayoutEditProfile;
     @BindView(R.id.text_view_payment_method)
     TextView textViewPaymentMethod;
-    @BindView(R.id.text_view_visa_label)
-    TextView textViewVisaLabel;
+    @BindView(R.id.image_view_visa_label)
+    ImageView imageViewVisaLabel;
     @BindView(R.id.text_view_visa)
     TextView textViewVisa;
     @BindView(R.id.relative_layout_payment)
     RelativeLayout relativeLayoutPayment;
-    @BindView(R.id.text_view_help_and_support)
-    TextView textViewHelpAndSupport;
     @BindView(R.id.text_view_reset_password)
     TextView textViewResetPassword;
     @BindView(R.id.text_view_logout)
@@ -154,12 +152,18 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
 
     @OnClick(R.id.text_view_logout)
     void logoutTapped() {
-        Intent loginIntent = new Intent(DoctorSettingActivity.this, LoginActivity.class);
-        loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        AppPreference.getAppPreference(this).remove(PREF_LOGINDATA);
-        AppPreference.getAppPreference(this).remove(PREF_DND_STATUS);
-        startActivity(loginIntent);
-        finish();
+
+        PopUpHelper.showConfirmPopup(this, "Are you sure you want to logout?", new PopUpHelper.InfoPopupListener() {
+            @Override
+            public void onConfirm() {
+                Intent loginIntent = new Intent(DoctorSettingActivity.this, LoginActivity.class);
+                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                AppPreference.getAppPreference(DoctorSettingActivity.this).remove(PREF_LOGINDATA);
+                AppPreference.getAppPreference(DoctorSettingActivity.this).remove(PREF_DND_STATUS);
+                startActivity(loginIntent);
+                finish();
+            }
+        });
     }
 
     private void doNotDisturb(boolean active) {
@@ -208,7 +212,10 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewProfession, textViewAddress,
                 textViewDndMessage, textViewInvitePatient, textViewFax, textViewPhone, textViewEmail);
         FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewName, textViewEditProfile,
-                textViewPaymentMethod, textViewHelpAndSupport, textViewLogout, textViewResetPassword,
-                switchCompatDnd, textViewVisaLabel, textViewVisa);
+                textViewPaymentMethod, textViewLogout, textViewResetPassword,
+                switchCompatDnd, textViewVisa);
     }
+
+
+
 }
