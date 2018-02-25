@@ -36,8 +36,8 @@
         android:id="@+id/relative_layout_dnd"
         android:layout_width="@dimen/_180sdp"
         android:layout_height="@dimen/_40sdp"
-        android:visibility="gone"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/image_view_dnd"
@@ -56,11 +56,12 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:text="Do Not Disturb:"
+            android:text="@string/do_not_disturb_"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/text_view_dnd_on_off"
+            style="@style/textSize_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -81,8 +82,8 @@
         android:layout_gravity="end"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        android:visibility="gone"
-        android:src="@drawable/ic_edit" />
+        android:src="@drawable/ic_edit"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/image_view_setting"

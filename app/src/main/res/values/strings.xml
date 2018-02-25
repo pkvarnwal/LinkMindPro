@@ -57,4 +57,5 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="na">N/A</string>
+    <string name="do_not_disturb_">Do Not Disturb:</string>
 </resources>

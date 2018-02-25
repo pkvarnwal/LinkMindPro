@@ -78,7 +78,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     }
 
     private void setFonts() {
-        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, searchView, textViewDND);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, searchView, textViewDND, textViewDNDStatus);
     }
 
     private void patientList() {
@@ -201,7 +201,6 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     @Override
     protected void onResume() {
         super.onResume();
-
         textViewDNDStatus.setText(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? "ON" :"OFF");
     }
 }

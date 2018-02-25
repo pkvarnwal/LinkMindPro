@@ -207,7 +207,6 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         });
     }
 
-
     private void confirmPopUp(String message) {
         PopUpHelper.showInfoAlertPopup(this, message, new PopUpHelper.InfoPopupListener() {
             @Override
@@ -218,11 +217,9 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
 
     private void setFont() {
         FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewProfession, textViewAddress,
-                textViewDndMessage, textViewInvitePatient, textViewFax, textViewPhone, textViewEmail);
+                textViewDndMessage, textViewFax, textViewPhone, textViewEmail);
         FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewName, textViewEditProfile,
                 textViewPaymentMethod, textViewLogout, textViewResetPassword,
-                switchCompatDnd, textViewVisa);
+                switchCompatDnd, textViewVisa, textViewInvitePatient);
     }
-
-
 }
