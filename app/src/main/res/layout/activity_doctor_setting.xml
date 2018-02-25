@@ -218,8 +218,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Edit Profile"
+                    android:text="@string/edit_profile"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -229,7 +230,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/text_view_edit_profile"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:text="Steve.hindricks@gmail.com"
+                    android:text="@string/na"
                     android:textColor="@color/eqdepot_font_gray" />
 
                 <TextView
@@ -238,10 +239,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/text_view_email"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_toLeftOf="@+id/image_view_arrow_address"
-                    android:text="12566 S. Sepulveda Blvd Suite 6 \nLos Angeles, CA 91313"
+                    android:text="@string/na"
                     android:textColor="@color/eqdepot_font_gray" />
 
                 <RelativeLayout
@@ -265,7 +267,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_toRightOf="@+id/text_view_phone_label"
-                        android:text="310-666-5654"
+                        android:text="@string/na"
                         android:textColor="@color/eqdepot_font_gray" />
                 </RelativeLayout>
 
@@ -290,8 +292,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/text_view_fax_label"
                         android:layout_toRightOf="@+id/text_view_fax_label"
-                        android:text="310-666-5111"
+                        android:text="@string/na"
                         android:textColor="@color/eqdepot_font_gray" />
                 </RelativeLayout>
 
@@ -299,8 +303,10 @@
                     android:id="@+id/image_view_arrow_address"
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="@dimen/_16sdp"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:src="@drawable/ic_arrow_grey" />
             </RelativeLayout>

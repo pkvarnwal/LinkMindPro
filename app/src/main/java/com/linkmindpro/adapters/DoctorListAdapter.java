@@ -111,6 +111,8 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
 
     public void getFilteredItem(String name) {
         mPatientData.clear();
+         if (mCompleteList.size() == 0) return;
+
         if (!name.equals("")) {
             for (int i = 0; i < mCompleteList.size(); i++) {
                 if (mCompleteList.get(i).getName().toLowerCase().contains(name.toLowerCase()))
