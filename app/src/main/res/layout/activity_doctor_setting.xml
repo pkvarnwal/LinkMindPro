@@ -5,6 +5,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/linear_layout_invite_patient"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/light_blue"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_view_invite_patient"
+            style="@style/textSize_smaller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/invite_patients"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_add_user_white" />
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -14,33 +38,8 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:minHeight="@dimen/_540sdp"
-            android:paddingBottom="@dimen/_10sdp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/linear_layout_invite_patient"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-                android:background="@color/light_blue"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/text_view_invite_patient"
-                    style="@style/textSize_smaller"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/invite_patients"
-                    android:textColor="@color/white" />
-
-                <ImageView
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:src="@drawable/ic_add_user" />
-            </LinearLayout>
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_10sdp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -66,12 +65,12 @@
                     android:gravity="center_vertical">
 
                     <TextView
-                        style="@style/textSize_small"
                         android:id="@+id/text_view_name"
+                        style="@style/textSize_small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Richard Hindrisks, MD"
+                        android:text="@string/na"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -80,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/text_view_name"
-                        android:text="Psychiatry"
+                        android:text="@string/na"
                         android:textColor="@color/eqdepot_font_gray" />
                 </RelativeLayout>
 
@@ -101,7 +100,7 @@
                         android:layout_toLeftOf="@+id/image_view_arrow"
                         android:layout_toStartOf="@+id/image_view_arrow"
                         android:background="@drawable/bg_circle_red"
-                        android:text="5"
+                        android:text="@string/na"
                         android:visibility="gone" />
 
                     <ImageView
@@ -114,7 +113,7 @@
                         android:layout_marginEnd="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_arrow_grey" />
+                        android:src="@drawable/ic_arrow_right" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -140,19 +139,19 @@
                         android:layout_width="@dimen/_16sdp"
                         android:layout_height="@dimen/_16sdp"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_dnd"
-                        android:layout_alignParentStart="true" />
+                        android:src="@drawable/ic_dnd" />
 
                     <android.support.v7.widget.SwitchCompat
                         android:id="@+id/switch_compat_dnd"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_toEndOf="@+id/image_view_dnd"
                         android:layout_toRightOf="@+id/image_view_dnd"
                         android:paddingLeft="@dimen/_5sdp"
                         android:paddingRight="@dimen/_5sdp"
-                        android:text="Do Not Disturb (DND)"
-                        android:layout_toEndOf="@+id/image_view_dnd">
+                        android:text="Do Not Disturb (DND)">
 
                     </android.support.v7.widget.SwitchCompat>
 
@@ -178,27 +177,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view_seperator_one"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:minHeight="@dimen/_50sdp">
 
-                    <TextView
-                        android:id="@+id/text_view_dnd_message"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="left"
-                        android:text="I am unavailable until July 19. In case of a \nclinical emergency, contact Dr. Mark Price \n(310) 555-3456"
-                        android:textColor="@color/eqdepot_font_gray" />
+                    <EditText
+                        android:id="@+id/edit_text_dnd_message"
+                        style="@style/textSize_smaller"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:gravity="top"
+                        android:layout_centerInParent="true"
+                        android:enabled="false"
+                        android:background="@null"
+                        android:hint="I am currently unavailable now."/>
 
                     <ImageView
+                        android:id="@+id/image_view_enable_dnd"
                         android:layout_width="@dimen/_14sdp"
                         android:layout_height="@dimen/_14sdp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:src="@drawable/ic_info" />
+                        android:src="@drawable/ic_close" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -218,8 +220,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Edit Profile"
+                    android:text="@string/edit_profile"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -229,7 +232,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/text_view_edit_profile"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:text="Steve.hindricks@gmail.com"
+                    android:text="@string/na"
                     android:textColor="@color/eqdepot_font_gray" />
 
                 <TextView
@@ -238,10 +241,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/text_view_email"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_toLeftOf="@+id/image_view_arrow_address"
-                    android:text="12566 S. Sepulveda Blvd Suite 6 \nLos Angeles, CA 91313"
+                    android:text="@string/na"
                     android:textColor="@color/eqdepot_font_gray" />
 
                 <RelativeLayout
@@ -265,7 +269,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_toRightOf="@+id/text_view_phone_label"
-                        android:text="310-666-5654"
+                        android:text="@string/na"
                         android:textColor="@color/eqdepot_font_gray" />
                 </RelativeLayout>
 
@@ -290,8 +294,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/text_view_fax_label"
                         android:layout_toRightOf="@+id/text_view_fax_label"
-                        android:text="310-666-5111"
+                        android:text="@string/na"
                         android:textColor="@color/eqdepot_font_gray" />
                 </RelativeLayout>
 
@@ -299,10 +305,12 @@
                     android:id="@+id/image_view_arrow_address"
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="@dimen/_16sdp"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:src="@drawable/ic_arrow_grey" />
+                    android:src="@drawable/ic_arrow_right" />
             </RelativeLayout>
 
             <View
@@ -327,33 +335,25 @@
                     android:text="Payment Method"
                     android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/text_view_visa_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/image_view_visa_label"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_32sdp"
                     android:layout_alignParentLeft="true"
                     android:layout_below="@+id/text_view_payment_method"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/bg_button_blue_border"
-                    android:paddingTop="@dimen/_3sdp"
-                    android:paddingBottom="@dimen/_3sdp"
-                    android:paddingRight="@dimen/_5sdp"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:text="VISA"
-                    android:textColor="@color/eqdepot_blue" />
+                    android:src="@drawable/ic_visa" />
 
                 <TextView
                     android:id="@+id/text_view_visa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_view_payment_method"
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_toRightOf="@+id/text_view_visa_label"
+                    android:layout_toRightOf="@+id/image_view_visa_label"
                     android:padding="@dimen/_3sdp"
                     android:text="Visa"
                     android:textColor="@color/eqdepot_font_gray" />
-
 
                 <ImageView
                     android:layout_width="@dimen/_18sdp"
@@ -361,7 +361,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:src="@drawable/ic_arrow_grey" />
+                    android:src="@drawable/ic_arrow_right" />
             </RelativeLayout>
 
             <View
@@ -369,16 +369,6 @@
                 android:layout_height="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@color/eqdepot_light_black" />
-
-            <TextView
-                android:id="@+id/text_view_help_and_support"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="Help and Support"
-                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/text_view_reset_password"

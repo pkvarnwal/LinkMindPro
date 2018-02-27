@@ -54,5 +54,10 @@
     <string name="invite_patients">INVITE PATIENTS</string>
     <string name="patients_email">Patient\'s Email</string>
     <string name="patient_info">Enter your patient\'s email address to \ninvite them to your network</string>
-
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="na">N/A</string>
+    <string name="do_not_disturb_">Do Not Disturb:</string>
+    <string name="are_you_sure_logout">Are you sure you want to logout?</string>
+    <string name="please_enter_dnd_message">Please enter dnd message.</string>
 </resources>
