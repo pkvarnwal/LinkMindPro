@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.linkmindpro.models.chat.ChatData;
 import com.linkmindpro.utils.AppUtils;
 import com.linkmindpro.utils.ImageHelper;
+import com.linkmindpro.utils.SimpleDateFormatter;
 
 import java.util.ArrayList;
 
@@ -87,7 +88,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
             if (chatData.getSenderId().equals(mUserId)) {
                 relativeLayoutOtherUser.setVisibility(View.GONE);
                 relativeLayoutCurrentUser.setVisibility(View.VISIBLE);
-                textViewUserDate.setText(chatData.getDateTime());
+                textViewUserDate.setText(SimpleDateFormatter.getCurrentChatTimeStatus(chatData.getDateTime()));
                 if (!TextUtils.isEmpty(chatData.getAttachment())) {
                     imageViewUser.setVisibility(View.VISIBLE);
                     AppUtils.getInstance().display(mActivity, chatData.getAttachment(), imageViewUser, null);
@@ -104,7 +105,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
             relativeLayoutOtherUser.setVisibility(View.VISIBLE);
             relativeLayoutCurrentUser.setVisibility(View.GONE);
-            textViewOtherDate.setText(chatData.getDateTime());
+            textViewOtherDate.setText(SimpleDateFormatter.getCurrentChatTimeStatus(chatData.getDateTime()));
             textViewOtherEmergency.setVisibility(chatData.getUrgent() == 0 ? View.GONE : View.VISIBLE);
             if (!TextUtils.isEmpty(chatData.getAttachment())) {
                 imageViewOther.setVisibility(View.VISIBLE);
