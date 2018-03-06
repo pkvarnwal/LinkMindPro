@@ -37,6 +37,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    //8px
+
+    <style name="textSize_much_smallest" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/_8ssp</item>
+    </style>
+
+
     //10px
 
     <style name="textSize_smallest" parent="@android:style/Widget.TextView">

@@ -37,16 +37,8 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp">
 
-            <TextView
-                android:id="@+id/text_view_other_date"
-                style="@style/textSize_smallest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="01/01/2018" />
-
             <ImageView
                 android:layout_marginTop="2dp"
-                android:layout_below="@+id/text_view_other_date"
                 android:id="@+id/image_view_other"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
@@ -62,6 +54,14 @@
                 android:layout_marginRight="5dp"
                 android:paddingTop="2dp"
                 android:text="Hi There!" />
+
+            <TextView
+                android:layout_below="@+id/text_view_other_message"
+                android:id="@+id/text_view_other_date"
+                style="@style/textSize_much_smallest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/01/2018" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -79,7 +79,7 @@
         <TextView
             android:id="@+id/text_view_user_emergency"
             style="@style/textSize_smaller"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="2dp"
             android:paddingLeft="@dimen/_10sdp"
@@ -90,7 +90,7 @@
 
         <RelativeLayout
             android:id="@+id/relative_layout_user_date"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/text_view_user_emergency"
@@ -99,17 +99,8 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp">
 
-            <TextView
-                android:id="@+id/text_view_user_date"
-                style="@style/textSize_smallest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="01/01/2018"
-                android:textColor="@color/white" />
-
             <ImageView
                 android:layout_marginTop="2dp"
-                android:layout_below="@+id/text_view_user_date"
                 android:id="@+id/image_view_user"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
@@ -120,12 +111,21 @@
             <TextView
                 android:id="@+id/text_view_user_message"
                 style="@style/textSize_smaller"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/image_view_user"
                 android:layout_marginRight="5dp"
                 android:paddingTop="2dp"
                 android:text="I am good and you?"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_below="@+id/text_view_user_message"
+                android:id="@+id/text_view_user_date"
+                style="@style/textSize_much_smallest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/01/2018"
                 android:textColor="@color/white" />
         </RelativeLayout>
     </RelativeLayout>

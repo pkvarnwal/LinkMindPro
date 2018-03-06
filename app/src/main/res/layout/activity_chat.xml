@@ -15,15 +15,8 @@
         android:id="@+id/recycler_view_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/checkbox_urgent"
-        android:layout_below="@+id/toolbar" />
-
-    <CheckBox
-        android:id="@+id/checkbox_urgent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_above="@+id/linear_layout_chat"
-        android:text="Mark if urgent" />
+        android:layout_below="@+id/toolbar" />
 
     <LinearLayout
         android:id="@+id/linear_layout_chat"
@@ -39,6 +32,18 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/image_view_imp"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
+                android:background="@android:color/transparent"
+                android:contentDescription="@null"
+                android:paddingBottom="@dimen/_8sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:src="@drawable/ic_exclamation" />
+
+            <ImageView
                 android:id="@+id/image_view_camera"
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="match_parent"
@@ -48,7 +53,7 @@
                 android:contentDescription="@null"
                 android:paddingBottom="@dimen/_8sdp"
                 android:paddingTop="@dimen/_8sdp"
-                android:src="@drawable/ic_attach" />
+                android:src="@drawable/ic_attach_media" />
 
             <EditText
                 android:id="@+id/edit_text_chat"
