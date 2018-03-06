@@ -27,6 +27,7 @@ import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.utils.ConnectionDetector;
 import com.linkmindpro.utils.ProgressHelper;
+import com.linkmindpro.view.Message;
 import com.linkmindpro.view.SimpleDividerItemDecoration;
 import com.linkmindpro.view.SnackBarFactory;
 
@@ -46,6 +47,8 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     TextView textViewNotification;
     @BindView(R.id.edit_text_search)
     SearchView searchView;
+    @BindView(R.id.text_view_urgent_message) TextView textViewUrgentMessage;
+    @BindView(R.id.text_view_clinical_emergency) TextView textViewClinicalEmergency;
     @BindView(R.id.recycler_view_doctor)
     RecyclerView recyclerViewDoctor;
     @BindView(R.id.relative_layout_root)
@@ -58,6 +61,8 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     ImageView imageViewSetting;
     @BindView(R.id.image_view_edit_profile)
     ImageView imageViewEditProfile;
+    @BindView(R.id.relative_layout_clinical_emergency)
+    RelativeLayout relativeLayoutClinicalEmergency;
 
     @BindString(R.string.new_message)
     String stringNewMessage;
@@ -78,7 +83,8 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     }
 
     private void setFonts() {
-        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, searchView, textViewDND, textViewDNDStatus);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewClinicalEmergency);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, searchView, textViewDND, textViewDNDStatus, textViewUrgentMessage);
     }
 
     private void patientList() {
@@ -87,7 +93,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
             return;
         }
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
-        PatientRequest patientRequest = new PatientRequest();
+        final PatientRequest patientRequest = new PatientRequest();
 
         patientRequest.setUserId(loginData.getId());
 
@@ -99,6 +105,10 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
                 ProgressHelper.stop();
                 if (response == null) return;
                 PatientResponse patientResponse = (PatientResponse) response;
+                if (!patientResponse.getIsUrgent().equals("0")) {
+                    // show urgent view
+                    relativeLayoutClinicalEmergency.setVisibility(View.VISIBLE);
+                }
                 if (patientResponse.getPatientData().size() > 0)
                     setRecycleAdapter(patientResponse.getPatientData());
             }
@@ -110,6 +120,11 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
                 errorManager.handleErrorResponse();
             }
         });
+    }
+
+    @OnClick(R.id.image_view_emergency_close)
+    void emergencyCloseTapped() {
+        relativeLayoutClinicalEmergency.setVisibility(View.GONE);
     }
 
     private void updateUi() {

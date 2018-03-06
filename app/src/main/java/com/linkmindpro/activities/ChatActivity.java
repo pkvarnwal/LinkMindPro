@@ -15,7 +15,6 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,12 +48,16 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     TextView textViewTitle;
     @BindView(R.id.recycler_view_chat)
     RecyclerView recyclerViewChat;
-    @BindView(R.id.image_view_send) ImageView imageViewSend;
-    @BindView(R.id.image_view_profile) ImageView imageViewProfile;
-    @BindView(R.id.image_view_attached) ImageView imageViewAttached;
-    @BindView(R.id.edit_text_chat) EditText editTextChat;
-    @BindView(R.id.checkbox_urgent)
-    CheckBox checkBoxUrgent;
+    @BindView(R.id.image_view_send)
+    ImageView imageViewSend;
+    @BindView(R.id.image_view_profile)
+    ImageView imageViewProfile;
+    @BindView(R.id.image_view_attached)
+    ImageView imageViewAttached;
+    @BindView(R.id.image_view_imp)
+    ImageView imageViewImp;
+    @BindView(R.id.edit_text_chat)
+    EditText editTextChat;
     private LoginData loginData;
     private PatientData patientData;
     private ArrayList<ChatData> chatDatas = new ArrayList<>();
@@ -64,6 +67,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     private static final int GALLERY_REQUEST = 2000;
     private String profilePath;
     private String recieverId;
+    boolean isMarkAsImp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,11 +124,11 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
         if (TextUtils.isEmpty(loginData.getRole())) return;
         if (loginData.getRole().equals("Doctor")) {
-            checkBoxUrgent.setVisibility(View.GONE);
+            imageViewImp.setVisibility(View.GONE);
         }
         if (patientData != null) {
             textViewTitle.setText(patientData.getName());
-            AppUtils.getInstance().display(this, patientData.getImage(),imageViewProfile, R.drawable.ic_user_profile);
+            AppUtils.getInstance().display(this, patientData.getImage(), imageViewProfile, R.drawable.ic_user_profile);
         }
 
     }
@@ -141,7 +145,8 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     }
 
 
-    @OnClick(R.id.image_view_send) void sendMesaageTapped(){
+    @OnClick(R.id.image_view_send)
+    void sendMesaageTapped() {
         String message = editTextChat.getText().toString();
         if (TextUtils.isEmpty(message) && TextUtils.isEmpty(profilePath)) return;
 
@@ -149,7 +154,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         sendChatRequest.setRecieverId(recieverId);
 
         sendChatRequest.setSenderId(loginData.getId());
-        sendChatRequest.setUrgent(checkBoxUrgent.isChecked() ? 1 : 0);
+        sendChatRequest.setUrgent(isMarkAsImp ? 1 : 0);
         imageViewAttached.setVisibility(View.GONE);
 
         if (!TextUtils.isEmpty(profilePath)) {
@@ -165,7 +170,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
             public void onSuccess(Object response) {
                 GetChatResponse chatResponse = (GetChatResponse) response;
                 if (chatResponse == null) return;
-                if (chatResponse.getChatData() != null && chatResponse.getChatData().size() >0 ){
+                if (chatResponse.getChatData() != null && chatResponse.getChatData().size() > 0) {
                     imageViewAttached.setVisibility(View.GONE);
                     editTextChat.setText("");
                     if (chatAdapter == null) {
@@ -188,7 +193,8 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
 
     }
 
-    @OnClick(R.id.image_view_camera) void cameraTapped(){
+    @OnClick(R.id.image_view_camera)
+    void cameraTapped() {
         PermissionClass permissionClass = new PermissionClass(this);
         if (permissionClass.checkPermission(permissions)) {
             openGallery(GALLERY_REQUEST);
@@ -247,6 +253,17 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @OnClick(R.id.image_view_imp)
+    void markAsImpTapped() {
+        if (isMarkAsImp) {
+            imageViewImp.setImageResource(R.drawable.ic_exclamation);
+            isMarkAsImp = false;
+        } else {
+            imageViewImp.setImageResource(R.drawable.ic_active_exclamation);
+            isMarkAsImp = true;
+        }
     }
 }
 

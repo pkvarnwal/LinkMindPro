@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class PatientResponse {
 
     @SerializedName("status") private String status;
+    @SerializedName("is_urgent") private String isUrgent;
     @SerializedName("data") private ArrayList<PatientData> patientData = new ArrayList<>();
     @SerializedName("error") private ErrorResponse errorResponse;
 
@@ -34,5 +35,13 @@ public class PatientResponse {
 
     public void setErrorResponse(ErrorResponse errorResponse) {
         this.errorResponse = errorResponse;
+    }
+
+    public String getIsUrgent() {
+        return isUrgent;
+    }
+
+    public void setIsUrgent(String isUrgent) {
+        this.isUrgent = isUrgent;
     }
 }
