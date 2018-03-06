@@ -19,19 +19,71 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        app:queryHint="Search"
-        app:iconifiedByDefault="false"
-        app:closeIcon="@null"
         android:singleLine="true"
-        android:visibility="gone"
         android:textColor="@color/eqdepot_font_gray"
-        android:textColorHint="@color/eqdepot_font_gray_hint" />
+        android:textColorHint="@color/eqdepot_font_gray_hint"
+        android:visibility="gone"
+        app:closeIcon="@null"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search" />
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_clinical_emergency"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:visibility="gone"
+        android:layout_below="@+id/edit_text_search"
+        android:background="@color/red">
+
+        <ImageView
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:src="@drawable/ic_info_white" />
+
+        <TextView
+            android:id="@+id/text_view_clinical_emergency"
+            style="@style/textSize_smaller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="You have a clinical emergency message"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/text_view_urgent_message"
+            style="@style/textSize_smallest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_clinical_emergency"
+            android:layout_centerHorizontal="true"
+            android:text="Message is in urgent need of your attention."
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/image_view_emergency_close"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:src="@drawable/ic_close" />
+
+    </RelativeLayout>
 
     <View
         android:id="@+id/divider_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/edit_text_search"
+        android:layout_below="@+id/relative_layout_clinical_emergency"
         android:background="@color/divider_gray" />
 
     <android.support.v7.widget.RecyclerView

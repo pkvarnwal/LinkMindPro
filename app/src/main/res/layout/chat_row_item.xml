@@ -79,7 +79,7 @@
         <TextView
             android:id="@+id/text_view_user_emergency"
             style="@style/textSize_smaller"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="2dp"
             android:paddingLeft="@dimen/_10sdp"
@@ -90,7 +90,7 @@
 
         <RelativeLayout
             android:id="@+id/relative_layout_user_date"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/text_view_user_emergency"
@@ -111,7 +111,7 @@
             <TextView
                 android:id="@+id/text_view_user_message"
                 style="@style/textSize_smaller"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/image_view_user"
                 android:layout_marginRight="5dp"
