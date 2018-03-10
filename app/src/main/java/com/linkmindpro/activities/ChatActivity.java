@@ -130,7 +130,6 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
             textViewTitle.setText(patientData.getName());
             AppUtils.getInstance().display(this, patientData.getImage(), imageViewProfile, R.drawable.ic_user_profile);
         }
-
     }
 
     private void setRecycleAdapter(ArrayList<ChatData> chatDatas) {
