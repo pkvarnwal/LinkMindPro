@@ -141,6 +141,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:contentDescription="@null"
                         android:src="@drawable/ic_dnd" />
 
                     <android.support.v7.widget.SwitchCompat
@@ -151,7 +152,7 @@
                         android:layout_toRightOf="@+id/image_view_dnd"
                         android:paddingLeft="@dimen/_5sdp"
                         android:paddingRight="@dimen/_5sdp"
-                        android:text="Do Not Disturb (DND)">
+                        android:text="@string/do_not_disturb_dnd">
 
                     </android.support.v7.widget.SwitchCompat>
 
@@ -185,11 +186,11 @@
                         style="@style/textSize_smaller"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp"
-                        android:gravity="top"
                         android:layout_centerInParent="true"
-                        android:enabled="false"
                         android:background="@null"
-                        android:hint="I am currently unavailable now."/>
+                        android:enabled="false"
+                        android:gravity="top"
+                        android:hint="@string/currently_unavailable" />
 
                     <ImageView
                         android:id="@+id/image_view_enable_dnd"

@@ -219,6 +219,6 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     @Override
     protected void onResume() {
         super.onResume();
-        textViewDNDStatus.setText(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? "ON" : "OFF");
+        textViewDNDStatus.setText(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? ON : OFF);
     }
 }
