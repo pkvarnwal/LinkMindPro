@@ -19,7 +19,6 @@ import com.linkmindpro.utils.AppUtils;
 import com.linkmindpro.utils.SimpleDateFormatter;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeoutException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,7 +91,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
             }
             if (patientData.getMessageCount() > 0)  {
                 textViewCount.setVisibility(View.VISIBLE);
-                textViewCount.setText(patientData.getMessageCount()+"");
+                textViewCount.setText(String.valueOf(patientData.getMessageCount()));
             }
             if (!TextUtils.isEmpty(patientData.getDateTime())) {
                 textViewDate.setVisibility(View.VISIBLE);
