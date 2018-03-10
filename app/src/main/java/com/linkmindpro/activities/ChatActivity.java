@@ -96,7 +96,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     }
 
     private void getChat() {
-        recieverId = loginData.getRole().equals("Patient") ? loginData.getReferenceId() : patientData.getId();
+        recieverId = loginData.getRole().equals(PATIENT) ? loginData.getReferenceId() : patientData.getId();
 
         final GetChatRequest getChatRequest = new GetChatRequest();
 
@@ -115,7 +115,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
 
             @Override
             public void onError(Object response) {
-                Log.e("err", "error");
+                Log.v("err", "error");
             }
         });
     }
@@ -123,7 +123,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     private void updateUi() {
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
         if (TextUtils.isEmpty(loginData.getRole())) return;
-        if (loginData.getRole().equals("Doctor")) {
+        if (loginData.getRole().equals(DOCTOR)) {
             imageViewImp.setVisibility(View.GONE);
         }
         if (patientData != null) {
