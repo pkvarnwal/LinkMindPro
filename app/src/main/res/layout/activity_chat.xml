@@ -65,7 +65,7 @@
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_weight=".9"
                 android:background="@color/white"
-                android:hint="Type to compose"
+                android:hint="@string/try_to_compose"
                 android:imeOptions="actionNext"
                 android:paddingLeft="@dimen/_20sdp"
                 android:textColor="@color/eqdepot_font_gray"
@@ -75,12 +75,12 @@
                 android:id="@+id/image_view_send"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingRight="@dimen/_10sdp"
                 android:layout_gravity="center"
                 android:layout_weight="0.1"
                 android:background="@android:color/transparent"
                 android:contentDescription="@null"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
                 android:src="@drawable/ic_send" />
         </LinearLayout>
 
@@ -88,8 +88,7 @@
             android:id="@+id/image_view_attached"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            android:contentDescription="@null"
             android:visibility="gone" />
     </LinearLayout>
-
-
 </RelativeLayout>

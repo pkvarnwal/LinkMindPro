@@ -27,7 +27,6 @@ import com.linkmindpro.utils.AppConstant;
 import com.linkmindpro.utils.AppPreference;
 import com.linkmindpro.utils.ConnectionDetector;
 import com.linkmindpro.utils.ProgressHelper;
-import com.linkmindpro.view.Message;
 import com.linkmindpro.view.SimpleDividerItemDecoration;
 import com.linkmindpro.view.SnackBarFactory;
 
@@ -47,16 +46,20 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     TextView textViewNotification;
     @BindView(R.id.edit_text_search)
     SearchView searchView;
-    @BindView(R.id.text_view_urgent_message) TextView textViewUrgentMessage;
-    @BindView(R.id.text_view_clinical_emergency) TextView textViewClinicalEmergency;
+    @BindView(R.id.text_view_urgent_message)
+    TextView textViewUrgentMessage;
+    @BindView(R.id.text_view_clinical_emergency)
+    TextView textViewClinicalEmergency;
     @BindView(R.id.recycler_view_doctor)
     RecyclerView recyclerViewDoctor;
     @BindView(R.id.relative_layout_root)
     RelativeLayout relativeLayoutRoot;
     @BindView(R.id.relative_layout_dnd)
     RelativeLayout relativeLayoutDND;
-    @BindView(R.id.text_view_dnd) TextView textViewDND;
-    @BindView(R.id.text_view_dnd_on_off) TextView textViewDNDStatus;
+    @BindView(R.id.text_view_dnd)
+    TextView textViewDND;
+    @BindView(R.id.text_view_dnd_on_off)
+    TextView textViewDNDStatus;
     @BindView(R.id.image_view_setting)
     ImageView imageViewSetting;
     @BindView(R.id.image_view_edit_profile)
@@ -104,11 +107,16 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
             public void onSuccess(Object response) {
                 ProgressHelper.stop();
                 if (response == null) return;
+
                 PatientResponse patientResponse = (PatientResponse) response;
-                if (!patientResponse.getIsUrgent().equals("0")) {
-                    // show urgent view
+                if (!patientResponse.getIsUrgent().equals("0"))
                     relativeLayoutClinicalEmergency.setVisibility(View.VISIBLE);
-                }
+
+//                for (int i = 0; i < patientResponse.getPatientData().size(); i++) {
+//                     if (patientResponse.getPatientData().get(i).getUrgent().equals("1"))
+//                         relativeLayoutClinicalEmergency.setVisibility(View.VISIBLE);
+//
+//                }
                 if (patientResponse.getPatientData().size() > 0)
                     setRecycleAdapter(patientResponse.getPatientData());
             }
@@ -158,39 +166,6 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         startActivity(intent);
     }
 
-    private void doNotDisturb(boolean active) {
-        if (!ConnectionDetector.isNetworkAvailable(this)) {
-            SnackBarFactory.showNoInternetSnackBar(DoctorListActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
-            return;
-        }
-
-        LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
-
-        DoNotDisturbRequest doNotDisturbRequest = new DoNotDisturbRequest();
-        doNotDisturbRequest.setMessage("I am currently unavailable now.");
-        doNotDisturbRequest.setUserId(loginData.getId());
-        doNotDisturbRequest.setDnd(active ? "1" : "0");
-
-        ProgressHelper.start(this, stringPleaseWait);
-
-        DataManager.getInstance().doNotDisturb(this, doNotDisturbRequest, new DataManager.DataManagerListener() {
-            @Override
-            public void onSuccess(Object response) {
-                ProgressHelper.stop();
-                ProgressHelper.stop();
-                String message = ((DoNotDisturbResponse) response).getDoNotDisturbData().getMessage();
-                confirmPopUp(message);
-            }
-
-            @Override
-            public void onError(Object response) {
-                ProgressHelper.stop();
-                ErrorManager errorManager = new ErrorManager(DoctorListActivity.this, relativeLayoutRoot, response);
-                errorManager.handleErrorResponse();
-            }
-        });
-    }
-
     private void confirmPopUp(String message) {
         PopUpHelper.showInfoAlertPopup(this, message, new PopUpHelper.InfoPopupListener() {
             @Override
@@ -199,7 +174,7 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
         });
     }
 
-    SearchView.OnQueryTextListener textWatcher = new  SearchView.OnQueryTextListener() {
+    SearchView.OnQueryTextListener textWatcher = new SearchView.OnQueryTextListener() {
 
         @Override
         public boolean onQueryTextSubmit(String query) {
@@ -216,6 +191,6 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     @Override
     protected void onResume() {
         super.onResume();
-        textViewDNDStatus.setText(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? "ON" :"OFF");
+        textViewDNDStatus.setText(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? ON : OFF);
     }
 }

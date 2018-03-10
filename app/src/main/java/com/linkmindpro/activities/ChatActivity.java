@@ -1,11 +1,15 @@
 package com.linkmindpro.activities;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +18,7 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -79,7 +84,15 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         getIntentData();
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("Image Updated"));
     }
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateUi();
+        }
+    };
 
     private void getIntentData() {
         loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
@@ -96,7 +109,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     }
 
     private void getChat() {
-        recieverId = loginData.getRole().equals("Patient") ? loginData.getReferenceId() : patientData.getId();
+        recieverId = loginData.getRole().equals(PATIENT) ? loginData.getReferenceId() : patientData.getId();
 
         final GetChatRequest getChatRequest = new GetChatRequest();
 
@@ -115,7 +128,7 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
 
             @Override
             public void onError(Object response) {
-                Log.e("err", "error");
+                Log.v("err", "error");
             }
         });
     }
@@ -123,14 +136,13 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
     private void updateUi() {
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
         if (TextUtils.isEmpty(loginData.getRole())) return;
-        if (loginData.getRole().equals("Doctor")) {
+        if (loginData.getRole().equals(DOCTOR)) {
             imageViewImp.setVisibility(View.GONE);
         }
-        if (patientData != null) {
-            textViewTitle.setText(patientData.getName());
-            AppUtils.getInstance().display(this, patientData.getImage(), imageViewProfile, R.drawable.ic_user_profile);
-        }
+        if (patientData != null) textViewTitle.setText(patientData.getName());
 
+        if (!TextUtils.isEmpty(loginData.getImage()))
+            AppUtils.getInstance().display(this, loginData.getImage(), imageViewProfile, R.drawable.ic_user_profile);
     }
 
     private void setRecycleAdapter(ArrayList<ChatData> chatDatas) {
@@ -190,7 +202,6 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
 
             }
         });
-
     }
 
     @OnClick(R.id.image_view_camera)
@@ -253,6 +264,19 @@ public class ChatActivity extends AppCompatActivity implements AppConstant {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.item_setting:
+                startActivity(new Intent(this, DoctorSettingActivity.class));
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.image_view_imp)

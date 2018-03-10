@@ -34,7 +34,7 @@
             android:background="@color/red"
             android:paddingLeft="@dimen/_5sdp"
             android:paddingRight="@dimen/_5sdp"
-            android:text="Urgent"
+            android:text="@string/urgent"
             android:textColor="@color/white"
             android:visibility="gone" />
 
@@ -44,8 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_urgent"
             android:layout_centerVertical="true"
-            android:text="hvkjsdvjs"
-            android:textColor="@color/black" />
+            android:text=""
+            android:textColor="@color/color_blue" />
 
         <TextView
             android:id="@+id/text_view_last_message"
@@ -53,8 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_item"
-            android:text="bssbjbns"
-            android:textColor="@color/black" />
+            android:text=""
+            android:textColor="@color/color_blue" />
     </RelativeLayout>
 
     <RelativeLayout

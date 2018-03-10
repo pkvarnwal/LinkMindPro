@@ -3,8 +3,9 @@ package com.linkmindpro.models.login;
 import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
+import com.linkmindpro.utils.AppConstant;
 
-public class LoginData {
+public class LoginData implements AppConstant {
 
     @SerializedName("id") private String id;
     @SerializedName("name") private String name;
@@ -63,8 +64,8 @@ public class LoginData {
     }
 
     public String getRole() {
-        if (role.equals("1")) return "Doctor";
-        return "Patient";
+        if (role.equals("1")) return DOCTOR;
+        return PATIENT;
     }
 
     public void setRole(String role) {

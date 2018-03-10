@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="You have a clinical emergency message"
+            android:text="@string/emergency_message"
             android:textColor="@color/white" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_clinical_emergency"
             android:layout_centerHorizontal="true"
-            android:text="Message is in urgent need of your attention."
+            android:text="@string/need_your_attention"
             android:textColor="@color/white" />
 
         <ImageView

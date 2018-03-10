@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/item_edit_profile"
-        android:title="@string/edit_profile"
-        app:showAsAction="never" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/item_reset_password"
-        android:title="@string/reset_password"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/item_send_invite"
-        android:title="@string/send_invitation" />
+        android:id="@+id/item_setting"
+        android:title="@string/setting" />
 
-    <item
-        android:id="@+id/item_logout"
-        android:title="@string/logout" />
 </menu>
