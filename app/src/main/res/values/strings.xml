@@ -63,4 +63,6 @@
     <string name="try_to_compose">Type to compose</string>
     <string name="need_your_attention">Message is in urgent need of your attention.</string>
     <string name="emergency_message">You have a clinical emergency message</string>
+    <string name="currently_unavailable">I am currently unavailable now.</string>
+    <string name="do_not_disturb_dnd">Do Not Disturb (DND)</string>
 </resources>

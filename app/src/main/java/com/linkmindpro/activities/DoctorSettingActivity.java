@@ -99,9 +99,12 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
     @BindView(R.id.relative_layout_dnd)
     RelativeLayout RelativeLayoutDnd;
 
-    @BindString(R.string.please_wait) String stringPleaseWait;
-    @BindString(R.string.are_you_sure_logout) String stringAreYouSureLogout;
-    @BindString(R.string.please_enter_dnd_message) String stringEnterDndMessage;
+    @BindString(R.string.please_wait)
+    String stringPleaseWait;
+    @BindString(R.string.are_you_sure_logout)
+    String stringAreYouSureLogout;
+    @BindString(R.string.please_enter_dnd_message)
+    String stringEnterDndMessage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,7 +127,7 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
     private void updateUi() {
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
         if (TextUtils.isEmpty(loginData.getRole())) return;
-        if (loginData.getRole().equals("Patient")) {
+        if (loginData.getRole().equals(PATIENT)) {
             RelativeLayoutDnd.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(loginData.getName())) textViewName.setText(loginData.getName());
@@ -138,8 +141,11 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
             textViewAddress.setText(loginData.getCompleteAddress());
         if (!TextUtils.isEmpty(loginData.getPhone())) textViewPhone.setText(loginData.getPhone());
 
-        switchCompatDnd.setChecked(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? true : false);
+        switchCompatDnd.setChecked(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS));
 
+        if (AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS)) {
+            editTextDndMessage.setText(AppPreference.getAppPreference(this).getString(DND_MESSAGE));
+        }
         editTextDndMessage.setEnabled(false);
     }
 
@@ -205,7 +211,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         DoNotDisturbRequest doNotDisturbRequest = new DoNotDisturbRequest();
         doNotDisturbRequest.setMessage(dndMessage);
         doNotDisturbRequest.setUserId(loginData.getId());
-        doNotDisturbRequest.setDnd(active ? "1" : "0");
+//        if (!AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS))
+        doNotDisturbRequest.setDnd(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? "1" : "0");
 
         ProgressHelper.start(this, stringPleaseWait);
 
@@ -232,17 +239,13 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         PopUpHelper.showInfoAlertPopup(this, message, new PopUpHelper.InfoPopupListener() {
             @Override
             public void onConfirm() {
+                if (!AppPreference.getAppPreference(DoctorSettingActivity.this).getBoolean(PREF_DND_STATUS)) {
+                    editTextDndMessage.setText("");
+                }
             }
         });
     }
 
-    private void setFont() {
-        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewProfession, textViewAddress,
-                editTextDndMessage, textViewFax, textViewPhone, textViewEmail);
-        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewName, textViewEditProfile,
-                textViewPaymentMethod, textViewLogout, textViewResetPassword,
-                switchCompatDnd, textViewVisa, textViewInvitePatient);
-    }
 
     @OnClick(R.id.image_view_enable_dnd)
     void enableDndTapped() {
@@ -252,11 +255,21 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
 
     private boolean validate(String dndMessage) {
         if (TextUtils.isEmpty(dndMessage)) {
-            SnackBarFactory.createSnackBar(this, linearLayoutRoot, stringEnterDndMessage);
+            editTextDndMessage.setEnabled(true);
+                SnackBarFactory.createSnackBar(this, linearLayoutRoot, stringEnterDndMessage);
             switchCompatDnd.setChecked(false);
             return false;
         }
+        AppPreference.getAppPreference(this).putString(DND_MESSAGE, dndMessage);
 
         return true;
+    }
+
+    private void setFont() {
+        FontHelper.setFontFace(FontHelper.FontType.FONT_REGULAR, textViewProfession, textViewAddress,
+                editTextDndMessage, textViewFax, textViewPhone, textViewEmail);
+        FontHelper.setFontFace(FontHelper.FontType.FONT_BOLD, textViewName, textViewEditProfile,
+                textViewPaymentMethod, textViewLogout, textViewResetPassword,
+                switchCompatDnd, textViewVisa, textViewInvitePatient);
     }
 }

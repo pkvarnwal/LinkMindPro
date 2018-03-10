@@ -23,4 +23,7 @@ public interface AppConstant {
     String PREF_DND_STATUS = "pref_dnd_status";
     String DOCTOR = "Doctor";
     String PATIENT = "Patient";
+    String ON = "ON";
+    String OFF = "OFF";
+    String DND_MESSAGE = "dnd_message";
 }
