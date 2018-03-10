@@ -60,4 +60,5 @@
     <string name="do_not_disturb_">Do Not Disturb:</string>
     <string name="are_you_sure_logout">Are you sure you want to logout?</string>
     <string name="please_enter_dnd_message">Please enter dnd message.</string>
+    <string name="try_to_compose">Type to compose</string>
 </resources>
