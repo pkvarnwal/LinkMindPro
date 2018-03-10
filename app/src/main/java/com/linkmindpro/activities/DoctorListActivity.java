@@ -112,6 +112,11 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
                 if (!patientResponse.getIsUrgent().equals("0"))
                     relativeLayoutClinicalEmergency.setVisibility(View.VISIBLE);
 
+//                for (int i = 0; i < patientResponse.getPatientData().size(); i++) {
+//                     if (patientResponse.getPatientData().get(i).getUrgent().equals("1"))
+//                         relativeLayoutClinicalEmergency.setVisibility(View.VISIBLE);
+//
+//                }
                 if (patientResponse.getPatientData().size() > 0)
                     setRecycleAdapter(patientResponse.getPatientData());
             }
@@ -159,39 +164,6 @@ public class DoctorListActivity extends AppCompatActivity implements AppConstant
     void settingTapped() {
         Intent intent = new Intent(this, DoctorSettingActivity.class);
         startActivity(intent);
-    }
-
-    private void doNotDisturb(boolean active) {
-        if (!ConnectionDetector.isNetworkAvailable(this)) {
-            SnackBarFactory.showNoInternetSnackBar(DoctorListActivity.this, relativeLayoutRoot, getString(R.string.no_internet_message));
-            return;
-        }
-
-        LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
-
-        DoNotDisturbRequest doNotDisturbRequest = new DoNotDisturbRequest();
-        doNotDisturbRequest.setMessage("I am currently unavailable now.");
-        doNotDisturbRequest.setUserId(loginData.getId());
-        doNotDisturbRequest.setDnd(active ? "1" : "0");
-
-        ProgressHelper.start(this, stringPleaseWait);
-
-        DataManager.getInstance().doNotDisturb(this, doNotDisturbRequest, new DataManager.DataManagerListener() {
-            @Override
-            public void onSuccess(Object response) {
-                ProgressHelper.stop();
-                ProgressHelper.stop();
-                String message = ((DoNotDisturbResponse) response).getDoNotDisturbData().getMessage();
-                confirmPopUp(message);
-            }
-
-            @Override
-            public void onError(Object response) {
-                ProgressHelper.stop();
-                ErrorManager errorManager = new ErrorManager(DoctorListActivity.this, relativeLayoutRoot, response);
-                errorManager.handleErrorResponse();
-            }
-        });
     }
 
     private void confirmPopUp(String message) {

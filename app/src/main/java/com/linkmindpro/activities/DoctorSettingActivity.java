@@ -97,7 +97,7 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
     @BindView(R.id.linear_layout_root)
     LinearLayout linearLayoutRoot;
     @BindView(R.id.relative_layout_dnd)
-    RelativeLayout RelativeLayoutDnd;
+    RelativeLayout relativeLayoutDnd;
 
     @BindString(R.string.please_wait)
     String stringPleaseWait;
@@ -128,7 +128,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         LoginData loginData = AppPreference.getAppPreference(this).getObject(PREF_LOGINDATA, LoginData.class);
         if (TextUtils.isEmpty(loginData.getRole())) return;
         if (loginData.getRole().equals(PATIENT)) {
-            RelativeLayoutDnd.setVisibility(View.GONE);
+            relativeLayoutDnd.setVisibility(View.GONE);
+            linearLayoutInvitePatient.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(loginData.getName())) textViewName.setText(loginData.getName());
         if (!TextUtils.isEmpty(loginData.getImage()))
@@ -211,7 +212,6 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
         DoNotDisturbRequest doNotDisturbRequest = new DoNotDisturbRequest();
         doNotDisturbRequest.setMessage(dndMessage);
         doNotDisturbRequest.setUserId(loginData.getId());
-//        if (!AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS))
         doNotDisturbRequest.setDnd(AppPreference.getAppPreference(this).getBoolean(PREF_DND_STATUS) ? "1" : "0");
 
         ProgressHelper.start(this, stringPleaseWait);
@@ -220,10 +220,8 @@ public class DoctorSettingActivity extends AppCompatActivity implements AppConst
             @Override
             public void onSuccess(Object response) {
                 ProgressHelper.stop();
-                ProgressHelper.stop();
                 String message = ((DoNotDisturbResponse) response).getDoNotDisturbData().getMessage();
                 confirmPopUp(message);
-
             }
 
             @Override
