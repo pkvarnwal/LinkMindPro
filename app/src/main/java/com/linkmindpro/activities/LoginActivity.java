@@ -117,6 +117,7 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
 
                 if (loginResponse.getLoginData().getRole().equals("Patient")) {
                     Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(IS_PATIENT, true);
                     startActivity(intent);
                     finish();
@@ -124,6 +125,7 @@ public class LoginActivity extends AppCompatActivity implements AppConstant {
                 }
 
                 Intent intent = new Intent(LoginActivity.this, DoctorListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
             }

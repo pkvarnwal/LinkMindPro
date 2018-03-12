@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,8 +115,10 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
 
         if (!name.equals("")) {
             for (int i = 0; i < mCompleteList.size(); i++) {
-                if (mCompleteList.get(i).getName().toLowerCase().contains(name.toLowerCase()))
-                    mPatientData.add(mCompleteList.get(i));
+                if (mCompleteList.get(i).getName() != null) {
+                    if (mCompleteList.get(i).getName().toLowerCase().contains(name.toLowerCase()))
+                        mPatientData.add(mCompleteList.get(i));
+                }
             }
         } else mPatientData.addAll(mCompleteList);
         notifyDataSetChanged();

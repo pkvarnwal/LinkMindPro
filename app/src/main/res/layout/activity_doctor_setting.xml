@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/linear_layout_invite_patient"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_height="@dimen/_50sdp"
         android:background="@color/light_blue"
         android:gravity="center"
         android:orientation="horizontal">
