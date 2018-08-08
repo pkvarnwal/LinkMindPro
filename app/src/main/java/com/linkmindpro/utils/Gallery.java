@@ -16,7 +16,6 @@ public class Gallery {
         final Intent intent = new Intent(ACTION_GET_CONTENT);
         intent.setType("image/*");
         mActivity.startActivityForResult(Intent.createChooser(intent, "Select Image"), RequestCode);
-
         return intent;
     }
 }

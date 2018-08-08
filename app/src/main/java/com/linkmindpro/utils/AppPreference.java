@@ -20,7 +20,8 @@ public class AppPreference {
     }
 
     public static AppPreference getAppPreference(Context mContext) {
-        if (sAppPreference == null) sAppPreference = new AppPreference(mContext);
+        if (sAppPreference == null)
+            sAppPreference = new AppPreference(mContext);
 
         return sAppPreference;
     }
@@ -29,9 +30,9 @@ public class AppPreference {
         mEditor.putString(key, value);
         mEditor.apply();
     }
-    
+
     public String getString(String key) {
-       return sSharedPreferences.getString(key, "");
+        return sSharedPreferences.getString(key, "");
     }
 
     public void putBoolean(String key, boolean value) {
@@ -54,12 +55,12 @@ public class AppPreference {
 
     public void putObject(String key, Object t) {
         Gson gson = new Gson();
-        String valueAsString =  gson.toJson(t);
+        String valueAsString = gson.toJson(t);
         mEditor.putString(key, valueAsString);
         mEditor.apply();
     }
 
-    public <T> T getObject(String key, Class<T> t){
+    public <T> T getObject(String key, Class<T> t) {
         Gson gson = new Gson();
         return gson.fromJson(getString(key), t);
     }

@@ -29,6 +29,7 @@ public class SplashActivity extends AppCompatActivity implements AppConstant {
             @Override
             public void run() {
                 if (AppPreference.getAppPreference(SplashActivity.this).getBoolean(INTRO_SEEN)) {
+
                     LoginData loginData = AppPreference.getAppPreference(SplashActivity.this).getObject(PREF_LOGINDATA, LoginData.class);
                     if(loginData != null) {
                         if (loginData.getRole().equals(PATIENT)) {
@@ -45,9 +46,9 @@ public class SplashActivity extends AppCompatActivity implements AppConstant {
                 } else {
                     startActivity(new Intent(SplashActivity.this, ViewPagerActivity.class));
                 }
-                
                 finish();
             }
+            
         }, SPLASH_TIME);
     }
 }
